@@ -23,7 +23,7 @@ development:
   <<: *default
   database: dentist_development
   username: postgres
-  password: aceituno
+  password: postgres
   host: postgres
   port: 5432
 
@@ -61,7 +61,7 @@ test:
   <<: *default
   database: dentist_test
   username: postgres
-  password: aceituno
+  password: postgres
   host: postgres
   port: 5432
 
@@ -89,6 +89,6 @@ production:
   <<: *default
   database: dentist_production
   username: postgres
-  password: aceituno
+  password: postgres
   host: postgres
   port: 5432
