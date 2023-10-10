@@ -24,7 +24,7 @@ development:
   database: dentist_development
   username: postgres
   password: aceituno
-  locahost: postgres
+  host: postgres
   port: 5432
 
   # The specified database role being used to connect to postgres.
@@ -62,7 +62,7 @@ test:
   database: dentist_test
   username: postgres
   password: aceituno
-  localhost: postgres
+  host: postgres
   port: 5432
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -90,5 +90,5 @@ production:
   database: dentist_production
   username: postgres
   password: aceituno
-  localhost: postgres
+  host: postgres
   port: 5432
