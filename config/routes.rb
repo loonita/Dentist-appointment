@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appointments
   devise_for :users
   resources :users
 
@@ -13,5 +14,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
   get "home" => "home#index"
+  root 'appointments#welcome'
 
 end
