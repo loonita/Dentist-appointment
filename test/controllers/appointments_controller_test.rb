@@ -6,33 +6,43 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get appointments_url, as: :json
+    get appointments_url
+    assert_response :success
+  end
+
+  test "should get new" do
+    get new_appointment_url
     assert_response :success
   end
 
   test "should create appointment" do
     assert_difference("Appointment.count") do
-      post appointments_url, params: { appointment: { customer_paid: @appointment.customer_paid, email: @appointment.email, first_name: @appointment.first_name, last_name: @appointment.last_name, phone_number: @appointment.phone_number, status: @appointment.status, time: @appointment.time } }, as: :json
+      post appointments_url, params: { appointment: {  } }
     end
 
-    assert_response :created
+    assert_redirected_to appointment_url(Appointment.last)
   end
 
   test "should show appointment" do
-    get appointment_url(@appointment), as: :json
+    get appointment_url(@appointment)
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get edit_appointment_url(@appointment)
     assert_response :success
   end
 
   test "should update appointment" do
-    patch appointment_url(@appointment), params: { appointment: { customer_paid: @appointment.customer_paid, email: @appointment.email, first_name: @appointment.first_name, last_name: @appointment.last_name, phone_number: @appointment.phone_number, status: @appointment.status, time: @appointment.time } }, as: :json
-    assert_response :success
+    patch appointment_url(@appointment), params: { appointment: {  } }
+    assert_redirected_to appointment_url(@appointment)
   end
 
   test "should destroy appointment" do
     assert_difference("Appointment.count", -1) do
-      delete appointment_url(@appointment), as: :json
+      delete appointment_url(@appointment)
     end
 
-    assert_response :no_content
+    assert_redirected_to appointments_url
   end
 end

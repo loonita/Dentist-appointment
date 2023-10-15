@@ -1,16 +1,22 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: %i[ show update destroy ]
+  before_action :set_appointment, only: %i[ show edit update destroy ]
 
   # GET /appointments
   def index
     @appointments = Appointment.all
-
-    render json: @appointments
   end
 
   # GET /appointments/1
   def show
-    render json: @appointment
+  end
+
+  # GET /appointments/new
+  def new
+    @appointment = Appointment.new
+  end
+
+  # GET /appointments/1/edit
+  def edit
   end
 
   # POST /appointments
@@ -18,24 +24,25 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
-      render json: @appointment, status: :created, location: @appointment
+      redirect_to @appointment, notice: "Appointment was successfully created."
     else
-      render json: @appointment.errors, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /appointments/1
   def update
     if @appointment.update(appointment_params)
-      render json: @appointment
+      redirect_to @appointment, notice: "Appointment was successfully updated.", status: :see_other
     else
-      render json: @appointment.errors, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /appointments/1
   def destroy
     @appointment.destroy!
+    redirect_to appointments_url, notice: "Appointment was successfully destroyed.", status: :see_other
   end
 
   private
@@ -46,6 +53,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:first_name, :last_name, :phone_number, :email, :time, :customer_paid, :status)
+      params.fetch(:appointment, {})
     end
 end

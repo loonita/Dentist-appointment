@@ -14,8 +14,6 @@ class AppointmentsTest < ApplicationSystemTestCase
     visit appointments_url
     click_on "New appointment"
 
-    fill_in "Date", with: @appointment.date
-    fill_in "Title", with: @appointment.title
     click_on "Create Appointment"
 
     assert_text "Appointment was successfully created"
@@ -26,8 +24,6 @@ class AppointmentsTest < ApplicationSystemTestCase
     visit appointment_url(@appointment)
     click_on "Edit this appointment", match: :first
 
-    fill_in "Date", with: @appointment.date
-    fill_in "Title", with: @appointment.title
     click_on "Update Appointment"
 
     assert_text "Appointment was successfully updated"
