@@ -14,6 +14,12 @@ class AppointmentsTest < ApplicationSystemTestCase
     visit appointments_url
     click_on "New appointment"
 
+    fill_in "Dentist", with: @appointment.dentist
+    fill_in "Email", with: @appointment.email
+    fill_in "Name", with: @appointment.name
+    fill_in "Phone number", with: @appointment.phone_number
+    fill_in "Status", with: @appointment.status
+    fill_in "Time", with: @appointment.time
     click_on "Create Appointment"
 
     assert_text "Appointment was successfully created"
@@ -24,6 +30,12 @@ class AppointmentsTest < ApplicationSystemTestCase
     visit appointment_url(@appointment)
     click_on "Edit this appointment", match: :first
 
+    fill_in "Dentist", with: @appointment.dentist
+    fill_in "Email", with: @appointment.email
+    fill_in "Name", with: @appointment.name
+    fill_in "Phone number", with: @appointment.phone_number
+    fill_in "Status", with: @appointment.status
+    fill_in "Time", with: @appointment.time
     click_on "Update Appointment"
 
     assert_text "Appointment was successfully updated"

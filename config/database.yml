@@ -62,7 +62,7 @@ test:
   database: dentist_test
   username: postgres
   password: aceituno
-  localhost: 127.0.0.1
+  host: 127.0.0.1
   port: 5432
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -90,5 +90,5 @@ production:
   database: dentist_production
   username: postgres
   password: aceituno
-  localhost: 127.0.0.1
+  host: 127.0.0.1
   port: 5432

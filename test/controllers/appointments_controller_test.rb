@@ -17,7 +17,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create appointment" do
     assert_difference("Appointment.count") do
-      post appointments_url, params: { appointment: {  } }
+      post appointments_url, params: { appointment: { dentist: @appointment.dentist, email: @appointment.email, name: @appointment.name, phone_number: @appointment.phone_number, status: @appointment.status, time: @appointment.time } }
     end
 
     assert_redirected_to appointment_url(Appointment.last)
@@ -34,7 +34,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update appointment" do
-    patch appointment_url(@appointment), params: { appointment: {  } }
+    patch appointment_url(@appointment), params: { appointment: { dentist: @appointment.dentist, email: @appointment.email, name: @appointment.name, phone_number: @appointment.phone_number, status: @appointment.status, time: @appointment.time } }
     assert_redirected_to appointment_url(@appointment)
   end
 
