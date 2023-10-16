@@ -1,17 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  status: 1
+  rut: MyString
   name: MyString
+  last_name: MyString
   email: MyString
   phone_number: MyString
-  time: 2023-10-16 00:13:47
-  dentist: MyString
+  date: 2023-10-16
+  time: 2023-10-16 19:29:28
 
 two:
-  status: 1
+  rut: MyString
   name: MyString
+  last_name: MyString
   email: MyString
   phone_number: MyString
-  time: 2023-10-16 00:13:47
-  dentist: MyString
+  date: 2023-10-16
+  time: 2023-10-16 19:29:28
