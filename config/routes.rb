@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :statuses
   resources :appointments
   default_url_options :host => 'localhost'
 

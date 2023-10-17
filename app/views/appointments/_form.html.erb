@@ -47,6 +47,11 @@
   </div>
 
   <div>
+    <%= form.label :status_id %>
+    <%= form.collection_select :status_id, Status.all.order(name: :asc), :id, :name %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

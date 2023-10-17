@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_16_222927) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_16_225023) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_16_222927) do
     t.string "phone_number"
     t.date "date"
     t.time "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "status_id", null: false
+    t.index ["status_id"], name: "index_appointments_on_status_id"
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,4 +46,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_16_222927) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "statuses"
 end
