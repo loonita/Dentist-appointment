@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  belongs_to :rol
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

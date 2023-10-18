@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'user/index'
+  resources :rols
   resources :statuses
   resources :appointments
   default_url_options :host => 'localhost'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -16,5 +20,6 @@ Rails.application.routes.draw do
   get "home" => "home#index"
 
   resources :users
+
 
 end
