@@ -12,13 +12,18 @@
   <% end %>
 
   <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
+    <%= form.label :rut, style: "display: block" %>
+    <%= form.text_field :rut %>
   </div>
 
   <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
   </div>
 
   <div>
@@ -32,13 +37,18 @@
   </div>
 
   <div>
-    <%= form.label :time, style: "display: block" %>
-    <%= form.datetime_field :time %>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date %>
   </div>
 
   <div>
-    <%= form.label :dentist, style: "display: block" %>
-    <%= form.text_field :dentist %>
+    <%= form.label :time, style: "display: block" %>
+    <%= form.time_field :time %>
+  </div>
+
+  <div>
+    <%= form.label :status_id %>
+    <%= form.collection_select :status_id, Status.all.order(name: :asc), :id, :name %>
   </div>
 
   <div>

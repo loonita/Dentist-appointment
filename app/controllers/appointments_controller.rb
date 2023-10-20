@@ -45,6 +45,10 @@ class AppointmentsController < ApplicationController
     redirect_to appointments_url, notice: "Appointment was successfully destroyed.", status: :see_other
   end
 
+  def appointments_params
+    params.require(:appointment).permit(:rut, :name, :last_name, :email, :phone_number, :date, :time, :status_id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_appointment
@@ -53,6 +57,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:status, :name, :email, :phone_number, :time, :dentist)
+      params.require(:appointment).permit(:rut, :name, :last_name, :email, :phone_number, :date, :time, :status_id)
     end
 end
