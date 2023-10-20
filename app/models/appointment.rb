@@ -1,2 +1,3 @@
 class Appointment < ApplicationRecord
-end
+  belongs_to :status
+endgit
