@@ -15,16 +15,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_17_205548) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.string "rut"
-    t.string "name"
-    t.string "last_name"
+    t.string "rut", null: false
+    t.string "name", null: false
+    t.string "last_name", null: false
     t.string "email"
-    t.string "phone_number"
+    t.string "phone_number", null: false
     t.date "date"
     t.time "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "status_id", null: false
+    t.bigint "status_id", default: 1, null: false
     t.index ["status_id"], name: "index_appointments_on_status_id"
   end
 
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_17_205548) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "rol_id", null: false
+    t.integer "rol_id", default: 1, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
