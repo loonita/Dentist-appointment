@@ -1,13 +1,19 @@
-<h1>Clinica dental</h1>
-<% if user_signed_in? %>
-  <div> Welcome <%= current_user.email %> </div>
+<div id="logo">
+  <!-- Aquí coloca tu logo o imagen -->
+  <img src="/assets/logo.png" alt="Logo de la Clínica Dental">
+</div>
 
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<h1>Clinica dental</h1>
+
+<% if user_signed_in? %>
+  <div id="banner">
+    Welcome <%= current_user.email %>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+  </div>
 <% else %>
   <%= button_to "Sign in", new_user_session_path %>
-
 <% end %>
 
-<%= render 'whats_app_button' %>
-
-<%=  %>
+<div id="whatsapp-button" class="whatsapp-button">
+  <%= render 'whats_app_button' %>
+</div>

@@ -1,0 +1,22 @@
+/* app/assets/stylesheets/styles.css */
+
+/* Fondo celeste para la página */
+body {
+    background-color: #c0e2e2; /* Celeste */
+}
+
+/* Estilos para el banner */
+#banner {
+    background-color: #007bff; /* Azul */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Estilos para el botón de WhatsApp */
+.whatsapp-button {
+    background-color: #25d366; /* Verde WhatsApp */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
