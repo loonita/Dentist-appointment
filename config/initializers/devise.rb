@@ -9,15 +9,12 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
-
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '707fbc70cafb5c92d1e6cb70b66a35c4cc9c0d31161b85b7d47d3d7ed9c9e370c1e6eea1c4ab5d0131bd6bce392d4ba18e291023cd482f6f394400fd4f01bb53'
+  # config.secret_key = '41fe20ea140fd4755d8b9f8eae51c38c1282bdefbeeba1dfa429043f07145c339c3446723f3dd8f1836de0d02365b156cda9f14494701c06cccbacb34c834ada'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -129,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '66101e2469ec11872d60b8ba38f76bba6b7f3d457b27be5794a0c09cbe5e6dbd4947bc2242a8295cfda0507683a765381356f2d7f4d38a9469de5b0c41066a76'
+  # config.pepper = '9632c00bd65c98b0411506a6ee9466b3fd013bb9c5049cfcc2d8f45a1a75a5d3d5da79a0bbf21122f1952c063b7da30ee51e058608e0381590b00c8cfcc657bd'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -269,7 +266,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
@@ -302,7 +299,7 @@ Devise.setup do |config|
   # ==> Hotwire/Turbo configuration
   # When using Devise with Hotwire/Turbo, the http status for error responses
   # and some redirects must match the following. The default in Devise for existing
-  # apps is `200 OK` and `302 Found respectively`, but new apps are generated with
+  # apps is `200 OK` and `302 Found` respectively, but new apps are generated with
   # these new defaults that match Hotwire/Turbo behavior.
   # Note: These might become the new default in future versions of Devise.
   config.responder.error_status = :unprocessable_entity
@@ -313,7 +310,4 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-  config.warden do |warden|
-    warden.scope_defaults :user, store: false
-  end
 end

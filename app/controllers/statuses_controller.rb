@@ -1,12 +1,12 @@
 class StatusesController < ApplicationController
   before_action :set_status, only: %i[ show edit update destroy ]
 
-  # GET /statuses
+  # GET /statuses or /statuses.json
   def index
     @statuses = Status.all
   end
 
-  # GET /statuses/1
+  # GET /statuses/1 or /statuses/1.json
   def show
   end
 
@@ -19,30 +19,42 @@ class StatusesController < ApplicationController
   def edit
   end
 
-  # POST /statuses
+  # POST /statuses or /statuses.json
   def create
     @status = Status.new(status_params)
 
-    if @status.save
-      redirect_to @status, notice: "Status was successfully created."
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @status.save
+        format.html { redirect_to status_url(@status), notice: "Status was successfully created." }
+        format.json { render :show, status: :created, location: @status }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @status.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  # PATCH/PUT /statuses/1
+  # PATCH/PUT /statuses/1 or /statuses/1.json
   def update
-    if @status.update(status_params)
-      redirect_to @status, notice: "Status was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @status.update(status_params)
+        format.html { redirect_to status_url(@status), notice: "Status was successfully updated." }
+        format.json { render :show, status: :ok, location: @status }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @status.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  # DELETE /statuses/1
+  # DELETE /statuses/1 or /statuses/1.json
   def destroy
     @status.destroy!
-    redirect_to statuses_url, notice: "Status was successfully destroyed.", status: :see_other
+
+    respond_to do |format|
+      format.html { redirect_to statuses_url, notice: "Status was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private

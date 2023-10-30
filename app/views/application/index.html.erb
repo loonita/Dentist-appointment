@@ -1,1 +1,21 @@
-<h1>kjlhkj</h1>
+<div id="logo">
+  <!-- Aquí coloca tu logo o imagen -->
+  <img src="/assets/logo.png" alt="Logo de la Clínica Dental">
+</div>
+
+<h1>Clínica Dental</h1>
+
+<% if user_signed_in? %>
+  <h3>Seeing site as: <small><%= current_user.email %></small></h3>
+  <h3>User created at: <small><%= current_user.created_at %></h3>
+
+  <%= link_to "Log out", destroy_user_session_path, :class => "dropdown-item", data: { turbo: true, turbo_method: :delete } %>
+<% else %>
+  <h3>Seeing site as guest</h3>
+
+  <%= link_to "Login", new_user_session_path %>
+<% end %>
+
+<div id="whatsapp-button" class="whatsapp-button">
+  <%= render 'whats_app_button' %>
+</div>
