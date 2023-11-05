@@ -1,5 +1,7 @@
 class AppointmentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_appointment, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin, only: %i[ index edit destroy ]
 
   # GET /appointments or /appointments.json
   def index

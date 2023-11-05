@@ -11,10 +11,13 @@
 
   <%= link_to "Log out", destroy_user_session_path, :class => "dropdown-item", data: { turbo: true, turbo_method: :delete } %>
 <% else %>
-  <h3>Seeing site as guest</h3>
+  <h3>Bienvenido</h3>
 
   <%= link_to "Login", new_user_session_path %>
+
 <% end %>
+ <%= link_to "todas las citas", appointments_path %>
+ <%= link_to "crear cita", new_appointment_path %>
 
 <div id="whatsapp-button" class="whatsapp-button">
   <%= render 'whats_app_button' %>
