@@ -1,6 +1,16 @@
 .navbar {
+    background-color: #4785e2;
     margin: 0;
     border: none;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+
 }
 
 .navbar-nav {
@@ -11,6 +21,7 @@
     margin: 0;
     padding: 0;
     border: none;
+
 
 
 }
@@ -24,11 +35,16 @@
     text-align: center;
 
 
+
 }
 
 .navbar-brand {
     margin-right: auto; /* Mueve la marca hacia la izquierda de la barra de navegación */
     margin-left: auto;
+    background-color: transparent;
+    border: none;
+
+
 
 }
 
@@ -52,6 +68,12 @@ body {
     height: 30px; /* Ajusta la altura según tus preferencias */
     font-size: 12px; /* Ajusta el tamaño de fuente según tus preferencias */
     /* Otros estilos personalizados, como el relleno o el margen */
+}
+#whatsapp-button {
+    position: fixed;
+    bottom: 20px; /* Ajusta la distancia desde la parte inferior según tus necesidades */
+    right: 20px; /* Ajusta la distancia desde la derecha según tus necesidades */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos en la página */
 }
 
 
