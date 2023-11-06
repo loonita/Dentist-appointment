@@ -10,6 +10,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= render 'application/nav' %>
+  <div id="whatsapp-button" class="whatsapp-button">
+    <%= render 'whats_app_button' %>
+  </div>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
