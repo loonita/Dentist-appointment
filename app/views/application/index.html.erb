@@ -22,6 +22,7 @@
 
 
  <%= link_to "crear cita", new_appointment_path %>
+ <%= link_to "mis citas", user_path(current_user) %>
 
 <div id="whatsapp-button" class="whatsapp-button">
   <%= render 'whats_app_button' %>
