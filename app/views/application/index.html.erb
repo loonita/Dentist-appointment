@@ -16,7 +16,11 @@
   <%= link_to "Login", new_user_session_path %>
 
 <% end %>
+<% if user_is_admin? %>
  <%= link_to "todas las citas", appointments_path %>
+  <% end %>
+
+
  <%= link_to "crear cita", new_appointment_path %>
 
 <div id="whatsapp-button" class="whatsapp-button">
