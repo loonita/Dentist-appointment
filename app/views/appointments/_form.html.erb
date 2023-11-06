@@ -1,56 +1,57 @@
-<%= form_with(model: appointment) do |form| %>
+<%= form_with(model: appointment, local: true, html: { class: "form" }) do |form| %>
   <% if appointment.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
 
       <ul>
-        <% appointment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% appointment.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :rut, style: "display: block" %>
-    <%= form.text_field :rut %>
+  <div class="form-group">
+    <%= form.label :rut %>
+    <%= form.text_field :rut, class: "form-control small-input" %>
   </div>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control small-input" %>
   </div>
 
-  <div>
-    <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
+  <div class="form-group">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "form-control small-input" %>
   </div>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control small-input" %>
   </div>
 
-  <div>
-    <%= form.label :phone_number, style: "display: block" %>
-    <%= form.text_field :phone_number %>
+  <div class="form-group">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, class: "form-control small-input" %>
   </div>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
+  <div class="form-group">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: "form-control small-input" %>
   </div>
 
-  <div>
-    <%= form.label :time, style: "display: block" %>
-    <%= form.time_field :time %>
+  <div class="form-group">
+    <%= form.label :time %>
+    <%= form.time_field :time, class: "form-control small-input" %>
   </div>
 
-  <div class="field">
-    <%= form.hidden_field :user_id, :value => current_user.id %>
+  <div class="form-group">
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+  </div>
   </div>
 <% end %>
