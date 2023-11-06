@@ -12,11 +12,16 @@
     padding: 0;
     border: none;
 
+
 }
 
 .navbar-nav .nav-item {
     margin-right: 10px; /* Espacio entre elementos de la barra de navegación */
     margin-left: auto;
+    border: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
 
 
 }
