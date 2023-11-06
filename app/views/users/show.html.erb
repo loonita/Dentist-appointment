@@ -1,3 +1,16 @@
-hola
-<%= @user.email %>
-<%= @appointments %>
+<h1>Mi perfil</h1>
+<p>Nombres: <%= @user_from_appointments.name %></p>
+<p>Apellidos: <%= @user_from_appointments.last_name %></p>
+<p>Correo Electrónico: <%= @user.email %></p>
+<p>Número de Teléfono del Paciente: <%= @user_from_appointments.phone_number %></p>
+
+<h1>Lista de Citas</h1>
+<% if @appointments.any? %>
+  <ul>
+    <% @appointments.each do |appointment| %>
+      <li><%= appointment.date %> - <%= appointment.time %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay citas programadas.</p>
+<% end %>

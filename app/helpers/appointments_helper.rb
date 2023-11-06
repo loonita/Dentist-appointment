@@ -5,4 +5,5 @@ module AppointmentsHelper
     user && user.role_id == 1
   end
 
+
 end
