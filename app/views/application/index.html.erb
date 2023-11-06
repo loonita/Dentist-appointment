@@ -6,14 +6,15 @@
 <h1>Clínica Dental</h1>
 
 <% if user_signed_in? %>
-  <h3>Seeing site as: <small><%= current_user.email %></small></h3>
-  <h3>User created at: <small><%= current_user.created_at %></h3>
+  <h3> Bienvenido <small><%= current_user.email %></small></h3>
+  <%= link_to "Mi perfil", user_path(current_user)%>
+
 
   <%= link_to "Log out", destroy_user_session_path, :class => "dropdown-item", data: { turbo: true, turbo_method: :delete } %>
 <% else %>
   <h3>Bienvenido</h3>
 
-  <%= link_to "Login", new_user_session_path %>
+  <%= link_to "inicio sesión", new_user_session_path %>
 
 <% end %>
 <% if user_is_admin? %>
@@ -22,7 +23,7 @@
 
 
  <%= link_to "Agenda tu cita", new_appointment_path %>
- <%= link_to "mi perfil", user_path(current_user) %>
+
 
 <div id="whatsapp-button" class="whatsapp-button">
   <%= render 'whats_app_button' %>

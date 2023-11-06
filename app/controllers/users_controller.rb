@@ -4,8 +4,6 @@ class UsersController < ApplicationController
     @appointments = Appointment.all.filter { |a| a.user_id == @user.id }
     @user_from_appointments = Appointment.find(params[:id])
 
-
-
-    end
-
   end
+
+end

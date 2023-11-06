@@ -5,5 +5,10 @@
 <br>
 
 <div>
-  <%= link_to "Back to appointments", appointments_path %>
+  <% if user_is_admin? %>
+    <%= link_to "Back to appointments", appointments_path %>
+  <% end %>
+
+
+  <%= link_to "Atrás", root_path  %>
 </div>
