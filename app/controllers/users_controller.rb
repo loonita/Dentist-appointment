@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @appointments = Appointment.all.filter { |a| a.user_id == @user.id }
     @user_from_appointments = Appointment.find(params[:id])
+    @user_from_users = User.find(params[:id])
 
   end
   def only_see_own_page
