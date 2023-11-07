@@ -47,6 +47,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_30_013858) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer "role_id", default: 1, null: false
+    t.string "name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "phone", default: "", null: false
+    t.string "rut", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
