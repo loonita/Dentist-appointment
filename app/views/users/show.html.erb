@@ -1,9 +1,9 @@
 
 <h1>Mi perfil</h1>
-<p>Nombres: <%= @user_from_appointments.name %></p>
-<p>Apellidos: <%= @user_from_appointments.last_name %></p>
+<p>Nombres: <%= @user_from_users.name %></p>
+<p>Apellidos: <%= @user_from_users.last_name %></p>
 <p>Correo Electrónico: <%= @user.email %></p>
-<p>Número de Teléfono del Paciente: <%= @user_from_appointments.phone_number %></p>
+<p>Número de Teléfono del Paciente: <%= @user_from_users.phone %></p>
 
 <h1>Lista de Citas</h1>
 <% if @appointments.any? %>

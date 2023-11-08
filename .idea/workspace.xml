@@ -6,6 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="693fe203-d879-4bd6-83cd-a25aa456a390" name="Changes" comment="Eliminar proyecto en desuso">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/app/controllers/appointments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/appointments_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/appointment.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/appointment.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/_appointment.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_appointment.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/_appointment.json.jbuilder" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_appointment.json.jbuilder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20231030013858_create_appointments.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20231030013858_create_appointments.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+>>>>>>> c07c3ae9e2fd177159c490172e7609b9d9d0c095
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +53,9 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Javi&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/BGM/RubymineProjects/Dentist/app/views/application&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/javie/OneDrive/Documents/GitHub/Dentist-appointment&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -141,7 +153,12 @@
       <workItem from="1698766761434" duration="1181000" />
       <workItem from="1699075746942" duration="12742000" />
       <workItem from="1699235001704" duration="31345000" />
+<<<<<<< HEAD
       <workItem from="1699302343101" duration="6907000" />
+=======
+      <workItem from="1699302343101" duration="3357000" />
+      <workItem from="1699387927265" duration="5356000" />
+>>>>>>> c07c3ae9e2fd177159c490172e7609b9d9d0c095
     </task>
     <task id="LOCAL-00001" summary="Eliminar proyecto en desuso">
       <option name="closed" value="true" />
