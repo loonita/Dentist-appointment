@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="693fe203-d879-4bd6-83cd-a25aa456a390" name="Changes" comment="Eliminar proyecto en desuso">
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +141,7 @@
       <workItem from="1698766761434" duration="1181000" />
       <workItem from="1699075746942" duration="12742000" />
       <workItem from="1699235001704" duration="31345000" />
-      <workItem from="1699302343101" duration="3357000" />
+      <workItem from="1699302343101" duration="6907000" />
     </task>
     <task id="LOCAL-00001" summary="Eliminar proyecto en desuso">
       <option name="closed" value="true" />
@@ -173,7 +173,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Eliminar proyecto en desuso" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Dentist_appointment@Dentist.rcov" NAME="Dentist Coverage Results" MODIFIED="1699302443554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Dentist" />
+    <SUITE FILE_PATH="coverage/Dentist_appointment@Dentist.rcov" NAME="Dentist Coverage Results" MODIFIED="1699317998022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Dentist" />
     <SUITE FILE_PATH="coverage/Dentist@Dentist.rcov" NAME="Dentist Coverage Results" MODIFIED="1698630748065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Dentist" />
   </component>
 </project>
