@@ -1,0 +1,270 @@
+Index: db/migrate/20231030013858_create_appointments.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class CreateAppointments < ActiveRecord::Migration[7.1]\r\n  def change\r\n    create_table :appointments do |t|\r\n      t.string :rut, null: false\r\n      t.string :name, null: false\r\n      t.string :last_name, null: false\r\n      t.string :email\r\n      t.string :phone_number, null: false\r\n      t.date :date\r\n      t.time :time\r\n\r\n      t.integer :status_id, null: false, default: 1\r\n      t.integer :user_id, null: false\r\n\r\n      t.timestamps\r\n    end\r\n  end\r\nend\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/db/migrate/20231030013858_create_appointments.rb b/db/migrate/20231030013858_create_appointments.rb
+--- a/db/migrate/20231030013858_create_appointments.rb	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/db/migrate/20231030013858_create_appointments.rb	(date 1699393621312)
+@@ -1,11 +1,6 @@
+ class CreateAppointments < ActiveRecord::Migration[7.1]
+   def change
+     create_table :appointments do |t|
+-      t.string :rut, null: false
+-      t.string :name, null: false
+-      t.string :last_name, null: false
+-      t.string :email
+-      t.string :phone_number, null: false
+       t.date :date
+       t.time :time
+ 
+Index: app/views/appointments/_form.html.erb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%= form_with(model: appointment, local: true, html: { class: \"form\" }) do |form| %>\r\n  <% if appointment.errors.any? %>\r\n    <div class=\"alert alert-danger\">\r\n      <h2><%= pluralize(appointment.errors.count, \"error\") %> prohibited this appointment from being saved:</h2>\r\n\r\n      <ul>\r\n        <% appointment.errors.full_messages.each do |error| %>\r\n          <li><%= error %></li>\r\n        <% end %>\r\n      </ul>\r\n    </div>\r\n  <% end %>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.label :rut %>\r\n    <%= form.text_field :rut, class: \"form-control small-input\" %>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.label :name %>\r\n    <%= form.text_field :name, class: \"form-control small-input\" %>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.label :last_name %>\r\n    <%= form.text_field :last_name, class: \"form-control small-input\" %>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.label :email %>\r\n    <%= form.text_field :email, class: \"form-control small-input\" %>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.label :phone_number %>\r\n    <%= form.text_field :phone_number, class: \"form-control small-input\" %>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.label :date %>\r\n    <%= form.date_field :date, class: \"form-control small-input\" %>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.label :time %>\r\n    <%= form.time_field :time, class: \"form-control small-input\" %>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.hidden_field :user_id, value: current_user.id %>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <%= form.submit \"Guardar\", class: \"btn btn-primary\" %>\r\n  </div>\r\n  </div>\r\n<% end %>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/views/appointments/_form.html.erb b/app/views/appointments/_form.html.erb
+--- a/app/views/appointments/_form.html.erb	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/app/views/appointments/_form.html.erb	(date 1699393621319)
+@@ -11,30 +11,6 @@
+     </div>
+   <% end %>
+ 
+-  <div class="form-group">
+-    <%= form.label :rut %>
+-    <%= form.text_field :rut, class: "form-control small-input" %>
+-  </div>
+-
+-  <div class="form-group">
+-    <%= form.label :name %>
+-    <%= form.text_field :name, class: "form-control small-input" %>
+-  </div>
+-
+-  <div class="form-group">
+-    <%= form.label :last_name %>
+-    <%= form.text_field :last_name, class: "form-control small-input" %>
+-  </div>
+-
+-  <div class="form-group">
+-    <%= form.label :email %>
+-    <%= form.text_field :email, class: "form-control small-input" %>
+-  </div>
+-
+-  <div class="form-group">
+-    <%= form.label :phone_number %>
+-    <%= form.text_field :phone_number, class: "form-control small-input" %>
+-  </div>
+ 
+   <div class="form-group">
+     <%= form.label :date %>
+@@ -53,5 +29,5 @@
+   <div class="form-group">
+     <%= form.submit "Guardar", class: "btn btn-primary" %>
+   </div>
+-  </div>
++
+ <% end %>
+\ No newline at end of file
+Index: app/views/appointments/_appointment.html.erb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div id=\"<%= dom_id appointment %>\">\r\n  <p>\r\n    <strong>Rut:</strong>\r\n    <%= appointment.rut %>\r\n  </p>\r\n\r\n  <p>\r\n    <strong>Name:</strong>\r\n    <%= appointment.name %>\r\n  </p>\r\n\r\n  <p>\r\n    <strong>Last name:</strong>\r\n    <%= appointment.last_name %>\r\n  </p>\r\n\r\n  <p>\r\n    <strong>Email:</strong>\r\n    <%= appointment.email %>\r\n  </p>\r\n\r\n  <p>\r\n    <strong>Phone number:</strong>\r\n    <%= appointment.phone_number %>\r\n  </p>\r\n\r\n  <p>\r\n    <strong>Date:</strong>\r\n    <%= appointment.date %>\r\n  </p>\r\n\r\n  <p>\r\n    <strong>Time:</strong>\r\n    <%= appointment.time %>\r\n  </p>\r\n\r\n</div>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/views/appointments/_appointment.html.erb b/app/views/appointments/_appointment.html.erb
+--- a/app/views/appointments/_appointment.html.erb	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/app/views/appointments/_appointment.html.erb	(date 1699393621335)
+@@ -1,28 +1,4 @@
+ <div id="<%= dom_id appointment %>">
+-  <p>
+-    <strong>Rut:</strong>
+-    <%= appointment.rut %>
+-  </p>
+-
+-  <p>
+-    <strong>Name:</strong>
+-    <%= appointment.name %>
+-  </p>
+-
+-  <p>
+-    <strong>Last name:</strong>
+-    <%= appointment.last_name %>
+-  </p>
+-
+-  <p>
+-    <strong>Email:</strong>
+-    <%= appointment.email %>
+-  </p>
+-
+-  <p>
+-    <strong>Phone number:</strong>
+-    <%= appointment.phone_number %>
+-  </p>
+ 
+   <p>
+     <strong>Date:</strong>
+Index: app/controllers/appointments_controller.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class AppointmentsController < ApplicationController\r\n  before_action :authenticate_user!\r\n  before_action :set_appointment, only: %i[ show edit update destroy ]\r\n  before_action :authenticate_admin, only: %i[ index edit destroy ]\r\n\r\n  # GET /appointments or /appointments.json\r\n  def index\r\n    @appointments = Appointment.all\r\n  end\r\n\r\n  # GET /appointments/1 or /appointments/1.json\r\n  def show\r\n  end\r\n\r\n  # GET /appointments/new\r\n  def new\r\n    @appointment = Appointment.new\r\n  end\r\n\r\n  # GET /appointments/1/edit\r\n  def edit\r\n  end\r\n\r\n  # POST /appointments or /appointments.json\r\n  def create\r\n    @appointment = Appointment.new(appointment_params)\r\n\r\n    respond_to do |format|\r\n      if @appointment.save\r\n        format.html { redirect_to appointment_url(@appointment), notice: \"Appointment was successfully created.\" }\r\n        format.json { render :show, status: :created, location: @appointment }\r\n      else\r\n        format.html { render :new, status: :unprocessable_entity }\r\n        format.json { render json: @appointment.errors, status: :unprocessable_entity }\r\n      end\r\n    end\r\n  end\r\n\r\n  # PATCH/PUT /appointments/1 or /appointments/1.json\r\n  def update\r\n    respond_to do |format|\r\n      if @appointment.update(appointment_params)\r\n        format.html { redirect_to appointment_url(@appointment), notice: \"Appointment was successfully updated.\" }\r\n        format.json { render :show, status: :ok, location: @appointment }\r\n      else\r\n        format.html { render :edit, status: :unprocessable_entity }\r\n        format.json { render json: @appointment.errors, status: :unprocessable_entity }\r\n      end\r\n    end\r\n  end\r\n\r\n  # DELETE /appointments/1 or /appointments/1.json\r\n  def destroy\r\n    @appointment.destroy!\r\n\r\n    respond_to do |format|\r\n      format.html { redirect_to appointments_url, notice: \"Appointment was successfully destroyed.\" }\r\n      format.json { head :no_content }\r\n    end\r\n  end\r\n\r\n  private\r\n    # Use callbacks to share common setup or constraints between actions.\r\n    def set_appointment\r\n      @appointment = Appointment.find(params[:id])\r\n    end\r\n\r\n    # Only allow a list of trusted parameters through.\r\n    def appointment_params\r\n      params.require(:appointment).permit(:rut, :name, :last_name, :email, :phone_number, :date, :time, :status_id, :user_id)\r\n    end\r\nend\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/controllers/appointments_controller.rb b/app/controllers/appointments_controller.rb
+--- a/app/controllers/appointments_controller.rb	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/app/controllers/appointments_controller.rb	(date 1699393621335)
+@@ -27,7 +27,7 @@
+ 
+     respond_to do |format|
+       if @appointment.save
+-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully created." }
++        format.html { redirect_to appointment_url(@appointment), notice: "La cita se ha creado exitosamente." }
+         format.json { render :show, status: :created, location: @appointment }
+       else
+         format.html { render :new, status: :unprocessable_entity }
+@@ -40,7 +40,7 @@
+   def update
+     respond_to do |format|
+       if @appointment.update(appointment_params)
+-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully updated." }
++        format.html { redirect_to appointment_url(@appointment), notice: "La cita se ha modificado exitosamente." }
+         format.json { render :show, status: :ok, location: @appointment }
+       else
+         format.html { render :edit, status: :unprocessable_entity }
+@@ -54,7 +54,7 @@
+     @appointment.destroy!
+ 
+     respond_to do |format|
+-      format.html { redirect_to appointments_url, notice: "Appointment was successfully destroyed." }
++      format.html { redirect_to appointments_url, notice: "La cita se ha eliminado exitosamente." }
+       format.json { head :no_content }
+     end
+   end
+@@ -67,6 +67,6 @@
+ 
+     # Only allow a list of trusted parameters through.
+     def appointment_params
+-      params.require(:appointment).permit(:rut, :name, :last_name, :email, :phone_number, :date, :time, :status_id, :user_id)
++      params.require(:appointment).permit(:date, :time, :status_id, :user_id)
+     end
+ end
+Index: app/views/appointments/_appointment.json.jbuilder
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>json.extract! appointment, :id, :rut, :name, :last_name, :email, :phone_number, :date, :time, :created_at, :updated_at\r\njson.url appointment_url(appointment, format: :json)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/views/appointments/_appointment.json.jbuilder b/app/views/appointments/_appointment.json.jbuilder
+--- a/app/views/appointments/_appointment.json.jbuilder	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/app/views/appointments/_appointment.json.jbuilder	(date 1699393621350)
+@@ -1,2 +1,2 @@
+-json.extract! appointment, :id, :rut, :name, :last_name, :email, :phone_number, :date, :time, :created_at, :updated_at
++json.extract! appointment, :id, :date, :time, :created_at, :updated_at
+ json.url appointment_url(appointment, format: :json)
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"693fe203-d879-4bd6-83cd-a25aa456a390\" name=\"Changes\" comment=\"Eliminar proyecto en desuso\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/7bddb4a9-fcdf-47f7-a0a4-e151125c463b.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources/7bddb4a9-fcdf-47f7-a0a4-e151125c463b.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/controllers/users/registrations_controller.rb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/controllers/users/registrations_controller.rb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/views/devise/registrations/new.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/devise/registrations/new.html.erb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/db/migrate/20231030011645_devise_create_users.rb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/db/migrate/20231030011645_devise_create_users.rb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/db/schema.rb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/db/schema.rb\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2XSgycTEa8UuMtgv3KfYgrTGGT6\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"Javi\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/javie/OneDrive/Documents/GitHub/Dentist-appointment\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"yarn\",\r\n    \"ruby.rails.projectView.checked\": \"true\",\r\n    \"ruby.structure.view.model.defaults.configured\": \"true\",\r\n    \"settings.editor.selected.configurable\": \"project.propVCSSupport.DirectoryMappings\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\BGM\\RubymineProjects\\Dentist\\app\\views\\application\" />\r\n      <recent name=\"C:\\Users\\BGM\\RubymineProjects\\Dentist\\app\\assets\\images\" />\r\n      <recent name=\"C:\\Users\\BGM\\RubymineProjects\\Dentist\\app\\controllers\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Rails.Dentist\">\r\n    <configuration name=\"Dentist\" type=\"RailsRunConfigurationType\" factoryName=\"Rails\">\r\n      <module name=\"Dentist\" />\r\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAILS_SERVER\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" BUNDLE_MODE=\"AUTO\" bundleExecEnabled=\"true\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SCRIPT_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"PORT\" VALUE=\"3000\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"IP\" VALUE=\"127.0.0.1\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"DUMMY_APP\" VALUE=\"test/dummy\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RAILS_SERVER_TYPE\" VALUE=\"Default\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ENVIRONMENT_TYPE\" VALUE=\"development\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"LAUNCH_JS\" VALUE=\"false\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"spec: Dentist\" type=\"RakeRunConfigurationType\" factoryName=\"Rake\">\r\n      <module name=\"Dentist\" />\r\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAKE\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" BUNDLE_MODE=\"AUTO\" bundleExecEnabled=\"true\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_NAME\" VALUE=\"spec\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ATTACHED_TEST_FRAMEWORKS\" VALUE=\":rspec \" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TRACE\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_DRYRUN\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_PREREQS\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TESTOPTS\" VALUE=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"test: Dentist\" type=\"RakeRunConfigurationType\" factoryName=\"Rake\">\r\n      <module name=\"Dentist\" />\r\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAKE\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <envs>\r\n        <env name=\"RAILS_ENV\" value=\"test\" />\r\n      </envs>\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" BUNDLE_MODE=\"AUTO\" bundleExecEnabled=\"true\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_NAME\" VALUE=\"test\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ATTACHED_TEST_FRAMEWORKS\" VALUE=\":test_unit \" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TRACE\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_DRYRUN\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_PREREQS\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TESTOPTS\" VALUE=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SpringUtil\" SPRING_PRE_LOADER_OPTION=\"true\" RAKE_SPRING_PRE_LOADER_OPTION=\"true\" RAILS_SPRING_PRE_LOADER_OPTION=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"693fe203-d879-4bd6-83cd-a25aa456a390\" name=\"Changes\" comment=\"\" />\r\n      <created>1698628150993</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1698628150993</updated>\r\n      <workItem from=\"1698628152052\" duration=\"2710000\" />\r\n      <workItem from=\"1698632789530\" duration=\"3592000\" />\r\n      <workItem from=\"1698766761434\" duration=\"1181000\" />\r\n      <workItem from=\"1699075746942\" duration=\"12742000\" />\r\n      <workItem from=\"1699235001704\" duration=\"31345000\" />\r\n      <workItem from=\"1699302343101\" duration=\"3357000\" />\r\n      <workItem from=\"1699387927265\" duration=\"757000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Eliminar proyecto en desuso\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699159191821</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699159191821</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Eliminar proyecto en desuso\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Eliminar proyecto en desuso\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Dentist_appointment@Dentist.rcov\" NAME=\"Dentist Coverage Results\" MODIFIED=\"1699302443554\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"rcov\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" MODULE_NAME=\"Dentist\" />\r\n    <SUITE FILE_PATH=\"coverage/Dentist@Dentist.rcov\" NAME=\"Dentist Coverage Results\" MODIFIED=\"1698630748065\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"rcov\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" MODULE_NAME=\"Dentist\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/.idea/workspace.xml	(date 1699393621365)
+@@ -5,11 +5,14 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="693fe203-d879-4bd6-83cd-a25aa456a390" name="Changes" comment="Eliminar proyecto en desuso">
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7bddb4a9-fcdf-47f7-a0a4-e151125c463b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7bddb4a9-fcdf-47f7-a0a4-e151125c463b.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/registrations_controller.rb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/db/migrate/20231030011645_devise_create_users.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20231030011645_devise_create_users.rb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/controllers/appointments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/appointments_controller.rb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/views/appointments/_appointment.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_appointment.html.erb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/views/appointments/_appointment.json.jbuilder" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_appointment.json.jbuilder" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/views/appointments/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_form.html.erb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/db/migrate/20231030013858_create_appointments.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20231030013858_create_appointments.rb" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -147,7 +150,7 @@
+       <workItem from="1699075746942" duration="12742000" />
+       <workItem from="1699235001704" duration="31345000" />
+       <workItem from="1699302343101" duration="3357000" />
+-      <workItem from="1699387927265" duration="757000" />
++      <workItem from="1699387927265" duration="4477000" />
+     </task>
+     <task id="LOCAL-00001" summary="Eliminar proyecto en desuso">
+       <option name="closed" value="true" />
+Index: app/controllers/users_controller.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class UsersController < ApplicationController\r\n  before_action :authenticate_user!\r\n  before_action :only_see_own_page, only: [:show]\r\n  def show\r\n    @user = User.find(params[:id])\r\n    @appointments = Appointment.all.filter { |a| a.user_id == @user.id }\r\n    @user_from_appointments = Appointment.find(params[:id])\r\n\r\n  end\r\n  def only_see_own_page\r\n    @user = User.find(params[:id])\r\n\r\n    if current_user != @user\r\n      redirect_to root_path, notice: \"Lo sentimos, pero sólo puedes ver tu propia página de perfil.\"\r\n    end\r\n  end\r\nend\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/controllers/users_controller.rb b/app/controllers/users_controller.rb
+--- a/app/controllers/users_controller.rb	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/app/controllers/users_controller.rb	(date 1699393621365)
+@@ -5,6 +5,7 @@
+     @user = User.find(params[:id])
+     @appointments = Appointment.all.filter { |a| a.user_id == @user.id }
+     @user_from_appointments = Appointment.find(params[:id])
++    @user_from_users = User.find(params[:id])
+ 
+   end
+   def only_see_own_page
+Index: app/views/users/show.html.erb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n<h1>Mi perfil</h1>\r\n<p>Nombres: <%= @user_from_appointments.name %></p>\r\n<p>Apellidos: <%= @user_from_appointments.last_name %></p>\r\n<p>Correo Electrónico: <%= @user.email %></p>\r\n<p>Número de Teléfono del Paciente: <%= @user_from_appointments.phone_number %></p>\r\n\r\n<h1>Lista de Citas</h1>\r\n<% if @appointments.any? %>\r\n  <ul>\r\n    <% @appointments.each do |appointment| %>\r\n      <li><%= appointment.date %> - <%= appointment.time %></li>\r\n    <% end %>\r\n  </ul>\r\n<% else %>\r\n  <p>No hay citas programadas.</p>\r\n<% end %>\r\n<%= link_to \"Atrás\", root_path  %>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/views/users/show.html.erb b/app/views/users/show.html.erb
+--- a/app/views/users/show.html.erb	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/app/views/users/show.html.erb	(date 1699393621381)
+@@ -1,9 +1,9 @@
+ 
+ <h1>Mi perfil</h1>
+-<p>Nombres: <%= @user_from_appointments.name %></p>
+-<p>Apellidos: <%= @user_from_appointments.last_name %></p>
++<p>Nombres: <%= @user_from_users.name %></p>
++<p>Apellidos: <%= @user_from_users.last_name %></p>
+ <p>Correo Electrónico: <%= @user.email %></p>
+-<p>Número de Teléfono del Paciente: <%= @user_from_appointments.phone_number %></p>
++<p>Número de Teléfono del Paciente: <%= @user_from_users.phone %></p>
+ 
+ <h1>Lista de Citas</h1>
+ <% if @appointments.any? %>
+Index: db/schema.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># This file is auto-generated from the current state of the database. Instead\r\n# of editing this file, please use the migrations feature of Active Record to\r\n# incrementally modify your database, and then regenerate this schema definition.\r\n#\r\n# This file is the source Rails uses to define your schema when running `bin/rails\r\n# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to\r\n# be faster and is potentially less error prone than running all of your\r\n# migrations from scratch. Old migrations may fail to apply correctly if those\r\n# migrations use external dependencies or application code.\r\n#\r\n# It's strongly recommended that you check this file into your version control system.\r\n\r\nActiveRecord::Schema[7.1].define(version: 2023_10_30_013858) do\r\n  # These are extensions that must be enabled in order to support this database\r\n  enable_extension \"plpgsql\"\r\n\r\n  create_table \"appointments\", force: :cascade do |t|\r\n    t.string \"rut\", null: false\r\n    t.string \"name\", null: false\r\n    t.string \"last_name\", null: false\r\n    t.string \"email\"\r\n    t.string \"phone_number\", null: false\r\n    t.date \"date\"\r\n    t.time \"time\"\r\n    t.integer \"status_id\", default: 1, null: false\r\n    t.integer \"user_id\", null: false\r\n    t.datetime \"created_at\", null: false\r\n    t.datetime \"updated_at\", null: false\r\n  end\r\n\r\n  create_table \"roles\", force: :cascade do |t|\r\n    t.string \"name\"\r\n    t.datetime \"created_at\", null: false\r\n    t.datetime \"updated_at\", null: false\r\n  end\r\n\r\n  create_table \"statuses\", force: :cascade do |t|\r\n    t.string \"name\"\r\n    t.datetime \"created_at\", null: false\r\n    t.datetime \"updated_at\", null: false\r\n  end\r\n\r\n  create_table \"users\", force: :cascade do |t|\r\n    t.string \"email\", default: \"\", null: false\r\n    t.string \"encrypted_password\", default: \"\", null: false\r\n    t.string \"reset_password_token\"\r\n    t.datetime \"reset_password_sent_at\"\r\n    t.datetime \"remember_created_at\"\r\n    t.integer \"role_id\", default: 1, null: false\r\n    t.string \"name\", default: \"\", null: false\r\n    t.string \"last_name\", default: \"\", null: false\r\n    t.string \"phone\", default: \"\", null: false\r\n    t.string \"rut\", default: \"\", null: false\r\n    t.datetime \"created_at\", null: false\r\n    t.datetime \"updated_at\", null: false\r\n    t.index [\"email\"], name: \"index_users_on_email\", unique: true\r\n    t.index [\"reset_password_token\"], name: \"index_users_on_reset_password_token\", unique: true\r\n  end\r\n\r\nend\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/db/schema.rb b/db/schema.rb
+--- a/db/schema.rb	(revision 1826da11645b5c7e58193d468c11d1c3259bce44)
++++ b/db/schema.rb	(date 1699393621381)
+@@ -15,11 +15,6 @@
+   enable_extension "plpgsql"
+ 
+   create_table "appointments", force: :cascade do |t|
+-    t.string "rut", null: false
+-    t.string "name", null: false
+-    t.string "last_name", null: false
+-    t.string "email"
+-    t.string "phone_number", null: false
+     t.date "date"
+     t.time "time"
+     t.integer "status_id", default: 1, null: false
