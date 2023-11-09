@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :appointments
+  belongs_to :role
+
+  def name_dentist
+    "Dra. #{name} #{last_name}"
+  end
 end

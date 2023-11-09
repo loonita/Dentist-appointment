@@ -9,7 +9,7 @@
 <% if @appointments.any? %>
   <ul>
     <% @appointments.each do |appointment| %>
-      <li><%= appointment.date %> - <%= appointment.time %></li>
+      <li><%= appointment.fecha %> - <%= appointment.hora %></li>
     <% end %>
   </ul>
 <% else %>

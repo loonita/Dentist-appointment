@@ -1,13 +1,18 @@
-<div id="<%= dom_id appointment %>">
+<p id="<%= dom_id appointment %>">
 
   <p>
-    <strong>Date:</strong>
-    <%= appointment.date %>
+    <strong>Dentista:</strong>
+    <%= User.find_by(id: appointment.dentist_id).name_dentist %>
   </p>
 
   <p>
-    <strong>Time:</strong>
-    <%= appointment.time %>
+    <strong>Fecha:</strong>
+    <%= appointment.fecha %>
+  </p>
+
+  <p>
+    <strong>Hora:</strong>
+    <%= appointment.hora %>
   </p>
 
 </div>
