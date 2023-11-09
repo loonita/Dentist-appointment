@@ -11,14 +11,18 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+    <%= form.label "Dentista" %>
+    <%= form.collection_select :dentist_id, User.where(role_id: 2).order(name: :asc), :id, :name_dentist, class: "form-control" %>
+  </div>
 
   <div class="form-group">
-    <%= form.label :date %>
+    <%= form.label "Fecha" %>
     <%= form.date_field :date, class: "form-control small-input" %>
   </div>
 
   <div class="form-group">
-    <%= form.label :time %>
+    <%= form.label "Hora" %>
     <%= form.time_field :time, class: "form-control small-input" %>
   </div>
 
