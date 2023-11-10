@@ -1,17 +1,27 @@
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_appointment, only: %i[ show edit update destroy ]
-  before_action :authenticate_admin, only: %i[ index edit destroy ]
+  before_action :authenticate_admin, only: %i[  edit destroy ]
+  before_action :only_see_own_appointment, only: [:show, :edit, :update, :destroy]
 
   # GET /appointments or /appointments.json
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.all.filter { |a| a.user_id == current_user.id }
   end
 
   # GET /appointments/1 or /appointments/1.json
   def show
+    @appointment = Appointment.find(params[:id])
+    @user_from_appointments = Appointment.find(params[:id])
+    @user_from_users = User.find(params[:id])
   end
 
+  def only_see_own_appointment
+    @appointment = Appointment.find(params[:id])
+    if current_user != @appointment.user
+      redirect_to root_path, notice: "Sorry, but you are only allowed to view your own appointments."
+    end
+    end
   # GET /appointments/new
   def new
     @appointment = Appointment.new
