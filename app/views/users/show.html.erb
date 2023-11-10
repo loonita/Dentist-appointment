@@ -5,14 +5,5 @@
 <p>Correo Electrónico: <%= @user.email %></p>
 <p>Número de Teléfono del Paciente: <%= @user_from_users.phone %></p>
 
-<h1>Lista de Citas</h1>
-<% if @appointments.any? %>
-  <ul>
-    <% @appointments.each do |appointment| %>
-      <li><%= appointment.date %> - <%= appointment.time %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No hay citas programadas.</p>
-<% end %>
+
 <%= link_to "Atrás", root_path  %>

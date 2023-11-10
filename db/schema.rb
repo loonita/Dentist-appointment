@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_30_013858) do
     t.time "time"
     t.integer "status_id", default: 1, null: false
     t.integer "user_id", null: false
+    t.integer "dentist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
