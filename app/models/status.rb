@@ -1,5 +1,5 @@
 class Status < ApplicationRecord
 
 
-  belongs_to :appointment
+  has_many :appointments
 end
