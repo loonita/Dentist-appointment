@@ -1,9 +1,6 @@
-
-
-<nav class="navbar navbar-expand-lg navbar-light ">
+<nav class="navbar navbar-expand-lg navbar-light">
   <img src="/assets/logo.png" class="mr-2" width="100" height="100" alt="logo">
   <div class="container">
-
     <a class="navbar-brand text-white" href="#">
       Clinica Dental San Antonio
     </a>
@@ -12,17 +9,32 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        <% if !user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Inicio de Sesión", new_user_session_path, class: "nav-link text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Regístrate", new_user_registration_path, class: "nav-link text-white" %>
+          </li>
+        <% end %>
         <li class="nav-item">
-          <%= link_to "Inicio de Sesión", new_user_session_path, class: "nav-link text-white" %>
+          <%= link_to "Inicio", root_path, class: "nav-link text-white" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Regístrate", new_user_registration_path, class: "nav-link text-white" %>
+          <%= link_to "Servicios", root_path, class: "nav-link text-white" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Contacto", root_path, class: "nav-link text-white" %>
+        </li>
+
+      </ul>
       <% if user_is_admin? %>
+        <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <%= link_to "Todas las citas", appointments_path, class: "nav-link text-white" %>
         </li>
-          </ul>
+        </ul>
+
       <% end %>
       <% if user_signed_in? %>
         <ul class="navbar-nav ml-auto">
@@ -43,7 +55,6 @@
               <li>
                 <%= link_to "Agendar Cita", new_appointment_path, class: "dropdown-item" %>
               </li>
-
             </ul>
           </li>
         </ul>
