@@ -175,7 +175,7 @@
       <workItem from="1699235001704" duration="31345000" />
       <workItem from="1699302343101" duration="3357000" />
       <workItem from="1699451381304" duration="2006000" />
-      <workItem from="1699457390477" duration="17956000" />
+      <workItem from="1699457390477" duration="22978000" />
     </task>
     <task id="LOCAL-00001" summary="Eliminar proyecto en desuso">
       <option name="closed" value="true" />
@@ -208,7 +208,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Dentist_appointment@Dentist.rcov" NAME="Dentist Coverage Results" MODIFIED="1699451024952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Dentist" />
-    <SUITE FILE_PATH="coverage/Dentist_appointment@Dentist_appointment.rcov" NAME="Dentist-appointment Coverage Results" MODIFIED="1699585530357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Dentist-appointment" />
+    <SUITE FILE_PATH="coverage/Dentist_appointment@Dentist_appointment.rcov" NAME="Dentist-appointment Coverage Results" MODIFIED="1699659561330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Dentist-appointment" />
     <SUITE FILE_PATH="coverage/Dentist@Dentist.rcov" NAME="Dentist Coverage Results" MODIFIED="1698630748065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Dentist" />
   </component>
 </project>
