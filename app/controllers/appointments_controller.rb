@@ -6,7 +6,12 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments or /appointments.json
   def index
-    @appointments = Appointment.all.filter { |a| a.user_id == current_user.id }
+    if user_is_admin?
+      @appointments = Appointment.all
+
+    else
+      @appointments = Appointment.all.filter { |a| a.user_id == current_user.id }
+    end
 
 
   end
@@ -18,7 +23,7 @@ class AppointmentsController < ApplicationController
 
   def only_see_own_appointment
     @appointment = Appointment.find(params[:id])
-    if current_user != @appointment.user
+    if current_user != @appointment.user && !user_is_admin?
       redirect_to root_path, notice: "Sorry, but you are only allowed to view your own appointments."
     end
     end

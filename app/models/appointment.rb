@@ -2,7 +2,7 @@ class Appointment < ApplicationRecord
   validates :date , presence: true
   validates :time , presence: true
 
-  belongs_to :status
+  has_one :status
   belongs_to :user
 
   def fecha

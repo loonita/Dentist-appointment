@@ -29,6 +29,12 @@
   <div class="form-group">
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
+  <% if user_is_admin? %>
+    <div class="form-group">
+      <%= form.label :status %>
+      <%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= form.submit "Guardar", class: "btn btn-primary" %>
