@@ -35,8 +35,12 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/edit
   def edit
   end
+  def pending
+    @appointments = Appointment.all.filter { |a| a.status_id == 5 }
+  end
 
-  # POST /appointments or /appointments.json
+
+# POST /appointments or /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
 

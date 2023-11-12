@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/appointments/pending', to: 'appointments#pending'
   resources :appointments
   resources :statuses
 
