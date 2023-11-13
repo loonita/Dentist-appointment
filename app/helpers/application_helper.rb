@@ -6,4 +6,15 @@ module ApplicationHelper
     user && user.role_id == 4
   end
 
+  def user_is_secretary?(user = current_user)
+    user && user.role_id == 3
+  end
+
+  def user_is_dentist?(user = current_user)
+    user && user.role_id == 2
+  end
+
+  def user_is_patient?(user = current_user)
+    user && user.role_id == 1
+  end
 end

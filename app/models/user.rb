@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :appointments
   belongs_to :role
 
+  validates :name, :last_name, :phone, :role_id, presence: true
+
   def name_dentist
     "Dra. #{name} #{last_name}"
   end
