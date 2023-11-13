@@ -1,4 +1,5 @@
 class Appointment < ApplicationRecord
+  validates :dentist_id , presence: true
   validates :date , presence: true
   validates :time , presence: true
 
