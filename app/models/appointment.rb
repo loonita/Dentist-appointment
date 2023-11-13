@@ -1,4 +1,5 @@
 class Appointment < ApplicationRecord
+  after_create :send_email
   validates :date , presence: true
   validates :time , presence: true
 
@@ -11,6 +12,12 @@ class Appointment < ApplicationRecord
 
   def hora
     time.strftime("%H:%M")
+  end
+
+
+
+  def send_email
+    UserMailer.appointment_confirmation(user).deliver
   end
 
 end
