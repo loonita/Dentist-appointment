@@ -38,6 +38,7 @@ class AppointmentsController < ApplicationController
   def pending
     if user_is_admin?
     @appointments = Appointment.all.filter { |a| a.status_id == 5 }
+
     else
       redirect_to root_path, notice: "Lo sentimos, pero sólo puedes ver tus propias citas."
     end
