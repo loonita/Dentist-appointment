@@ -3,8 +3,16 @@
 <%= render @role %>
 
 <div>
-  <%= link_to "Edit this role", edit_role_path(@role) %> |
-  <%= link_to "Back to roles", roles_path %>
 
-  <%= button_to "Destroy this role", @role, method: :delete %>
+  <% if user_is_secretary? || user_is_admin? %>
+    <%= link_to "Editar este rol", edit_role_path(@role) %> |
+  <% end %>
+
+  <%= link_to "Volver a roles", roles_path %>
+
+
+  <% if user_is_admin? %>
+    <%= button_to "Eliminar este rol", @role, method: :delete %>
+  <% end %>
+
 </div>

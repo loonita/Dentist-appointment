@@ -6,9 +6,12 @@
   <% @statuses.each do |status| %>
     <%= render status %>
     <p>
-      <%= link_to "Show this status", status %>
+      <%= link_to "Mostrar este status", status %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New status", new_status_path %>
+<% if user_is_secretary? || user_is_admin? %>
+  <%= link_to "Nuevo status", new_status_path %>
+<% end %>
+

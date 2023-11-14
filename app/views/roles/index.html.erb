@@ -6,9 +6,11 @@
   <% @roles.each do |role| %>
     <%= render role %>
     <p>
-      <%= link_to "Show this role", role %>
+      <%= link_to "Mostrar detalles", role %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New role", new_role_path %>
+<% if user_is_secretary? || user_is_admin? %>
+  <%= link_to "Crear nuevo rol", new_role_path %>
+<% end %>

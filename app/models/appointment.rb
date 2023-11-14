@@ -1,4 +1,5 @@
 class Appointment < ApplicationRecord
+
   after_create :send_email
   validates :dentist_id , presence: true
   validates :date , presence: true
