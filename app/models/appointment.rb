@@ -1,5 +1,6 @@
 class Appointment < ApplicationRecord
   after_create :send_email
+  validates :dentist_id , presence: true
   validates :date , presence: true
   validates :time , presence: true
 
@@ -16,8 +17,11 @@ class Appointment < ApplicationRecord
 
 
 
+
+
   def send_email
     UserMailer.appointment_confirmation(user).deliver
   end
 
 end
+
