@@ -17,4 +17,5 @@ module ApplicationHelper
   def user_is_patient?(user = current_user)
     user && user.role_id == 1
   end
+
 end

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
 
+  before_action :current_user
+
   def index; end
 
   def authenticate_admin
@@ -17,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def authenticate_patient
     redirect_to root_path, :notice => 'No tienes permisos para realizar esta acción' unless user_is_patient?
+  end
+
+  def protect_pages
+    redirect_to new_user_session_path unless current_user
   end
 end
