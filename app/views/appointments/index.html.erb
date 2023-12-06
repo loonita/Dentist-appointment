@@ -2,13 +2,28 @@
 
 <h1>Citas</h1>
 
+
 <div id="appointments">
-  <% @appointments.each do |appointment| %>
-    <%= render appointment %>
-    <p>
-      <%= link_to "Mostrar cita", appointment %>
-    </p>
-  <% end %>
+  <% if user_is_patient? || user_is_admin? %>
+    <h2>Mis citas</h2>
+     <% @appointments.each do |appointment| %>
+        <%= render appointment %>
+         <p>
+            <%= link_to "Mostrar cita", appointment %>
+         </p>
+    <% end %>
+  <%end %>
+  <% if user_is_dentist? %>
+    <h2> Citas pendientes </h2>
+     <% @appointments.each do |appointment| %>
+        <%= render appointment %>
+         <p>
+            <%= link_to "Mostrar cita", appointment %>
+         </p>
+    <% end %>
+  <%end %>
 </div>
 
 <%= link_to "Agendar nueva cita", new_appointment_path %>
+
+

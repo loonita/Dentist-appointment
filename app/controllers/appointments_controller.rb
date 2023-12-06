@@ -8,9 +8,12 @@ class AppointmentsController < ApplicationController
   def index
     if user_is_admin?
       @appointments = Appointment.all
-
-    else
+    end
+    if user_is_patient?
       @appointments = Appointment.all.filter { |a| a.user_id == current_user.id }
+    end
+    if user_is_dentist?
+      @appointments = Appointment.all.filter { |a| a.dentist_id == current_user.id }
     end
 
 

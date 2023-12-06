@@ -4,9 +4,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @appointments = Appointment.all.filter { |a| a.user_id == @user.id }
+    @appointments = []
+    if user_is_patient?(@user)
+      @appointments = Appointment.all.filter { |a| a.user_id == @user.id }
+    end
+    if user_is_dentist?(@user)
+      @appointments = Appointment.all.filter { |a| a.dentist_id == @user.id }
+    end
     @user_from_users = User.find(params[:id])
-
   end
 
   def only_see_own_page
