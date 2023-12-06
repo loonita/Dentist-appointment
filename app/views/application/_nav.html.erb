@@ -28,7 +28,7 @@
         </li>
 
       </ul>
-      <% if user_is_admin? %>
+      <% if user_is_admin? || user_is_dentist? || user_is_secretary? %>
         <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <%= link_to "Todas las citas", appointments_path, class: "nav-link text-white" %>
@@ -54,7 +54,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Mi Perfil
+              Perfil
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
