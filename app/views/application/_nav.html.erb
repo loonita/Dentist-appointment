@@ -39,6 +39,16 @@
             <%= link_to "Citas pendientes", appointments_pending_path , class: "nav-link text-white" %>
           </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to "Ver Perfil Dentistas", users_dentists_path, class: "nav-link text-white" %>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to "Ver Perfil Pacientes", users_pacients_path, class: "nav-link text-white" %>
+          </li>
+        </ul>
       <% end %>
       <% if user_signed_in? %>
         <ul class="navbar-nav ml-auto">

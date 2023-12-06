@@ -8,6 +8,7 @@ class Appointment < ApplicationRecord
   has_one :status
   belongs_to :user
 
+
   def fecha
     date.strftime("%d/%m/%Y")
   end
@@ -15,10 +16,7 @@ class Appointment < ApplicationRecord
   def hora
     time.strftime("%H:%M")
   end
-
-
-
-
+  
 
   def send_email
     UserMailer.appointment_confirmation(user).deliver

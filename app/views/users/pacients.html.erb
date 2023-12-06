@@ -1,0 +1,9 @@
+<h1> Pacientes</h1>
+<div id="pacients">
+  <% @pacients.each do |pacients| %>
+    <%= pacients.name %>
+    <p>
+      <%= link_to "Mostrar paciente", pacients %>
+    </p>
+  <% end %>
+</div>
