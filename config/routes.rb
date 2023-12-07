@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   root "application#index"
 
+  get 'servicios', to: 'application#servicios'
+  get 'contacto', to: 'application#contacto'
+
   resources :roles
 
   devise_for :users,
