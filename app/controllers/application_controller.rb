@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   def index; end
 
+  def servicios; end
+
+  def contacto; end
+
   def authenticate_admin
     redirect_to root_path, :notice => 'No tienes permisos para realizar esta acción' unless user_is_admin?
   end
