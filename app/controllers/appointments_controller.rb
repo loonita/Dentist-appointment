@@ -26,7 +26,7 @@ class AppointmentsController < ApplicationController
 
   def only_see_own_appointment
     @appointment = Appointment.find(params[:id])
-    if current_user != @appointment.user && !user_is_admin?
+    if current_user != @appointment.user && !user_is_admin? && !user_is_dentist? && !user_is_secretary?
       redirect_to root_path, notice: "Sorry, but you are only allowed to view your own appointments."
     end
     end
@@ -39,7 +39,7 @@ class AppointmentsController < ApplicationController
   def edit
   end
   def pending
-    if user_is_admin?
+    if user_is_admin? || user_is_secretary? || user_is_dentist?
     @appointments = Appointment.all.filter { |a| a.status_id == 5 }
 
     else
