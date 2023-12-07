@@ -37,7 +37,7 @@
 
 
 
-  <% if user_is_admin? || user_is_secretary? || user_is_dentist? %> %>
+  <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
     <div class="form-group">
       <%= form.label :status %>
       <%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %>

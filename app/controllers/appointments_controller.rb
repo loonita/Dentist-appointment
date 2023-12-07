@@ -9,6 +9,9 @@ class AppointmentsController < ApplicationController
     if user_is_admin?
       @appointments = Appointment.all
     end
+    if user_is_secretary?
+      @appointments = Appointment.all
+    end
     if user_is_patient?
       @appointments = Appointment.all.filter { |a| a.user_id == current_user.id }
     end

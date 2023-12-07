@@ -14,7 +14,7 @@
     <% end %>
   <%end %>
   <% if user_is_dentist? %>
-    <h2> Citas pendientes </h2>
+    <h2> Citas asignadas </h2>
      <% @appointments.each do |appointment| %>
         <%= render appointment %>
          <p>
