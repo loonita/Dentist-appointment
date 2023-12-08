@@ -13,6 +13,7 @@
          </p>
     <% end %>
   <%end %>
+
   <% if user_is_dentist? %>
     <h2> Citas asignadas </h2>
      <% @appointments.each do |appointment| %>
@@ -21,6 +22,7 @@
             <%= link_to "Mostrar cita", appointment %>
          </p>
     <% end %>
+
   <%end %>
 </div>
 

@@ -66,10 +66,22 @@
                 <%= link_to "Mis citas", appointments_path, class: "dropdown-item" %>
               </li>
               <li>
-                <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </li>
-              <li>
                 <%= link_to "Agendar Cita", new_appointment_path, class: "dropdown-item" %>
+              </li>
+
+              <% if user_is_admin? %>
+
+                <li>
+                  <%= link_to "Administrar roles", roles_path, class: "dropdown-item" %>
+                </li>
+                <li>
+                  <%= link_to "Administrar status", statuses_path, class: "dropdown-item" %>
+                </li>
+
+              <% end %>
+
+              <li>
+                <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </li>
             </ul>
           </li>
