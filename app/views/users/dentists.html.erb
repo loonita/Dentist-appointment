@@ -1,11 +1,53 @@
+<title>Dentistas &middot; Clínica Dental San Antonio</title>
 
+<p style="color: green"><%= notice %></p>
 
-<h1> Dentistas</h1>
-<div id="dentists">
-<% @dentists.each do |dentist| %>
-  <%= dentist.name %>
-  <p>
-    <%= link_to "Mostrar dentista", dentist %>
-  </p>
-  <% end %>
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Dentistas</h4>
+            <p class="card-description">
+              Dentistas de la Clínica San Antonio.
+            </p>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>ID No.</th>
+                  <th>RUT</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Correo electrónico</th>
+                  <th>Número telefónico</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <% @dentists.each do |dentist| %>
+                <tr>
+                  <td><%= dentist.id %></td>
+                  <td><%= dentist.rut %></td>
+                  <td><%= dentist.name %></td>
+                  <td><%= dentist.last_name %></td>
+                  <td><%= dentist.email %></td>
+                  <td><%= dentist.phone %></td>
+                  <td><%= link_to "Mostrar", dentist, class: "btn btn-info" %></td>
+                <% end %>
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
