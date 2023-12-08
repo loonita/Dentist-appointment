@@ -1,10 +1,20 @@
-<h1>Nuevo rol</h1>
+<title>Nuevo rol &middot; Clínica Dental San Antonio</title>
 
-<%= render "form", role: @role %>
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <br><br><br>
+        <div class="card fat">
+          <div class="card-body">
+            <h4 class="card-title">Nuevo rol</h4>
 
-<br>
+            <%= render "form", role: @role %>
 
-<div>
-  <%= link_to "Volver atrás", roles_path %>
-</div>
-
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

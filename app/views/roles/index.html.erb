@@ -14,7 +14,7 @@
               Roles de usuario.
             </p>
 
-            <%= link_to "Crear nuevo rol +", new_role_path %>
+            <%= link_to "Crear nuevo rol", new_role_path, class: "btn btn-success" %>
 
             <div class="table-responsive">
               <table class="table">
@@ -30,8 +30,8 @@
                   <tr>
                     <td><%= role.id %></td>
                     <td><%= role.name %></td>
-                    <td><%= link_to "Ver" , role %></td>
-                    <td><%= link_to "Editar", edit_role_path(role) %></td>
+                    <td><%= link_to "Ver" , role, class: "btn btn-secondary" %></td>
+                    <td><%= link_to "Editar", edit_role_path(role), class: "btn btn-info" %></td>
                 <% end %>
                 </tbody>
 

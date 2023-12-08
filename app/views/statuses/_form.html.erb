@@ -16,7 +16,19 @@
     <%= form.text_field :name %>
   </div>
 
+  <br>
+
   <div>
-    <%= form.submit %>
-  </div>
+    <%= form.submit "Aceptar", class:"btn btn-success btn-sm" %>
+      </div>
+
+      <br>
+
+      <div>
+        <%= link_to 'Volver', statuses_path, class:"btn btn-outline-primary btn-sm" %>
+      </div>
+
 <% end %>
+
+
+
