@@ -16,7 +16,7 @@
               Status de citas (appointments status).
             </p>
 
-            <%= link_to "Crear nuevo status +", new_status_path %>
+            <%= link_to "Crear nuevo status", new_status_path, class: "btn btn-success" %>
 
             <div class="table-responsive">
               <table class="table">
@@ -33,8 +33,8 @@
                   <tr>
                     <td><%= status.id %></td>
                     <td><%= status.name %></td>
-                    <td><%= link_to "Ver", status %></td>
-                    <td><%= link_to "Editar", edit_status_path(status) %></td>
+                    <td><%= link_to "Ver", status, class: "btn btn-secondary" %></td>
+                    <td><%= link_to "Editar", edit_status_path(status), class: "btn btn-info" %></td>
                 <% end %>
                 </tbody>
 

@@ -1,9 +1,20 @@
-<h1>New status</h1>
+<title>Nuevo status &middot; Clínica Dental San Antonio</title>
 
-<%= render "form", status: @status %>
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <br><br><br>
+        <div class="card fat">
+          <div class="card-body">
+            <h4 class="card-title">Nuevo status</h4>
 
-<br>
+            <%= render "form", status: @status %>
 
-<div>
-  <%= link_to "Volver a statuses", statuses_path %>
-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
