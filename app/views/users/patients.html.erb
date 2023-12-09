@@ -28,15 +28,16 @@
                 </thead>
 
                 <tbody>
-                <% @pacients.each do |pacients| %>
+                <% @patients.each do |patient| %>
                   <tr>
-                    <td><%= pacients.id %></td>
-                    <td><%= pacients.rut %></td>
-                    <td><%= pacients.name %></td>
-                    <td><%= pacients.last_name %></td>
-                    <td><%= pacients.email %></td>
-                    <td><%= pacients.phone %></td>
-                    <td><%= link_to "Mostrar", pacients, class: "btn btn-primary" %></td>
+                    <td><%= patient.id %></td>
+                    <td><%= patient.rut %></td>
+                    <td><%= patient.name %></td>
+                    <td><%= patient.last_name %></td>
+                    <td><%= patient.email %></td>
+                    <td><%= patient.phone %></td>
+                    <td><%= link_to "Mostrar", patient, class: "btn btn-primary" %></td>
+                    <td><%= link_to "Editar", edit_user_registration_path(patient), class: "btn btn-warning" %></td>
                   </tr>
                 <% end %>
               </table>

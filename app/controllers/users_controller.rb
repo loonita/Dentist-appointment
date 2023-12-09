@@ -19,8 +19,15 @@ class UsersController < ApplicationController
       return
     end
     @user = User.find(params[:id])
-    if current_user != @user
+    if current_user != @user && !user_is_admin? && !user_is_dentist? && !user_is_secretary?
       redirect_to root_path, notice: "Lo sentimos, pero sólo puedes ver tu propia página de perfil."
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to root_path, notice: "Lo sentimos, pero sólo puedes editar tu propia página de perfil."
     end
   end
 
@@ -28,7 +35,7 @@ class UsersController < ApplicationController
     @dentists = User.all.filter { |u| u.role_id == 2 }
 
   end
-  def pacients
-    @pacients = User.all.filter { |u| u.role_id == 1 }
+  def patients
+    @patients = User.all.filter { |u| u.role_id == 1 }
   end
 end
