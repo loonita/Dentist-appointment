@@ -6,6 +6,9 @@
 <p>Correo Electrónico: <%= @user.email %></p>
 <p>Número de Teléfono: <%= @user_from_users.phone %></p>
 
+<%= link_to "Editar", edit_user_registration_path(current_user), class: "btn btn-warning" %>
+
+
 <% if user_is_admin? %>
   <% @appointments.each do |appointment| %>
     <%= render appointment %>

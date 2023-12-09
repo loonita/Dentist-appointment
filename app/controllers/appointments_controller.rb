@@ -18,9 +18,13 @@ class AppointmentsController < ApplicationController
     if user_is_dentist?
       @appointments = Appointment.all.filter { |a| a.dentist_id == current_user.id }
     end
+    if params[:search].present?
+      @appointments = @appointments.filter { |a| a.user_id.eql?(params[:search].to_i) }
 
-
+    end
   end
+
+
 
   # GET /appointments/1 or /appointments/1.json
   def show

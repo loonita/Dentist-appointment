@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   devise_for :users,
              :controllers => {
                :confirmations => 'users/confirmations',
-               :registrations => 'users/registrations'
+               :registrations => 'users/registrations',
+               :edits => 'users/edits/:id',
 
              }
 
@@ -23,8 +24,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
   get '/users/dentists', :to => 'users#dentists'
-  get '/users/pacients', :to => 'users#pacients'
+  get '/users/patients', :to => 'users#patients'
   get '/users/:id', :to => 'users#show', :as => :user
+  get '/users/:id/edit', :to => 'users#edit'
 
 
 

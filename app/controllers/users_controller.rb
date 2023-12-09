@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :only_see_own_page, only: [:show]
 
+
   def show
     @user = User.find(params[:id])
     @appointments = []
@@ -19,8 +20,21 @@ class UsersController < ApplicationController
       return
     end
     @user = User.find(params[:id])
-    if current_user != @user
+    if current_user != @user && !user_is_admin? && !user_is_dentist? && !user_is_secretary?
       redirect_to root_path, notice: "Lo sentimos, pero sólo puedes ver tu propia página de perfil."
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user_from_users = User.find(params[:id])
+    if @user_from_users.update(user_params)
+      redirect_to user_path(@user_from_users)
+    else
+      render 'edit'
     end
   end
 
@@ -28,7 +42,7 @@ class UsersController < ApplicationController
     @dentists = User.all.filter { |u| u.role_id == 2 }
 
   end
-  def pacients
-    @pacients = User.all.filter { |u| u.role_id == 1 }
+  def patients
+    @patients = User.all.filter { |u| u.role_id == 1 }
   end
 end
