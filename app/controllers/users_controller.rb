@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :only_see_own_page, only: [:show]
 
+
   def show
     @user = User.find(params[:id])
     @appointments = []
@@ -26,8 +27,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if current_user != @user
-      redirect_to root_path, notice: "Lo sentimos, pero sólo puedes editar tu propia página de perfil."
+  end
+
+  def update
+    @user_from_users = User.find(params[:id])
+    if @user_from_users.update(user_params)
+      redirect_to user_path(@user_from_users)
+    else
+      render 'edit'
     end
   end
 
