@@ -1,10 +1,13 @@
 
 <h1>Perfil</h1>
+<p>Run: <%= @user_from_users.rut %></p>
 <p>Nombres: <%= @user_from_users.name %></p>
 <p>Apellidos: <%= @user_from_users.last_name %></p>
 <p>Correo Electrónico: <%= @user.email %></p>
-<p>Número de Teléfono del Paciente: <%= @user_from_users.phone %></p>
+<p>Número de Teléfono: <%= @user_from_users.phone %></p>
+
 <%= link_to "Editar", edit_user_registration_path(current_user), class: "btn btn-warning" %>
+
 
 <% if user_is_admin? %>
   <% @appointments.each do |appointment| %>

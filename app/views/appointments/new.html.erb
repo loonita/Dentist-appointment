@@ -1,8 +1,29 @@
-<h1>Nueva Cita</h1>
+<title>Agendar cita &middot; Clínica Dental San Antonio</title>
 
-<%= render "form", appointment: @appointment %>
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <br><br><br>
+        <div class="card fat">
+          <div class="card-body">
+            <h4 class="card-title">Agendar cita</h4>
 
-<br>
+            <%= render "form", appointment: @appointment %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
 
 <div>
   <% if user_is_admin? %>

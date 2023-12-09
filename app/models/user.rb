@@ -12,4 +12,9 @@ class User < ApplicationRecord
   def name_dentist
     "Dra. #{name} #{last_name}"
   end
+
+  def name_patient
+    "#{name} #{last_name}"
+  end
+
 end
