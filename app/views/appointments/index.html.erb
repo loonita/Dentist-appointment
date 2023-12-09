@@ -4,8 +4,14 @@
 
 
 <div id="appointments">
+  <%= form_tag appointments_path, method: :get, class: "form-inline" do %>
+    <div class="form-group">
+      <%= select_tag :search, options_from_collection_for_select(User.where(role_id: 1), 'id', 'name', params[:search]), { include_blank: "Buscar por nombre de paciente", class: "form-control", data: { placeholder: 'Seleccione un paciente', allow_clear: true } } %>
+    </div>
+
+    <%= submit_tag "Buscar", class: "btn btn-primary" %>
+  <% end %>
   <% if user_is_patient? || user_is_admin? || user_is_secretary? || user_is_dentist? %>
-    <h2>Mis citas</h2>
      <% @appointments.each do |appointment| %>
         <%= render appointment %>
          <p>
