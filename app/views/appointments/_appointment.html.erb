@@ -1,8 +1,18 @@
 <p id="<%= dom_id appointment %>">
 
+
+  <p>
+    <strong>Run paciente:</strong>
+    <%= User.find_by(id: appointment.user_id).rut %>
+  </p>
   <p>
     <strong>Paciente:</strong>
-    <%= User.find_by(id: appointment.user_id).name %>
+    <%= User.find_by(id: appointment.user_id).name_patient %>
+  </p>
+  <p>
+    <strong>Run dentista:</strong>
+    <%= User.find_by(id: appointment.dentist_id).rut %>
+  </p>
   <p>
     <strong>Dentista:</strong>
     <%= User.find_by(id: appointment.dentist_id).name_dentist %>

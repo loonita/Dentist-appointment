@@ -13,7 +13,7 @@
   <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
     <div class="form-group">
       <%= form.label "Paciente" %>
-      <%= form.collection_select :user_id, User.where(role_id: 1), :id, :name, class: "form-control" %>
+      <%= form.collection_select :user_id, User.where(role_id: 1), :id, :name_patient, class: "form-control" %>
     </div>
 
   <% else %>
@@ -44,8 +44,11 @@
     </div>
   <% end %>
 
+  <br>
+
   <div class="form-group">
-    <%= form.submit "Guardar", class: "btn btn-primary" %>
+    <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
+    <%= link_to "Cancelar", appointments_path, class:"btn btn-outline-danger btn-sm" %>
   </div>
 
 <% end %>
