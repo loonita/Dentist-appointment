@@ -1,17 +1,50 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Statuses</h1>
+<title>Status &middot; Clínica Dental San Antonio</title>
 
-<div id="statuses">
-  <% @statuses.each do |status| %>
-    <%= render status %>
-    <p>
-      <%= link_to "Mostrar este status", status %>
-    </p>
-  <% end %>
+<p style="color: green"><%= notice %></p>
+
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Status</h4>
+            <p class="card-description">
+              Status de citas (appointments status).
+            </p>
+
+            <%= link_to "Crear nuevo status", new_status_path, class: "btn btn-success" %>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>ID No.</th>
+                  <th>Nombre Status</th>
+                </tr>
+                </thead>
+
+
+                <tbody>
+                <% @statuses.each do |status| %>
+                  <tr>
+                    <td><%= status.id %></td>
+                    <td><%= status.name %></td>
+                    <td><%= link_to "Ver", status, class: "btn btn-secondary" %></td>
+                    <td><%= link_to "Editar", edit_status_path(status), class: "btn btn-info" %></td>
+                <% end %>
+                </tbody>
+
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
-
-<% if user_is_secretary? || user_is_admin? %>
-  <%= link_to "Nuevo status", new_status_path %>
-<% end %>
-

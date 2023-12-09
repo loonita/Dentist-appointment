@@ -1,9 +1,49 @@
-<h1> Pacientes</h1>
-<div id="pacients">
-  <% @pacients.each do |pacients| %>
-    <%= pacients.name %>
-    <p>
-      <%= link_to "Mostrar paciente", pacients %>
-    </p>
-  <% end %>
+<title>Pacientes &middot; Clínica Dental San Antonio</title>
+
+<p style="color: green"><%= notice %></p>
+
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Pacientes</h4>
+            <p class="card-description">
+              Pacientes de la Clínica San Antonio.
+            </p>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>ID No.</th>
+                  <th>RUT</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Correo electrónico</th>
+                  <th>Número telefónico</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% @pacients.each do |pacients| %>
+                  <tr>
+                    <td><%= pacients.id %></td>
+                    <td><%= pacients.rut %></td>
+                    <td><%= pacients.name %></td>
+                    <td><%= pacients.last_name %></td>
+                    <td><%= pacients.email %></td>
+                    <td><%= pacients.phone %></td>
+                    <td><%= link_to "Mostrar", pacients, class: "btn btn-primary" %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
