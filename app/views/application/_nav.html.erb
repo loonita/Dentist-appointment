@@ -62,9 +62,13 @@
               <li>
                 <%= link_to "Ver Perfil", user_path(current_user), class: "dropdown-item" %>
               </li>
-              <li>
-                <%= link_to "Mis citas", appointments_path, class: "dropdown-item" %>
-              </li>
+
+              <% if user_is_patient? %>
+                  <li>
+                    <%= link_to "Mis citas", appointments_path, class: "dropdown-item" %>
+                  </li>
+              <% end %>
+
               <li>
                 <%= link_to "Agendar Cita", new_appointment_path, class: "dropdown-item" %>
               </li>
