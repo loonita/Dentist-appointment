@@ -1,21 +1,82 @@
+<title>Perfil &middot; Clínica Dental San Antonio</title>
 
-<h1>Perfil</h1>
-<p>Run: <%= @user_from_users.rut %></p>
-<p>Nombres: <%= @user_from_users.name %></p>
-<p>Apellidos: <%= @user_from_users.last_name %></p>
-<p>Correo Electrónico: <%= @user.email %></p>
-<p>Número de Teléfono: <%= @user_from_users.phone %></p>
+<p style="color: green"><%= notice %></p>
 
-<%= link_to "Editar", edit_user_registration_path(current_user), class: "btn btn-warning" %>
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+
+            <h4 class="card-title">Perfil</h4>
+            <p class="card-description">
+              Perfil de usuario.
+            </p>
+
+                    <div class="card">
+                      <table class="table">
+
+                        <tr>
+                          <td><b>Rut</b></td>
+                          <td><%= @user_from_users.rut %></td>
+                        </tr>
+                        <tr>
+                          <td><b>Nombres </b></td>
+                          <td><%= @user_from_users.name %></td>
+                        </tr>
+                        <tr>
+                          <td><b>Apellidos </b></td>
+                          <td><%= @user_from_users.last_name %></td>
+                        </tr>
+                        <tr>
+                          <td><b>Correo electrónico</b></td>
+                          <td><%= @user_from_users.email %></td>
+                        </tr>
+                        <tr>
+                          <td><b>Número de teléfono </b></td>
+                          <td><%= @user_from_users.phone %></td>
+                        </tr>
+
+                      </table>
+                    </div>
+
+                    <br>
+                  <%= link_to "Editar", edit_user_registration_path(@user_from_users), class: "btn btn-warning btn-sm" %>
+                    <br> <br>
+
+            <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
+            <div class="card">
+              <table class="table">
+                <h4 class="card-title">Citas.</h4>
+                <p class="card-description">
+                  Citas asociadas del usuario.
+                </p>
 
 
-<% if user_is_admin? %>
-  <% @appointments.each do |appointment| %>
-    <%= render appointment %>
-    <p>
-      <%= link_to "Mostrar cita", appointment %>
-    </p>
-  <% end %>
-<% end %>
+                  <% @appointments.each do |appointment| %>
+                    <%= render appointment %>
+                    <p>
+                      <%= link_to "Mostrar cita", appointment, class:"btn btn-primary btn-sm" %>
+                    </p>
+                  <% end %>
 
-<%= link_to "Atrás", root_path  %>
+              </table>
+            </div>
+            <% end %>
+
+
+            <br>
+                   <p> <%= link_to "Volver", :back, class: "btn btn-outline-primary btn-sm" %></p>
+            <br>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+

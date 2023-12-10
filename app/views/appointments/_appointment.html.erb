@@ -1,35 +1,38 @@
 <p id="<%= dom_id appointment %>">
 
+<div class="card">
+  <table class="table">
+      <thead>
 
-  <p>
-    <strong>Run paciente:</strong>
-    <%= User.find_by(id: appointment.user_id).rut %>
-  </p>
-  <p>
-    <strong>Paciente:</strong>
-    <%= User.find_by(id: appointment.user_id).name_patient %>
-  </p>
-  <p>
-    <strong>Run dentista:</strong>
-    <%= User.find_by(id: appointment.dentist_id).rut %>
-  </p>
-  <p>
-    <strong>Dentista:</strong>
-    <%= User.find_by(id: appointment.dentist_id).name_dentist %>
-  </p>
+      <tr>
+        <td><b>Rut paciente</b></td>
+        <td><%= User.find_by(id: appointment.user_id).rut %></td>
+      </tr>
+      <tr>
+        <td><b>Nombre paciente</b></td>
+        <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
+      </tr>
+      <tr>
+        <td><b>Rut dentista</b></td>
+        <td><%= User.find_by(id: appointment.dentist_id).rut %></td>
+      </tr>
+      <tr>
+        <td><b>Nombre dentista</b></td>
+        <td><%= User.find_by(id: appointment.dentist_id).name_dentist %></td>
+      </tr>
+      <tr>
+        <td><b>Fecha</b></td>
+        <td><%= appointment.fecha %></td>
+      </tr>
+      <tr>
+        <td><b>Hora</b></td>
+        <td><%= appointment.hora %></td>
+      </tr>
+      <tr>
+        <td><b>Estado</b></td>
+        <td><%= Status.find_by(id: appointment.status_id).name %></td>
+      </tr>
 
-  <p>
-    <strong>Fecha:</strong>
-    <%= appointment.fecha %>
-  </p>
-
-  <p>
-    <strong>Hora:</strong>
-    <%= appointment.hora %>
-  </p>
-<p>
-  <strong>Estado:</strong>
-  <%= Status.find_by(id: appointment.status_id).name %>
-</p>
-
-
+      </thead>
+  </table>
+</div>

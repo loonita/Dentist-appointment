@@ -22,10 +22,13 @@
 
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
+
+              <% if user_is_admin? %>
               <div class="field">
                 <%= f.label :role %><br />
                 <%= f.collection_select :role_id, Role.all.order(name: :asc), :id, :name %>
               </div>
+              <% end %>
 
               <div class="form-group">
                 <%= f.label "Run", class: "form-label" %><br />

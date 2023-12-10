@@ -14,6 +14,11 @@
               Dentistas de la Clínica San Antonio.
             </p>
 
+            <% if user_is_admin? %>
+              <%= link_to "Añadir dentista", new_user_registration_path, class: "btn btn-success" %>
+              Aún no funcional (?
+            <% end %>
+
             <div class="table-responsive">
               <table class="table">
                 <thead>

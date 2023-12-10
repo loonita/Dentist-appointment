@@ -20,11 +20,15 @@ class AppointmentsController < ApplicationController
     end
     if params[:search].present?
       @appointments = @appointments.filter { |a| a.user_id.eql?(params[:search].to_i) }
-
     end
+
+
+
   end
 
+  def calendar;
 
+  end
 
   # GET /appointments/1 or /appointments/1.json
   def show

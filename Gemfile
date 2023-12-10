@@ -72,3 +72,5 @@ group :test do
 end
 
 gem "cssbundling-rails", "~> 1.3"
+
+gem "simple_calendar", "~> 2.4"

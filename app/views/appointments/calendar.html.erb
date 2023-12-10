@@ -1,0 +1,14 @@
+<div class="container mt-5 text-center">
+
+  <h2 class="card-title">Calendario</h2>
+  <p class="card-description">
+    Calendario de la Clínica San Antonio.
+  </p>
+
+  <%= month_calendar() do |date| %>
+    <div class="day">
+      <%= date.day %>
+    </div>
+  <% end %>
+
+</div>
