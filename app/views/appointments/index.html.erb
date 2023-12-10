@@ -11,11 +11,11 @@
 
     <%= submit_tag "Buscar", class: "btn btn-primary" %>
   <% end %>
-  <% if user_is_patient? || user_is_admin? || user_is_secretary? || user_is_dentist? %>
+  <% if user_is_patient? || user_is_admin? || user_is_secretary? %>
      <% @appointments.each do |appointment| %>
         <%= render appointment %>
          <p>
-            <%= link_to "Mostrar cita", appointment %>
+            <%= link_to "Mostrar cita", appointment, class:"btn btn-outline-primary btn-sm"  %>
          </p>
     <% end %>
   <%end %>
@@ -25,13 +25,16 @@
      <% @appointments.each do |appointment| %>
         <%= render appointment %>
          <p>
-            <%= link_to "Mostrar cita", appointment %>
+            <%= link_to "Mostrar cita", appointment, class:"btn btn-outline-primary btn-sm" %>
          </p>
     <% end %>
+
 
   <%end %>
 </div>
 
-<%= link_to "Agendar nueva cita", new_appointment_path %>
+<%= link_to "Agendar nueva cita", new_appointment_path, class: "btn btn-success btn-sm" %>
+
+<br>
 
 

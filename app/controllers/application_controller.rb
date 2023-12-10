@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
 
   before_action :current_user
 
-  def index; end
+  def index;
+
+  end
 
   def servicios; end
 
@@ -28,4 +30,5 @@ class ApplicationController < ActionController::Base
   def protect_pages
     redirect_to new_user_session_path unless current_user
   end
+
 end
