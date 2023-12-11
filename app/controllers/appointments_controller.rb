@@ -26,7 +26,24 @@ class AppointmentsController < ApplicationController
 
   end
 
-  def calendar;
+  def calendar
+    @appointments = Appointment.where(
+      start_time: Time.now.beginning_of_month.beginning_of_week..Time.now.end_of_month.end_of_week
+    )
+
+    if user_is_patient?
+      @appointments = Appointment.all.filter { |a| a.user_id == current_user.id }
+    end
+    if user_is_dentist?
+      @appointments = Appointment.all.filter { |a| a.dentist_id == current_user.id }
+    end
+    if params[:search].present?
+      @appointments = @appointments.filter { |a| a.user_id.eql?(params[:search].to_i) }
+    end
+
+    if user_is_admin? || user_is_secretary?
+      @users = User.all.filter { |u| u.role_id == 2 }
+    end
 
   end
 
@@ -105,6 +122,6 @@ class AppointmentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def appointment_params
-    params.require(:appointment).permit(:date, :time, :status_id, :user_id, :dentist_id)
+    params.require(:appointment).permit(:start_time, :time, :status_id, :user_id, :dentist_id)
   end
 end

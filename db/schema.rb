@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_30_013858) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.date "date"
-    t.time "time"
+    t.datetime "start_time", null: false
+    t.time "time", null: false
     t.integer "status_id", default: 1, null: false
     t.integer "user_id", null: false
     t.integer "dentist_id", null: false

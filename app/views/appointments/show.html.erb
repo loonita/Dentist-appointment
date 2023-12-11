@@ -8,7 +8,7 @@
     <%= link_to "Editar cita", edit_appointment_path(@appointment) %> |
   <% end %>
 
-  <%= link_to "Volver atrás", appointments_path %>
+  <%= link_to "Volver atrás", :back , class: "btn btn-outline-danger btn-sm"%>
 
 
   <% if user_is_admin? %>
