@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :only_see_own_page, only: [:show]
+  before_action :authenticate_admin, :except => [:show]
 
 
   def show
@@ -26,15 +27,26 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-  end
 
-  def update
-    @user_from_users = User.find(params[:id])
-    if @user_from_users.update(user_params)
-      redirect_to user_path(@user_from_users)
-    else
-      render 'edit'
+    user = User.find(params[:id])
+
+    return if user.nil?
+    user_attr_names = []
+    user.attributes.each do |el|
+      user_attr_names << el[0]
+    end
+
+    user_attr_names.each do |attr|
+      next if params[:user][attr].nil?
+
+      user[attr] = params[:user][attr]
+    end
+    respond_to do |format|
+      if user.save
+        format.html { redirect_to user_path(user), :notice => 'Usuario actualizado con éxito.' }
+      else
+        format.html { redirect_to user_path(user), :status => :unprocessable_entity }
+      end
     end
   end
 

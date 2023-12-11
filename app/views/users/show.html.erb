@@ -43,8 +43,13 @@
                     </div>
 
                     <br>
-                  <%= link_to "Editar", edit_user_registration_path(@user_from_users), class: "btn btn-warning btn-sm" %>
-                    <br> <br>
+              <%= form_for(@user, html: { method: :put }) do |f| %>
+                <div class="field">
+                  <%= f.label :name %><br />
+                  <%= f.text_field :name, autofocus: true %>
+                </div>
+                <%= f.submit "Guardar cambios", class: "btn btn-primary btn-sm" %>
+              <%end %>
 
             <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
             <div class="card">
@@ -58,7 +63,7 @@
                   <% @appointments.each do |appointment| %>
                     <%= render appointment %>
                     <p>
-                      <%= link_to "Mostrar cita", appointment, class:"btn btn-primary btn-sm" %>
+                      <%= link_to "Mostrar cita", appointment, class: "btn btn-primary btn-sm" %>
                     </p>
                   <% end %>
 
@@ -75,8 +80,6 @@
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>
 
 

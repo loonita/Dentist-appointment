@@ -17,7 +17,6 @@ Rails.application.routes.draw do
              :controllers => {
                :confirmations => 'users/confirmations',
                :registrations => 'users/registrations',
-               :edits => 'users/edits/:id',
 
              }
 
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
   get '/users/dentists', :to => 'users#dentists'
   get '/users/patients', :to => 'users#patients'
   get '/users/:id', :to => 'users#show', :as => :user
-  get '/users/:id/edit', :to => 'users#edit'
+  put '/users/:id', :to => 'users#edit'
 
 
 
