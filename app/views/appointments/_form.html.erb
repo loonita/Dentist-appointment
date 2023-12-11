@@ -27,7 +27,7 @@
 
   <div class="form-group">
     <%= form.label "Fecha" %>
-    <%= form.date_field :date, class: "form-control small-input" %>
+    <%= form.date_field :start_time, class: "form-control small-input" %>
   </div>
 
   <div class="form-group">
@@ -48,7 +48,7 @@
 
   <div class="form-group">
     <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
-    <%= link_to "Cancelar", appointments_path, class:"btn btn-outline-danger btn-sm" %>
+    <%= link_to "Cancelar", appointments_path, class: "btn btn-outline-danger btn-sm" %>
   </div>
 
 <% end %>

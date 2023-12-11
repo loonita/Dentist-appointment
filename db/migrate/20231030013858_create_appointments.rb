@@ -1,8 +1,8 @@
 class CreateAppointments < ActiveRecord::Migration[7.1]
   def change
     create_table :appointments do |t|
-      t.date :date
-      t.time :time
+      t.datetime :start_time, null: false
+      t.time :time, null: false
 
       t.integer :status_id, null: false, default: 1
       t.integer :user_id, null: false
