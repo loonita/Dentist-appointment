@@ -5,14 +5,15 @@
 <div>
 
   <% if user_is_secretary? || user_is_admin?  %>
-    <%= link_to "Editar cita", edit_appointment_path(@appointment) %> |
+    <%= link_to "Editar cita", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %> |
   <% end %>
 
-  <%= link_to "Volver atrás", :back , class: "btn btn-outline-danger btn-sm"%>
+  <%= link_to "Ir a Calendario", calendar_path, class: "btn btn-outline-primary btn-sm"%> |
+  <%= link_to "Ir a todas las citas", appointments_path , class: "btn btn-outline-info btn-sm"%>
 
-
+  <br><br>
   <% if user_is_admin? %>
-    <%= button_to "Eliminar cita", @appointment, method: :delete %>
+    <%= button_to "Eliminar cita", @appointment, method: :delete, class: "btn btn-danger btn-sm" %>
   <% end %>
 
 </div>
