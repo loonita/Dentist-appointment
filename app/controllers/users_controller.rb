@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   def edit
     user = User.find(params[:id])
 
+
     return if user.nil?
     user_attr_names = []
     user.attributes.each do |el|

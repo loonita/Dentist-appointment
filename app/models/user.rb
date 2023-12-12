@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :rut, presence: true, uniqueness: true
 
 
+
   def name_dentist
     "Dra. #{name} #{last_name}"
   end
