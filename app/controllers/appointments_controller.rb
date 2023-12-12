@@ -21,9 +21,6 @@ class AppointmentsController < ApplicationController
     if params[:search].present?
       @appointments = @appointments.filter { |a| a.user_id.eql?(params[:search].to_i) }
     end
-
-
-
   end
 
   def calendar
@@ -61,6 +58,8 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
+    @filter_date = Appointment.all
+    @filter = MorningTime.all.filter { |m| m.m_time == @filter_date}
   end
 
   # GET /appointments/1/edit
@@ -93,6 +92,7 @@ class AppointmentsController < ApplicationController
 
   # PATCH/PUT /appointments/1 or /appointments/1.json
   def update
+
     respond_to do |format|
       if @appointment.update(appointment_params)
         format.html { redirect_to appointment_url(@appointment), notice: "La cita se ha actualizado correctamente." }
