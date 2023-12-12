@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :morning_times
   get '/appointments/pending', to: 'appointments#pending'
   resources :appointments
   resources :statuses

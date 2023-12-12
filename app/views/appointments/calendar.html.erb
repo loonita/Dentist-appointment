@@ -7,7 +7,7 @@
     Calendario de la Clínica San Antonio.
   </p>
 
-<% if user_is_dentist? || user_is_patient? %>
+<% if user_is_dentist? %>
     <%= month_calendar(events: @appointments) do |date, appointments| %>
       <div class="day">
         <%= date.day %>
@@ -30,6 +30,29 @@
     <% end %>
 <% end %>
 
+
+  <% if user_is_patient? %>
+    <%= month_calendar(events: @appointments) do |date, appointments| %>
+      <div class="day">
+        <%= date.day %>
+      </div>
+      <% appointments.each do |appointment| %>
+        <div class="card-header">
+          <div class="card-title">
+
+            <% if appointment.status_id == 1 || appointment.status_id == 2 %>
+              <% if appointment.status_id == 1 %>
+                <%= link_to appointment.cita_calendar_dentista, appointment, class: "btn btn-outline-warning btn-sm" %>
+              <% elsif appointment.status_id == 2 %>
+                <%= link_to appointment.cita_calendar_dentista, appointment, class: "btn btn-outline-success btn-sm" %>
+              <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
 
 
 <% if user_is_admin? || user_is_secretary? %>

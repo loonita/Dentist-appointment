@@ -7,6 +7,7 @@ class Appointment < ApplicationRecord
   validates :time, presence: true
 
   has_one :status
+  has_many :morning_times
   belongs_to :user
 
 
@@ -18,6 +19,9 @@ class Appointment < ApplicationRecord
     time.strftime("%H:%M")
   end
 
+  def pasar_hora
+
+  end
 
   def nombre_dentista
     "Dra. #{User.find(dentist_id).name} #{User.find(user_id).last_name}"
@@ -30,8 +34,10 @@ class Appointment < ApplicationRecord
   def cita_calendar
     hora + " " + nombre_paciente
   end
-  
 
+  def cita_calendar_dentista
+    hora + " " + nombre_dentista
+  end
   def send_email
     UserMailer.appointment_confirmation(user).deliver
   end

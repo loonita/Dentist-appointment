@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @morning_time %>
+
+<div>
+  <%= link_to "Edit this morning time", edit_morning_time_path(@morning_time) %> |
+  <%= link_to "Back to morning times", morning_times_path %>
+
+  <%= button_to "Destroy this morning time", @morning_time, method: :delete %>
+</div>

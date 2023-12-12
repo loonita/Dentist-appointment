@@ -63,6 +63,10 @@
                 <%= link_to "Ver Perfil", user_path(current_user), class: "dropdown-item" %>
               </li>
 
+              <li>
+                <%= link_to "Calendario", calendar_path, class: "dropdown-item" %>
+              </li>
+
               <% if user_is_patient? %>
                   <li>
                     <%= link_to "Mis citas", appointments_path, class: "dropdown-item" %>

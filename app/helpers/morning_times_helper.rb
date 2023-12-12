@@ -1,0 +1,2 @@
+module MorningTimesHelper
+end
