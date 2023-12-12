@@ -19,10 +19,6 @@ class Appointment < ApplicationRecord
     time.strftime("%H:%M")
   end
 
-  def pasar_hora
-
-  end
-
   def nombre_dentista
     "Dra. #{User.find(dentist_id).name} #{User.find(user_id).last_name}"
   end
