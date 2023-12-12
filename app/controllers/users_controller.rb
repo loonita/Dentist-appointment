@@ -27,7 +27,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-
     user = User.find(params[:id])
 
     return if user.nil?
