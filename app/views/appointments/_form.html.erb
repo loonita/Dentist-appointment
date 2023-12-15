@@ -32,7 +32,7 @@
 
   <div class="form-group">
     <%= form.label "Hora" %>
-    <%= form.collection_select :time, @filter, :m_time, :m_time %>
+    <%= form.collection_select :time, MorningTime.all, :m_time, :m_time %>
   </div>
 
 

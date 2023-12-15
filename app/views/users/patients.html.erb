@@ -15,8 +15,7 @@
             </p>
 
             <% if user_is_admin? || user_is_secretary? %>
-              <%= link_to "Añadir paciente", new_user_registration_path, class: "btn btn-success" %>
-              Aún no funcional (?
+              <%= link_to "Añadir paciente",users_new_path, class: "btn btn-success" %>
             <% end %>
 
             <div class="table-responsive">
@@ -42,10 +41,7 @@
                     <td><%= patient.email %></td>
                     <td><%= patient.phone %></td>
                     <td><%= link_to "Mostrar", patient, class: "btn btn-primary" %></td>
-                    <% if user_is_admin? %>
-                        <td><%= link_to "Editar", edit_user_registration_path(patient), class: "btn btn-warning" %></td>
-                        <td><%= link_to "Eliminar", patient, method: :delete, data: { confirm: "¿Estás seguro de eliminar a #{patient.name} #{patient.last_name}?" }, class: "btn btn-danger" %></td>
-                      <% end %>
+
 
                   </tr>
                 <% end %>

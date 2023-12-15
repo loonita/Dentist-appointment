@@ -1,0 +1,35 @@
+
+<%= form_with :url => users_create_path, method: :post do |f| %>
+  <div class="field form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, autocomplete: "name" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, autocomplete: "last_name" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :phone %>
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :rut %>
+    <%= f.text_field :rut, autocomplete: "rut" %>
+</div>
+  <div class="field form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="field form-group">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+        <em>
+          (#{@minimum_password_length} characters minimum)
+        </em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+    <div class="actions">
+      <%= f.button "Crear", :type => "submit", :class => "btn mb-2" %>
+    </div>
+  </div>
+<% end %>
