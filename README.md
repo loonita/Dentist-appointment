@@ -1,7 +1,15 @@
-# Clinica dental San Antonio
+# Clinica Dental San Antonio
 
 Software diseñado para apoyar la gestión administrativa en la Clínica Dental San Antonio en Talca
 
+## Construido con
+- [Ruby 3.2.2](https://www.ruby-lang.org/en/) - Lenguaje de programación
+- [Ruby on Rails 6.1.4](https://rubyonrails.org/) - Framework de desarrollo
+- [PostgreSQL](https://www.postgresql.org/) - Base de datos
+- [Bootstrap 5](https://getbootstrap.com/) - Framework de diseño
+- [Yarn](https://yarnpkg.com/) - Manejador de dependencias
+- [NodeJS](https://nodejs.org/es/) - Entorno de ejecución para JavaScript
+- [Git](https://git-scm.com/) - Control de versiones
 
 ### Instalación
 ##Ubuntu 20.04
@@ -88,5 +96,7 @@ cd config
 nano database.yml
 rails s -b 0.0.0.0 -p 80v
 ```
+
+
 
 
