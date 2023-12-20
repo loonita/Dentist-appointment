@@ -4,7 +4,7 @@ Software diseñado para apoyar la gestión administrativa en la Clínica Dental 
 
 
 ### Instalación
-#Ubuntu 20.04
+##Ubuntu 20.04
 
 habilitar modo super-user
 ```bash
@@ -37,7 +37,7 @@ Instalar Yarn
 ```bash
 npm install -g yarn
 ```
-Ejecutar los siguientes comandos sin super-user a menos que se especifique
+## Ejecutar los siguientes comandos sin super-user a menos que se especifique
 Descargar e instalar el Gestor de Versiones de Ruby (RVM). Reemplazar <username> con tu nombre de usuario de Unix
 ```bash
 command curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
