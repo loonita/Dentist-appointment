@@ -14,6 +14,7 @@ RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 
 RUN npm install -g yarn
 
+
 RUN git clone https://github.com/loonita/Dentist-appointment /usr/src/app
 WORKDIR /usr/src/app
 
@@ -24,7 +25,6 @@ RUN bundler
 
 
 RUN yarn install
-RUN yarn build
-RUN yarn build:css
 
 EXPOSE 3000
+CMD ["bundler", "exec", "rails", "server", "-b", "0.0.0.0"]
