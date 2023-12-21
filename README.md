@@ -68,7 +68,7 @@ git clone https://github.com/loonita/Dentist-appointment
 cd Dentist-appointment
 ```
 
-instalar libpq or postgresql
+instalar libpq o postgresql
 ```bash
 sudo apt install libpq-dev
 ```
@@ -86,15 +86,13 @@ bundler install
 Correr yarn install tareas
 ```bash
 yarn install
-yarn build
-yarn build:css
 ```
 Base de datos
 Configurar base de datos
 ```bash
 cd config
 nano database.yml
-rails s -b 0.0.0.0 -p 80v
+rails s -b 0.0.0.0 -p 80
 ```
 
 
