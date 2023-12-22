@@ -12,7 +12,7 @@ Software diseñado para apoyar la gestión administrativa en la Clínica Dental 
 - [Git](https://git-scm.com/) - Control de versiones
 
 ### Instalación
-##Ubuntu 20.04
+### Ubuntu 20.04
 
 habilitar modo super-user
 ```bash
@@ -76,7 +76,6 @@ sudo apt install libpq-dev
 Asegurar de que Bundler esté instalado
 ```bash
 gem install bundler
-bundler install
 ```
 Descargar y instalar dependencias de Ruby
 ```bash
@@ -87,11 +86,57 @@ Correr yarn install tareas
 ```bash
 yarn install
 ```
-Base de datos
-Configurar base de datos
+Configurar la Base de datos
+Ir a  la carpeta config
 ```bash
 cd config
+```
+Luego entrar a database.yml
+```bash
 nano database.yml
+```
+Este proyecto viene configurado para utilizar variables de entorno para conectarse a una base de datos, como puede verse a continuación:
+```yml
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['POSTGRES_HOST'] %>
+  port: 5432
+
+development:
+  <<: *default
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+test:
+  <<: *default
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+production:
+  <<: *default
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+```
+
+Declarar variables de entorno:
+```bash
+nano .env
+```
+Según como se haya configurado la base de datos, y el entorno en el que se desea hacer funcionar el proyecto, definir la siguientes variables de entorno:
+```
+RAILS_ENV=
+POSTGRES_HOST=
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+```
+Ingresar el siguiente comando para iniciar la aplicación
+```bash
 rails s -b 0.0.0.0 -p 80
 ```
 
