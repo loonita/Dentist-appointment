@@ -30,6 +30,9 @@ gem 'devise', '~> 4.9', '>= 4.9.3'
 
 gem 'select2-rails'
 
+gem 'dotenv-rails'
+
+gem 'google_maps_rails'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
