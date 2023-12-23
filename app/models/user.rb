@@ -22,8 +22,21 @@ class User < ApplicationRecord
     "Dra. #{name} #{last_name}"
   end
 
+  def rut_dentist
+    "#{rut}"
+  end
+
+  def id_dentist
+    "#{id}"
+  end
+
   def name_patient
     "#{name} #{last_name}"
+  end
+
+
+  def rut_patient
+    "#{rut}"
   end
 
 

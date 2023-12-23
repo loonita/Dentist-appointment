@@ -1,103 +1,80 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-  <img src="/assets/logo.png" class="mr-2" width="100" height="100" alt="logo">
+<body>
+<section class="ftco-section">
   <div class="container">
-    <a class="navbar-brand text-black">
-      Clínica Dental San Antonio
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <%= link_to "Inicio", root_path, class: "nav-link text-black" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Servicios", servicios_path, class: "nav-link text-black" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Contacto", contacto_path, class: "nav-link text-black" %>
-        </li>
-
-        <% if !user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Inicio de Sesión", new_user_session_path, class: "nav-link text-black" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Regístrate", new_user_registration_path, class: "nav-link text-black" %>
-          </li>
-        <% end %>
-
-      </ul>
-      <% if user_is_admin? || user_is_dentist? || user_is_secretary? %>
-        <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= link_to "Todas las citas", appointments_path, class: "nav-link text-black" %>
-        </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <%= link_to "Citas pendientes", appointments_pending_path , class: "nav-link text-black" %>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <%= link_to "Ver Perfil Dentistas", users_dentists_path, class: "nav-link text-black" %>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <%= link_to "Ver Perfil Pacientes", users_patients_path, class: "nav-link text-black" %>
-          </li>
-        </ul>
-      <% end %>
-      <% if user_signed_in? %>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Perfil
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <%= link_to "Ver Perfil", user_path(current_user), class: "dropdown-item" %>
-              </li>
-
-              <li>
-                <%= link_to "Calendario", calendar_path, class: "dropdown-item" %>
-              </li>
-
-              <% if user_is_patient? %>
-                  <li>
-                    <%= link_to "Mis citas", appointments_path, class: "dropdown-item" %>
-                  </li>
-              <% end %>
-
-              <li>
-                <%= link_to "Agendar Cita", new_appointment_path, class: "dropdown-item" %>
-              </li>
-
-              <% if user_is_admin? %>
-
-                <li>
-                  <%= link_to "Administrar roles", roles_path, class: "dropdown-item" %>
-                </li>
-                <li>
-                  <%= link_to "Administrar status", statuses_path, class: "dropdown-item" %>
-                </li>
-                <li>
-                  <%= link_to 'Nuevo Usuario', users_new_path, class: "dropdown-item" %>
-                </li>
-
-              <% end %>
-
-              <li>
-                <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      <% end %>
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5">
+      </div>
     </div>
   </div>
-</nav>
+  <div class="container">
+    <nav class="d-md-flex navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <a href="/"><img src="/assets/logo.png" width="100" height="100" href=root_path></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="fa fa-bars"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse " id="ftco-nav">
+          <ul class="navbar-nav ml-auto mr-md-3">
+            <li class="nav-item"></li>
+            <li class="nav-item"></li>
+            <li class="nav-item"></li>
+            <li class="nav-item"></li>
+            <li class="nav-item"><a href="/servicios" class="nav-link">Servicios</a></li>
+            <li class="nav-item"><a href="/contacto" class="nav-link">Contacto</a></li>
+
+
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/assets/person_circle_icon.png" width="35" height="35"></a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                  <% if !user_signed_in? %>
+                    <li class="dropdown-item"><a href="/users/sign_in" class="nav-link">Iniciar sesión</a></li>
+                    <li class="dropdown-item"><a href="/users/sign_up" class="nav-link">Regístrate</a></li>
+                  <% end %>
+
+                  <% if user_signed_in? %>
+
+                    <li class="dropdown-item"><%= link_to "Mi Perfil", user_path(current_user), class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Calendario", calendar_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Agendar Cita", new_appointment_path, class: "dropdown-item" %></li>
+
+
+                    <% if user_is_admin? || user_is_dentist? || user_is_secretary? %>
+                      <li class="dropdown-item"><%= link_to "Todas las citas", appointments_path, class: "dropdown-item" %></li>
+                      <li class="dropdown-item"><%= link_to "Citas pendientes", appointments_pending_path , class: "dropdown-item" %></li>
+                      <li class="dropdown-item"><%= link_to "Ver Perfil Dentistas", users_dentists_path, class: "dropdown-item" %></li>
+                      <li class="dropdown-item"><%= link_to "Ver Perfil Pacientes", users_patients_path, class: "dropdown-item" %></li>
+                    <% end %>
+
+                    <% if user_is_patient? %>
+                      <li class="dropdown-item"><%= link_to "Mis citas", appointments_path, class: "dropdown-item" %></li>
+                    <% end %>
+
+
+                    <% if user_is_admin? %>
+                      <li class="dropdown-item"><%= link_to "Administrar roles", roles_path, class: "dropdown-item" %></li>
+                      <li class="dropdown-item"><%= link_to "Administrar status", statuses_path, class: "dropdown-item" %></li>
+                      <li class="dropdown-item"><%= link_to "Nuevo usuario", users_new_path, class: "dropdown-item" %></li>
+                    <% end %>
+
+
+                    <li class="dropdown-item"><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+
+                  <% end %>
+
+                </ul>
+            </ul>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5">
+      </div>
+    </div>
+  </div>
+</section>

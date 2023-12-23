@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :only_see_own_page, only: [:show]
   before_action :authenticate_secretary, except: [:show]
 
+
   def show
     @user = User.find(params[:id])
     @appointments = []
@@ -56,6 +57,7 @@ class UsersController < ApplicationController
   def patients
     @patients = User.all.filter { |u| u.role_id == 1 }
   end
+
   def new
     @user = User.new
   end
@@ -63,6 +65,7 @@ class UsersController < ApplicationController
     user = User.new(:name => params[:name], :last_name => params[:last_name], :email => params[:email], :rut => params[:rut], :phone => params[:phone],  :password => params[:password])
     user.save ? (redirect_to root_path, :notice => 'Usuario creado con éxito.') : (redirect_to root_path, :status => :unprocessable_entity)
   end
+
 
 end
 

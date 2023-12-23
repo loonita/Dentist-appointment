@@ -1,6 +1,6 @@
 class MorningTime < ApplicationRecord
 
-  has_many :appointments
+  belongs_to :appointment, :required => false
 
   validates :m_time, presence: true
 

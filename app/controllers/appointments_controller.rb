@@ -54,12 +54,47 @@ class AppointmentsController < ApplicationController
     if current_user != @appointment.user && !user_is_admin? && !user_is_dentist? && !user_is_secretary?
       redirect_to root_path, notice: "Sorry, but you are only allowed to view your own appointments."
     end
-    end
+  end
+
+
   # GET /appointments/new
   def new
     @appointment = Appointment.new
-    @filter_date = Appointment.all
-    @filter = MorningTime.all.filter { |m| m.m_time == @filter_date}
+    @all_appointments = Appointment.all
+
+    @fecha_recibida = params[:fecha_t]
+
+    if user_is_admin? || user_is_secretary?
+      @dentist_recibido = params[:dentist_t]
+      @dentist_name = "Dra. " + User.find_by(id: @dentist_recibido).name + " " + User.find_by(id: @dentist_recibido).last_name
+      @ocupado = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido).pluck(:time)
+    end
+
+    if user_is_patient?
+      puts "Agregar para paciente"
+      @ocupado = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido).pluck(:time)
+    end
+
+    @horas_ocupadas = []
+
+    @ocupado.each do |a|
+      appo = Appointment.find_by(time: a)
+      if appo
+        @test = appo.hora.to_s
+        @horas_ocupadas << @test
+      end
+    end
+
+    @horas_disponibles = []
+    @todo = MorningTime.all
+
+    @todo.each do |m|
+      @horas_disponibles << m.m_time
+    end
+
+    @horas_disponibles = @horas_disponibles - @horas_ocupadas
+
+
   end
 
   # GET /appointments/1/edit

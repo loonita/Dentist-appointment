@@ -61,6 +61,8 @@
                 <%= f.submit "Guardar cambios", class: "btn btn-primary btn-sm" %>
               <%end %>
 
+            <br> <br>
+
             <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
             <div class="card">
               <table class="table">
@@ -85,6 +87,7 @@
             <br>
                    <p> <%= link_to "Volver", :back, class: "btn btn-outline-primary btn-sm" %></p>
             <br>
+
                 </div>
             </div>
       </div>
