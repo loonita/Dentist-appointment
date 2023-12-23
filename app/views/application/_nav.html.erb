@@ -51,10 +51,13 @@
                       <li class="dropdown-item"><%= link_to "Mis citas", appointments_path, class: "dropdown-item" %></li>
                     <% end %>
 
+
                     <% if user_is_admin? %>
                       <li class="dropdown-item"><%= link_to "Administrar roles", roles_path, class: "dropdown-item" %></li>
                       <li class="dropdown-item"><%= link_to "Administrar status", statuses_path, class: "dropdown-item" %></li>
+                      <li class="dropdown-item"><%= link_to "Nuevo usuario", users_new_path, class: "dropdown-item" %></li>
                     <% end %>
+
 
                     <li class="dropdown-item"><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
 

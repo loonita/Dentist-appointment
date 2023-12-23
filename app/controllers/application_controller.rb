@@ -16,11 +16,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_secretary
-    redirect_to root_path, :notice => 'No tienes permisos para realizar esta acción' unless user_is_secretary?
+    redirect_to root_path, :notice => 'No tienes permisos para realizar esta acción' unless user_is_secretary?  || user_is_admin?
   end
 
   def authenticate_dentist
-    redirect_to root_path, :notice => 'No tienes permisos para realizar esta acción' unless user_is_dentist?
+    redirect_to root_path, :notice => 'No tienes permisos para realizar esta acción' unless user_is_dentist? || user_is_secretary?
   end
 
   def authenticate_patient

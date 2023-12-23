@@ -71,7 +71,24 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "dentist_production"
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => "localhost:3000"}
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = if ENV['MAILER_USERNAME'].nil?
+                                         { :address => ENV['SMTP_HOST'] || 'localhost', :port => 25 }
+                                       else
+                                         {
+                                           :user_name => ENV['MAILER_USERNAME'],
+                                           :password => ENV.fetch('MAILER_PASSWORD', nil),
+                                           :domain => "clinicasanantonio.cl",
+                                           :address => ENV['SMTP_HOST'],
+                                           :port => '587',
+                                           :authentication => :plain,
+                                           :enable_starttls_auto => true
+                                         }
+                                       end
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
