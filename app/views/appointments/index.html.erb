@@ -1,7 +1,6 @@
+<title>Citas &middot; Clínica Dental San Antonio</title>
+
 <p style="color: green"><%= notice %></p>
-
-<h1>Citas</h1>
-
 
 <div id="appointments">
   <%= form_tag appointments_path, method: :get, class: "form-inline" do %>
@@ -11,30 +10,81 @@
 
     <%= submit_tag "Buscar", class: "btn btn-primary" %>
   <% end %>
+
   <% if user_is_patient? || user_is_admin? || user_is_secretary? %>
-     <% @appointments.each do |appointment| %>
-        <%= render appointment %>
-         <p>
-            <%= link_to "Mostrar cita", appointment, class: "btn btn-outline-primary btn-sm"  %>
-         </p>
+    <% @appointments.each do |appointment| %>
+      <%= render appointment %>
+      <p>
+        <%= link_to "Mostrar cita", appointment, class: "btn btn-outline-primary btn-sm"  %>
+      </p>
     <% end %>
   <%end %>
 
   <% if user_is_dentist? %>
     <h2> Citas asignadas </h2>
-     <% @appointments.each do |appointment| %>
-        <%= render appointment %>
-         <p>
-            <%= link_to "Mostrar cita", appointment, class: "btn btn-outline-primary btn-sm" %>
-         </p>
+    <% @appointments.each do |appointment| %>
+      <%= render appointment %>
+      <p>
+        <%= link_to "Mostrar cita", appointment, class: "btn btn-outline-primary btn-sm" %>
+      </p>
     <% end %>
 
 
   <%end %>
 </div>
 
-<%= link_to "Agendar nueva cita", new_appointment_path, class: "btn btn-success btn-sm" %>
 
-<br>
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Citas</h4>
+            <p class="card-description">
+              Citas de usuario de la Clínica San Antonio.
+            </p>
 
 
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>ID No.</th>
+                  <th>Rut paciente</th>
+                  <th>Nombre paciente</th>
+                  <th>Rut dentista</th>
+                  <th>Nombre dentista</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Estado</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% @appointments.each do |appointment| %>
+                  <tr>
+                    <td><%= appointment.id %></td>
+                    <td><%= User.find_by(id: appointment.user_id).rut_patient %></td>
+                    <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
+                    <td><%= User.find_by(id: appointment.dentist_id).rut_dentist %></td>
+                    <td><%= User.find_by(id: appointment.dentist_id).name_dentist %></td>
+                    <td><%= appointment.fecha %></td>
+                    <td><%= appointment.hora %></td>
+                    <td><%= Status.find_by(id: appointment.status_id).name %></td>
+                    <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
+                    <td><%= link_to "Editar", edit_appointment_path(appointment), class: "btn btn-info" %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

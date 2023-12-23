@@ -34,7 +34,13 @@
   <% if user_is_patient? %>
     <%= month_calendar(events: @appointments) do |date, appointments| %>
       <div class="day">
-        <%= date.day %>
+
+        <% if date < Time.now %>
+          <%= date.day %>
+        <% else %>
+          <%= link_to date.day, new_appointment_path(:fecha_t => date) %>
+        <% end %>
+
       </div>
       <% appointments.each do |appointment| %>
         <div class="card-header">
@@ -56,20 +62,27 @@
 
 
 <% if user_is_admin? || user_is_secretary? %>
+
   <% @users.each do |user| %>
       <br> <h4><%= user.name_dentist %></h4> <br>
 
     <%= month_calendar(events: @appointments = Appointment.all.filter { |a| a.dentist_id == user.id}) do |date, appointments| %>
-      <div class="day">
-        <%= date.day %>
-      </div>
+        <div class="day">
+
+          <% if date < Time.now - 1.day %>
+            <%= date.day %>
+          <% else %>
+            <%= link_to date.day, new_appointment_path(:fecha_t => date, :dentist_t => user.id) %>
+          <% end %>
+
+        </div>
         <% appointments.each do |appointment| %>
           <div class="card-header">
             <div class="card-title">
 
                 <% if appointment.status_id == 1 || appointment.status_id == 2 %>
                   <% if appointment.status_id == 1 %>
-                    <%= link_to appointment.cita_calendar, appointment, class: "btn btn-outline-warning btn-sm" %>
+                    <%= link_to appointment.cita_calendar, appointment, class: "btn btn-outline-warning btn-sm"%>
                   <% elsif appointment.status_id == 2 %>
                     <%= link_to appointment.cita_calendar, appointment, class: "btn btn-outline-success btn-sm" %>
                   <% end %>

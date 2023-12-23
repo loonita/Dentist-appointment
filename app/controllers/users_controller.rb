@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :only_see_own_page, only: [:show]
-  before_action :authenticate_admin, :except => [:show]
+
 
 
   def show
@@ -57,4 +57,5 @@ class UsersController < ApplicationController
   def patients
     @patients = User.all.filter { |u| u.role_id == 1 }
   end
+
 end

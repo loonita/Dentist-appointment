@@ -7,7 +7,7 @@ class Appointment < ApplicationRecord
   validates :time, presence: true
 
   has_one :status
-  has_many :morning_times
+  has_one :morning_times
   belongs_to :user
 
 
@@ -20,9 +20,12 @@ class Appointment < ApplicationRecord
   end
 
   def nombre_dentista
-    "Dra. #{User.find(dentist_id).name} #{User.find(user_id).last_name}"
+    "Dra. #{User.find(dentist_id).name} #{User.find(dentist_id).last_name}"
   end
 
+  def id_dentista
+    User.find(dentist_id).id
+  end
   def nombre_paciente
     "#{User.find(user_id).name} #{User.find(user_id).last_name}"
   end
