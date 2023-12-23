@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :only_see_own_page, only: [:show]
-  before_action :authenticate_secretary, except: [:show]
+
 
 
   def show
@@ -17,11 +17,11 @@ class UsersController < ApplicationController
   end
 
   def only_see_own_page
-    if user_is_admin? || user_is_dentist? || user_is_secretary?
+    if user_is_admin? || user_is_secretary?
       return
     end
     @user = User.find(params[:id])
-    if current_user != @user && !user_is_admin? && !user_is_dentist? && !user_is_secretary?
+    if current_user != @user && !user_is_admin? && !user_is_secretary?
       redirect_to root_path, notice: "Lo sentimos, pero sólo puedes ver tu propia página de perfil."
     end
   end
