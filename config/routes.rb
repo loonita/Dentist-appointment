@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/appointments/pending', to: 'appointments#pending'
   resources :appointments
   resources :statuses
+  get 'contact/new'
+  resources :contacts, only: [:new, :create]
 
   default_url_options :host => 'localhost'
 
