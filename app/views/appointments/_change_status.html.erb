@@ -18,6 +18,14 @@
     </div>
   <% end %>
 
+  <% if user_is_patient? %>
+    <div class="form-group">
+      <b><%= form.label :status %></b>
+      <%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %>
+
+    </div>
+  <% end %>
+
   </br>
 
   <div class="form-group">

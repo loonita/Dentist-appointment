@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'servicios', to: 'application#servicios'
   get 'contacto', to: 'application#contacto'
   get 'calendar', to: 'appointments#calendar'
+  get 'agendar', to: 'appointments#agendar'
+  get 'agendar_d', to: 'appointments#agendar_d'
 
   resources :roles
 
