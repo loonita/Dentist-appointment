@@ -1,0 +1,28 @@
+<%= form_with(model: change_status, local: true, html: { class: "form" }) do |form| %>
+  <% if change_status.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(change_status.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+        <% change_status.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if user_is_admin? || user_is_secretary? %>
+    <div class="form-group">
+      <b><%= form.label :status %></b>
+      <%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %>
+    </div>
+  <% end %>
+
+  </br>
+
+  <div class="form-group">
+    <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
+    <%= link_to "Cancelar", calendar_path, class: "btn btn-outline-danger btn-sm" %>
+  </div>
+
+<% end %>

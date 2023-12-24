@@ -1,35 +1,67 @@
+<title>Nuevo Usuario  &middot; Clínica Dental San Antonio</title>
 
-<%= form_with :url => users_create_path, method: :post do |f| %>
-  <div class="field form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, autocomplete: "name" %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, autocomplete: "last_name" %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :phone %>
-    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :rut %>
-    <%= f.text_field :rut, autocomplete: "rut" %>
-</div>
-  <div class="field form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    <div class="field form-group">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-        <em>
-          (#{@minimum_password_length} characters minimum)
-        </em>
-      <% end %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <div class="card fat">
+          <div class="card-body">
+            <h4 class="card-title">Nuevo Usuario</h4>
+
+            <%= form_with :url => users_create_path, method: :post do |f| %>
+
+              <% if user_is_admin? %>
+                <div class="field">
+                  <b><%= f.label :role %></b><br />
+                  <%= f.collection_select :role_id, Role.all.order(name: :asc), :id, :name %>
+                </div>
+              <% end %> <br />
+
+              <div class="form-group">
+                <b><%= f.label "Run", class: "form-label" %></b><br />
+                <%= f.text_field :rut, autofocus: true, autocomplete: "Run", class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <b><%= f.label "Nombres", class: "form-label" %></b><br />
+                <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <b><%= f.label "Apellidos", class: "form-label" %></b><br />
+                <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <b><%= f.label "Número telefónico", class: "form-label" %></b><br />
+                <%= f.text_field :phone, autofocus: true, autocomplete: "phone", class: "form-control" %>
+              </div>
+
+              <div class="field form-group">
+                <b><%= f.label "Correo electrónico", class: "form-label" %></b>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"  %>
+                <div class="field form-group">
+                  <b><%= f.label "Contraseña", class: "form-label"  %></b>
+                  <% if @minimum_password_length %>
+                    <em>
+                      (#{@minimum_password_length} characters minimum)
+                    </em>
+                  <% end %>
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+              </div>
+                <br />
+                <div class="mb-3 d-flex align-items-center justify-content-center">
+                  <%= f.button "Crear", :type => "submit", :class => "btn btn-lg btn-primary rounded-pill" %>
+                </div>
+              </div>
+
+            <% end %>
+
+
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="actions">
-      <%= f.button "Crear", :type => "submit", :class => "btn mb-2" %>
-    </div>
   </div>
-<% end %>
+</section>

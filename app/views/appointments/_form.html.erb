@@ -45,12 +45,10 @@
   <div class="form-group">
     <b><%= form.label "Hora" %></b>
     <%= form.collection_select :time, @horas_disponibles, :to_s, :to_s %>
-
-
   </div>
 
 
-  <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
+  <% if user_is_admin? || user_is_secretary? %>
     <div class="form-group">
       <b><%= form.label :status %></b>
       <%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %>

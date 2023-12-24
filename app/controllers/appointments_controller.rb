@@ -67,7 +67,8 @@ class AppointmentsController < ApplicationController
     if user_is_admin? || user_is_secretary?
       @dentist_recibido = params[:dentist_t]
       @dentist_name = "Dra. " + User.find_by(id: @dentist_recibido).name + " " + User.find_by(id: @dentist_recibido).last_name
-      @ocupado = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido).pluck(:time)
+      @horas_agendadas = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido, status_id: 1).pluck(:time)
+      @horas_confirmadas = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido, status_id: 2).pluck(:time)
     end
 
     if user_is_patient?
@@ -75,13 +76,22 @@ class AppointmentsController < ApplicationController
       @ocupado = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido).pluck(:time)
     end
 
-    @horas_ocupadas = []
+    @horas_ocupadas_A = []
+    @horas_ocupadas_C = []
 
-    @ocupado.each do |a|
+    @horas_agendadas.each do |a|
       appo = Appointment.find_by(time: a)
       if appo
         @test = appo.hora.to_s
-        @horas_ocupadas << @test
+        @horas_ocupadas_A << @test
+      end
+    end
+
+    @horas_confirmadas.each do |a|
+      appo = Appointment.find_by(time: a)
+      if appo
+        @test = appo.hora.to_s
+        @horas_ocupadas_C << @test
       end
     end
 
@@ -92,8 +102,7 @@ class AppointmentsController < ApplicationController
       @horas_disponibles << m.m_time
     end
 
-    @horas_disponibles = @horas_disponibles - @horas_ocupadas
-
+    @horas_disponibles = @horas_disponibles - @horas_ocupadas_A - @horas_ocupadas_C
 
   end
 
