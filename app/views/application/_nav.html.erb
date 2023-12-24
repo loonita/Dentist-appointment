@@ -37,7 +37,6 @@
 
                     <li class="dropdown-item"><%= link_to "Mi Perfil", user_path(current_user), class: "dropdown-item" %></li>
                     <li class="dropdown-item"><%= link_to "Calendario", calendar_path, class: "dropdown-item" %></li>
-                    <li class="dropdown-item"><%= link_to "Agendar Cita", new_appointment_path, class: "dropdown-item" %></li>
 
 
                     <% if user_is_admin? || user_is_dentist? || user_is_secretary? %>
@@ -47,7 +46,12 @@
                       <li class="dropdown-item"><%= link_to "Ver Perfil Pacientes", users_patients_path, class: "dropdown-item" %></li>
                     <% end %>
 
+                    <% if user_is_admin? || user_is_secretary? %>
+                      <li class="dropdown-item"><%= link_to "Nuevo usuario", users_new_path, class: "dropdown-item" %></li>
+                    <% end %>
+
                     <% if user_is_patient? %>
+                      <li class="dropdown-item"><%= link_to "Agendar Cita", agendar_path, class: "dropdown-item" %></li>
                       <li class="dropdown-item"><%= link_to "Mis citas", appointments_path, class: "dropdown-item" %></li>
                     <% end %>
 
@@ -55,7 +59,6 @@
                     <% if user_is_admin? %>
                       <li class="dropdown-item"><%= link_to "Administrar roles", roles_path, class: "dropdown-item" %></li>
                       <li class="dropdown-item"><%= link_to "Administrar status", statuses_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Nuevo usuario", users_new_path, class: "dropdown-item" %></li>
                     <% end %>
 
 

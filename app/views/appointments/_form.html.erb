@@ -24,14 +24,9 @@
   <div class="form-group">
     <b><%= form.label "Dentista" %></b>
 
-  <% if user_is_patient? %>
-
-      <%= form.collection_select :dentist_id, User.where(role_id: 2).order(name: :asc), :id, :name_dentist, class: "form-control small-input" %>
-
-  <% else %>
       <%= form.label :dentist_id, value: @dentist_name %>
       <%= form.hidden_field :dentist_id, value: @dentist_recibido %>
-  <%end %>
+
   </div>
 
   <div class="form-group">
@@ -57,7 +52,13 @@
 
   <br>
 
+
   <div class="form-group">
+
+    <% if user_is_patient? %>
+      <%= link_to "Volver a seleccionar dentista", :back, class: "btn btn-info btn-sm" %>
+    <% end %>
+
     <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
     <%= link_to "Cancelar", calendar_path, class: "btn btn-outline-danger btn-sm" %>
   </div>

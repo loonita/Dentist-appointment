@@ -44,6 +44,19 @@ class AppointmentsController < ApplicationController
 
   end
 
+  def agendar
+
+  end
+
+  def agendar_d
+    @fecha_recibida = params[:fecha_t]
+    @dentist_recibido = params[:dentist_t]
+
+    if user_is_patient?
+      @dentists = User.all.filter { |u| u.role_id == 2 }
+    end
+  end
+
   # GET /appointments/1 or /appointments/1.json
   def show
     @appointment = Appointment.find(params[:id])
@@ -64,16 +77,11 @@ class AppointmentsController < ApplicationController
 
     @fecha_recibida = params[:fecha_t]
 
-    if user_is_admin? || user_is_secretary?
+    if user_is_admin? || user_is_secretary? || user_is_patient?
       @dentist_recibido = params[:dentist_t]
       @dentist_name = "Dra. " + User.find_by(id: @dentist_recibido).name + " " + User.find_by(id: @dentist_recibido).last_name
       @horas_agendadas = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido, status_id: 1).pluck(:time)
       @horas_confirmadas = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido, status_id: 2).pluck(:time)
-    end
-
-    if user_is_patient?
-      puts "Agregar para paciente"
-      @ocupado = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido).pluck(:time)
     end
 
     @horas_ocupadas_A = []

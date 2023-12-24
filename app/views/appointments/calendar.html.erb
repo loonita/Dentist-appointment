@@ -35,11 +35,7 @@
     <%= month_calendar(events: @appointments) do |date, appointments| %>
       <div class="day">
 
-        <% if date < Time.now %>
           <%= date.day %>
-        <% else %>
-          <%= link_to date.day, new_appointment_path(:fecha_t => date) %>
-        <% end %>
 
       </div>
       <% appointments.each do |appointment| %>

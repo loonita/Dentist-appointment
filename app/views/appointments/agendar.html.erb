@@ -1,0 +1,43 @@
+<title>Agendar cita &middot; Clínica Dental San Antonio</title>
+
+<p style="color: green"><%= notice %></p>
+
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Agendar cita</h4>
+            <p class="card-description">
+              Haz clic en el día que quieres agendar.
+            </p>
+
+            <% if user_is_patient? %>
+              <%= month_calendar() do |date| %>
+                <div class="day">
+
+                  <% if date < Time.now %>
+                    <%= date.day %>
+                  <% else %>
+                    <%= link_to date.day, agendar_d_path(:fecha_t => date) %>
+                  <% end %>
+
+                </div>
+                </div>
+              <% end %>
+            <% end %>
+
+            <div class="form-group">
+              <%= link_to "Cancelar", calendar_path, class: "btn btn-outline-danger btn-sm" %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
