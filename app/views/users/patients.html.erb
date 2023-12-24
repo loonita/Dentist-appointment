@@ -40,7 +40,10 @@
                     <td><%= patient.last_name %></td>
                     <td><%= patient.email %></td>
                     <td><%= patient.phone %></td>
-                    <td><%= link_to "Mostrar", patient, class: "btn btn-primary" %></td>
+
+                    <% if user_is_admin? || user_is_secretary? %>
+                        <td><%= link_to "Mostrar", patient, class: "btn btn-primary" %></td>
+                    <% end %>
 
                   </tr>
                 <% end %>

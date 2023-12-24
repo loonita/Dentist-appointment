@@ -15,8 +15,7 @@
             </p>
 
             <% if user_is_admin? %>
-              <%= link_to "Añadir dentista", new_user_registration_path, class: "btn btn-success" %>
-              Aún no funcional (?
+              <%= link_to "Añadir dentista", users_new_path, class: "btn btn-success" %>
             <% end %>
 
             <div class="table-responsive">
@@ -42,7 +41,11 @@
                   <td><%= dentist.last_name %></td>
                   <td><%= dentist.email %></td>
                   <td><%= dentist.phone %></td>
-                  <td><%= link_to "Mostrar", dentist, class: "btn btn-info" %></td>
+
+                  <% if user_is_admin? || user_is_secretary? %>
+                    <td><%= link_to "Mostrar", dentist, class: "btn btn-info" %></td>
+                  <% end %>
+
                 <% end %>
 
                 </tbody>
