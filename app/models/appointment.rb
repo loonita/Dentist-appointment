@@ -3,8 +3,8 @@ class Appointment < ApplicationRecord
   after_create :send_email
   validates :dentist_id , presence: true
   validates :user_id , presence: true
-  validates :start_time, presence: true
-  validates :time, presence: true
+  #validates :start_time, presence: true
+  #validates :time, presence: true
 
   has_one :status
   has_one :morning_times
@@ -12,10 +12,14 @@ class Appointment < ApplicationRecord
 
 
   def fecha
+    return '-' if start_time.nil?
+
     start_time.strftime("%d/%m/%Y")
   end
 
   def hora
+    return '-' if time.nil?
+
     time.strftime("%H:%M")
   end
 

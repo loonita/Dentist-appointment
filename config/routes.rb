@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'calendar', to: 'appointments#calendar'
   get 'agendar', to: 'appointments#agendar'
   get 'agendar_d', to: 'appointments#agendar_d'
+  get 'espera', to: 'appointments#agendar_en_espera'
+  put 'appointments', :to => 'appointments#agendar_espera'
 
   resources :roles
 
