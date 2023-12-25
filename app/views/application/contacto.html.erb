@@ -1,28 +1,5 @@
 <title>Contáctanos &middot; Clínica Dental San Antonio</title>
 
-<body>
-<%= form_with scope: :contact, url: contacto_path, local: true do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
-  <p>
-    <%= form.label :last_name %><br>
-    <%= form.text_field :last_name %>
-  <p>
-    <%= form.label :email %><br>
-    <%= form.text_field :email %>
-  </p>
-  <p>
-    <%= form.label :message %><br>
-    <%= form.text_area :message %>
-  </p>
-  <p>
-    <%= form.submit "Send" %>
-  </p>
-<% end %>
-
-
 <!doctype html>
 <html lang="en">
 <head>
