@@ -19,7 +19,9 @@ class AppointmentsController < ApplicationController
       @appointments = Appointment.where(dentist_id: current_user.id).order(:start_time)
     end
     if params[:search].present?
-      @appointments = @appointments.filter { |a| a.user_id.eql?(params[:search].to_i) }
+      @appointments = Appointment.search_by_patient_name(params[:search]).order(:start_time)
+    else
+      @appointments = Appointment.all.order(:start_time)
     end
   end
 

@@ -2,22 +2,6 @@
 
 <p style="color: green"><%= notice %></p>
 
-<div id="appointments">
-  <% if user_is_dentist? || user_is_admin? || user_is_secretary? %>
-  <%= form_tag appointments_path, method: :get, class: "form-inline" do %>
-    <div class="form-group">
-      <%= select_tag :search, options_from_collection_for_select(User.where(role_id: 1), 'id', 'name', params[:search]), { include_blank: "Buscar por nombre de paciente", class: "form-control", data: { placeholder: 'Seleccione un paciente', allow_clear: true } } %>
-    </div>
-
-
-    <%= submit_tag "Buscar", class: "btn btn-primary" %>
-    <%end %>
-  <% end %>
-
-
-</div>
-
-
 
 <div class="page-content page-container  d-flex  justify-content-center align-items-center" id="page-content">
   <div class="padding">
@@ -25,10 +9,24 @@
       <div class="col-lg-16 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Citas</h4>
-            <p class="card-description">
-              Citas de pacientes de la Clínica San Antonio.
-            </p>
+                <div class="row">
+                  <div class="col-sm-7"><h2>Citas <b>pacientes</b></h2></div>
+
+                  <div class="col-sm-5">
+                    <% if user_is_dentist? || user_is_admin? || user_is_secretary? %>
+                      <%= form_tag appointments_path, method: :get, class: "form-inline" do %>
+                        <div class="search-box">
+                          <%= text_field_tag :search, params[:search], class: "search form-control", placeholder: "Buscar por nombre, apellido o rut del paciente" %>
+                        </div>
+                        <% end %>
+                      <% end %>
+                  </div>
+
+                  <p class="card-description">
+                    Citas de pacientes de la Clínica San Antonio.
+                  </p>
+                </div>
+
 
 
             <div class="table-responsive">
@@ -36,10 +34,10 @@
                 <thead>
                 <tr>
                   <th>ID No.</th>
-                  <th>Rut paciente</th>
-                  <th>Nombre paciente</th>
-                  <th>Rut dentista</th>
-                  <th>Nombre dentista</th>
+                  <th width="100px">Rut paciente</th>
+                  <th width="180px">Nombre paciente</th>
+                  <th width="120px">Rut dentista</th>
+                  <th width="180px">Nombre dentista</th>
                   <th>Fecha</th>
                   <th>Hora</th>
                   <th>Estado</th>
@@ -56,7 +54,15 @@
                     <td><%= User.find_by(id: appointment.dentist_id).name_dentist %></td>
                     <td><%= appointment.fecha %></td>
                     <td><%= appointment.hora %></td>
-                    <td><%= Status.find_by(id: appointment.status_id).name %></td>
+
+                    <% if appointment.status_id == 1 %>
+                      <td><span class="status text-warning"><%= Status.find_by(id: appointment.status_id).name %></span></td>
+                    <% elsif appointment.status_id == 2 %>
+                      <td><span class="status text-success"><%= Status.find_by(id: appointment.status_id).name %></span></td>
+                    <% elsif appointment.status_id == 3 %>
+                      <td><span class="status text-danger"><%= Status.find_by(id: appointment.status_id).name %></span></td>
+                    <% end %>
+
                     <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
                     <td><%= link_to "Estado", edit_appointment_path(appointment), class: "btn btn-info" %></td>
                   </tr>
