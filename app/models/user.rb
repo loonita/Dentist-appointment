@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   NOMBRE_REGEX = /[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]/
 
-
   has_many :appointments
+  include PatientSearchable
   belongs_to :role
 
   validates :name, :last_name, :phone, :role_id, presence: true

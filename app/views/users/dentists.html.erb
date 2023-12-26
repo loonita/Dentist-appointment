@@ -9,10 +9,23 @@
       <div class="col-lg-16 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Dentistas</h4>
-            <p class="card-description">
-              Dentistas de la Clínica San Antonio.
-            </p>
+            <div class="row">
+              <div class="col-sm-7"><h2>Lista <b>dentistas</b></h2></div>
+
+              <div class="col-sm-5">
+                <% if user_is_dentist? || user_is_admin? || user_is_secretary? %>
+                  <%= form_tag users_dentists_path, method: :get, class: "form-inline" do %>
+                    <div class="search-box">
+                      <%= text_field_tag :search, params[:search], class: "search form-control", placeholder: "Buscar por nombre, apellido o rut del dentista" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+
+              <p class="card-description">
+                Lista de dentistas de la Clínica San Antonio.
+              </p>
+            </div>
 
             <% if user_is_admin? %>
               <%= link_to "Añadir dentista", users_new_path, class: "btn btn-success" %>
@@ -23,9 +36,9 @@
                 <thead>
                 <tr>
                   <th>ID No.</th>
-                  <th>RUT</th>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
+                  <th width = "120px">RUT</th>
+                  <th width="180px">Nombres</th>
+                  <th width="180px">Apellidos</th>
                   <th>Correo electrónico</th>
                   <th>Número telefónico</th>
                 </tr>
@@ -59,3 +72,5 @@
     </div>
   </div>
 </div>
+
+<br> <br> <br> <br>

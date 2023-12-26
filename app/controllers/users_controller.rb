@@ -3,6 +3,13 @@ class UsersController < ApplicationController
   before_action :only_see_own_page, only: [:show]
 
 
+  def index
+    if params[:search].present?
+      @users = Users.search_by_patient_name(params[:search]).order(:last_name)
+    else
+      @users = Users.all.order(:last_name)
+    end
+  end
 
   def show
     @user = User.find(params[:id])
@@ -50,12 +57,30 @@ class UsersController < ApplicationController
     end
   end
 
-  def dentists
-    @dentists = User.all.filter { |u| u.role_id == 2 }
+  def index
+    if params[:search].present?
+      @patients = User.search_by_patient_name(params[:search]).order(:last_name)
+    else
+      @patients = User.where(role_id: 1).order(:last_name)
+    end
+
 
   end
+
+  def dentists
+    if params[:search].present?
+      @dentists = User.where(role_id: 2).search_by_name(params[:search]).order(:last_name)
+    else
+      @dentists = User.where(role_id: 2).order(:last_name)
+    end
+  end
+
   def patients
-    @patients = User.all.filter { |u| u.role_id == 1 }
+    if params[:search].present?
+      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name)
+    else
+      @patients = User.where(role_id: 1).order(:last_name)
+    end
   end
 
   def new
@@ -65,6 +90,7 @@ class UsersController < ApplicationController
     user = User.new(:name => params[:name], :last_name => params[:last_name], :email => params[:email], :rut => params[:rut], :phone => params[:phone],  :password => params[:password])
     user.save ? (redirect_to root_path, :notice => 'Usuario creado con éxito.') : (redirect_to root_path, :status => :unprocessable_entity)
   end
+
 
 
 end

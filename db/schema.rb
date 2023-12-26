@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_11_224452) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_26_174812) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "start_time", null: false
-    t.time "time", null: false
+    t.datetime "start_time"
+    t.time "time"
     t.integer "status_id", default: 1, null: false
     t.integer "user_id", null: false
     t.integer "dentist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "should_sum_start_time", default: true, null: false
   end
 
   create_table "morning_times", force: :cascade do |t|

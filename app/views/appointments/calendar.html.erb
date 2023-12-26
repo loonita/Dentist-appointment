@@ -2,10 +2,24 @@
 
 <div class="container mt-5 text-center">
 
-  <h2 class="card-title">Calendario</h2>
-  <p class="card-description">
-    Calendario de la Clínica San Antonio.
-  </p>
+  <div class="page-content page-container d-flex justify-content-center align-items-center">
+      <div class="col-lg-6 grid-margin stretch-card align-self-center">
+        <div class="card">
+          <div class="card-body">
+
+            <h2 class="card-title">Calendario</h2>
+            <p class="card-description"> Calendario citas de la Clínica San Antonio.</p>
+
+              <td><span class="status text-warning"> &bull; Horas agendadas</span></td> |
+              <td><span class="status text-success"> &bull; Horas confirmadas</span></td> |
+              <td><span class="status text-secondary"> &bull; Horas pasadas</span></td>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
 <% if user_is_dentist? %>
     <%= month_calendar(events: @appointments) do |date, appointments| %>
@@ -94,4 +108,6 @@
     <% end %>
   <% end %>
 <% end %>
+
+
 </div>

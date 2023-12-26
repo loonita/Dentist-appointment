@@ -12,6 +12,18 @@ class Appointment < ApplicationRecord
   has_one :morning_times
   belongs_to :user
 
+  def self.search_by_patient_name(query)
+    # Normaliza el término de búsqueda
+    normalized_query = normalize_string(query)
+
+    # Realiza la búsqueda utilizando el término normalizado
+    joins(:user).where(
+      'unaccent(lower(users.name)) LIKE :query OR ' \
+      'unaccent(lower(users.last_name)) LIKE :query OR ' \
+      'unaccent(lower(users.rut)) LIKE :query ',
+      query: "%#{normalized_query}%"
+    )
+  end
 
   def fecha
     return '-' if start_time.nil?
@@ -61,6 +73,11 @@ class Appointment < ApplicationRecord
 
   def should_sum_start_time?
     should_sum_start_time.nil? || should_sum_start_time
+  end
+
+  def self.normalize_string(str)
+    # Normaliza el texto: convierte a minúsculas y elimina acentos
+    I18n.transliterate(str.to_s.downcase)
   end
 
 end
