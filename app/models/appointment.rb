@@ -3,6 +3,8 @@ class Appointment < ApplicationRecord
   after_create :send_email
   validates :dentist_id , presence: true
   validates :user_id , presence: true
+  before_save :sum_start_time_and_time, if: :should_sum_start_time?
+
   #validates :start_time, presence: true
   #validates :time, presence: true
 
@@ -43,6 +45,22 @@ class Appointment < ApplicationRecord
   end
   def send_email
     UserMailer.appointment_confirmation(user).deliver
+  end
+
+  private
+
+  def sum_start_time_and_time
+    return unless start_time && time && should_sum_start_time?
+
+    new_start_time = start_time + time.seconds_since_midnight.seconds
+    self.start_time = new_start_time
+
+    # Marca el objeto para solo sumar una vez
+    self.should_sum_start_time = false
+  end
+
+  def should_sum_start_time?
+    should_sum_start_time.nil? || should_sum_start_time
   end
 
 end
