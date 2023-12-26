@@ -1,7 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_appointment, only: %i[ show edit update destroy ]
-  before_action :authenticate_admin, only: %i[  edit destroy ]
   before_action :only_see_own_appointment, only: [:show, :edit, :update, :destroy]
 
   # GET /appointments or /appointments.json
@@ -74,6 +73,22 @@ class AppointmentsController < ApplicationController
       @dentists = User.all.filter { |u| u.role_id == 2 }
     end
   end
+
+  def agendar_p
+    if user_is_dentist? || user_is_patient?
+      redirect_to root_path
+    end
+
+    if params[:search].present?
+      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name)
+    else
+      @patients = User.where(role_id: 1).order(:last_name)
+    end
+
+    @fecha_recibida = params[:fecha_t]
+    @dentist_recibido = params[:dentist_t]
+  end
+
   def agendar_en_espera
     @appointment = Appointment.new
     @all_appointments = Appointment.all
@@ -120,12 +135,17 @@ class AppointmentsController < ApplicationController
 
     @fecha_recibida = params[:fecha_t]
 
-    if user_is_admin? || user_is_secretary? || user_is_patient?
-      @dentist_recibido = params[:dentist_t]
-      @dentist_name = "Dra. " + User.find_by(id: @dentist_recibido).name + " " + User.find_by(id: @dentist_recibido).last_name
-      @horas_agendadas = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido, status_id: 1).pluck(:time)
-      @horas_confirmadas = Appointment.where(start_time: @fecha_recibida, dentist_id: @dentist_recibido, status_id: 2).pluck(:time)
+    if user_is_admin? || user_is_secretary?
+      @patient_recibido = params[:patient_t]
+      @patient_name = User.find_by(id: @patient_recibido).name + " " + User.find_by(id: @patient_recibido).last_name
+      @patient_rut = User.find_by(id: @patient_recibido).rut
     end
+
+    @dentist_recibido = params[:dentist_t]
+    @dentist_name = "Dra. " + User.find_by(id: @dentist_recibido).name + " " + User.find_by(id: @dentist_recibido).last_name
+
+    @horas_agendadas = Appointment.where("DATE(start_time) = ? AND dentist_id = ? AND status_id = ?", @fecha_recibida, @dentist_recibido, 1).pluck(:time)
+    @horas_confirmadas = Appointment.where("DATE(start_time) = ? AND dentist_id = ? AND status_id = ?", @fecha_recibida, @dentist_recibido, 2).pluck(:time)
 
     @horas_ocupadas_A = []
     @horas_ocupadas_C = []
@@ -159,6 +179,10 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
+    if user_is_dentist? || user_is_patient?
+      redirect_to root_path
+    end
+
   end
   def pending
     if user_is_admin? || user_is_secretary? || user_is_dentist?

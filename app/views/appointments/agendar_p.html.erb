@@ -1,0 +1,76 @@
+<% if user_is_admin? || user_is_secretary? %>
+
+  <div class="page-content page-container d-flex justify-content-center align-items-center" id="page-content">
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+
+        <div class="col-lg-10 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-sm-7"><h2>Lista <b>pacientes</b></h2></div>
+
+                <div class="col-sm-5">
+                  <% if user_is_dentist? || user_is_admin? || user_is_secretary? %>
+                    <%= form_tag agendar_p_path, method: :get, class: "form-inline" do %>
+                      <%= hidden_field_tag :dentist_t, params[:dentist_t] %>
+                      <%= hidden_field_tag :fecha_t, params[:fecha_t] %>
+                      <div class="search-box">
+                        <%= text_field_tag :search, params[:search], class: "search form-control", placeholder: "Buscar por nombre, apellido o rut del paciente" %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+
+                <p class="card-description">
+                  Elegir paciente para agendar cita.
+                </p>
+              </div>
+
+
+              <div class="table-responsive align-self-center">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>ID No.</th>
+                    <th width = "120px">RUT</th>
+                    <th width="200px">Nombres</th>
+                    <th width="200px">Apellidos</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @patients.each do |patient| %>
+                    <tr>
+                      <td width="10"><%= patient.id %></td>
+                      <td><%= patient.rut %></td>
+                      <td><%= patient.name %></td>
+                      <td><%= patient.last_name %></td>
+
+                      <td><%= link_to "Seleccionar", new_appointment_path(:fecha_t => @fecha_recibida, :dentist_t => @dentist_recibido, :patient_t => patient.id), class: "btn btn-primary btn-sm" %></td>
+
+                    </tr>
+                  <% end %>
+
+
+                  </table>
+              </div>
+            </div>
+          </div>
+
+          <%= link_to "Volver a seleccionar fecha y dentista", calendar_path, class: "btn btn-info btn-sm" %>
+          <%= link_to "Cancelar", calendar_path, class: "btn btn-outline-danger btn-sm" %>
+
+                  </div>
+                </div>
+              </section>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
