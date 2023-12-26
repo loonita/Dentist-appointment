@@ -2,6 +2,8 @@
 
 <p style="color: green"><%= notice %></p>
 
+<% if user_is_patient? %>
+
 <div class="page-content page-container" id="page-content">
   <div class="padding">
     <div class="row container d-flex justify-content-center">
@@ -14,20 +16,22 @@
               Haz clic en el día que quieres agendar.
             </p>
 
-            <% if user_is_patient? %>
               <%= month_calendar() do |date| %>
                 <div class="day">
 
                   <% if date < Time.now %>
                     <%= date.day %>
                   <% else %>
-                    <%= link_to date.day, agendar_d_path(:fecha_t => date) %>
+                    <% if date.wday == 0 %>
+                      <%= date.day %>
+                    <% else %>
+                      <%= link_to date.day, agendar_d_path(:fecha_t => date) %>
+                    <% end %>
                   <% end %>
 
                 </div>
                 </div>
               <% end %>
-            <% end %>
 
             <div class="form-group">
               <%= link_to "Cancelar", calendar_path, class: "btn btn-outline-danger btn-sm" %>
@@ -39,5 +43,7 @@
     </div>
   </div>
 </div>
+
+<% end %>
 
 

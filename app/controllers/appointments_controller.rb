@@ -45,10 +45,17 @@ class AppointmentsController < ApplicationController
   end
 
   def agendar
-
+    if !user_is_patient?
+      redirect_to root_path
+    end
   end
 
   def agendar_d
+
+    if !user_is_patient?
+      redirect_to root_path
+    end
+
     @fecha_recibida = params[:fecha_t]
     @dentist_recibido = params[:dentist_t]
 
@@ -93,6 +100,11 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
+
+    if user_is_dentist?
+      redirect_to root_path
+    end
+
     @appointment = Appointment.new
     @all_appointments = Appointment.all
 
@@ -133,17 +145,6 @@ class AppointmentsController < ApplicationController
 
     @horas_disponibles = @horas_disponibles - @horas_ocupadas_A - @horas_ocupadas_C
 
-    sum_start_time_and_time
-
-  end
-
-  def sum_start_time_and_time
-    # Unir start_time y time para que se muestren en orden las citas en el calendario.
-    if @appointment.start_time && @appointment.time
-      new_start_time = @appointment.start_time + @appointment.time.seconds_since_midnight.seconds
-
-      @appointment.start_time = new_start_time
-    end
   end
 
   # GET /appointments/1/edit
@@ -209,3 +210,4 @@ class AppointmentsController < ApplicationController
     params.require(:appointment).permit(:start_time, :time, :status_id, :user_id, :dentist_id)
   end
 end
+

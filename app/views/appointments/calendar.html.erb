@@ -68,7 +68,11 @@
           <% if date < Time.now - 1.day %>
             <%= date.day %>
           <% else %>
-            <%= link_to date.day, new_appointment_path(:fecha_t => date, :dentist_t => user.id) %>
+            <% if date.wday == 0 %>
+                <%= date.day %>
+             <% else %>
+                <%= link_to date.day, new_appointment_path(:fecha_t => date, :dentist_t => user.id) %>
+             <% end %>
           <% end %>
 
         </div>
