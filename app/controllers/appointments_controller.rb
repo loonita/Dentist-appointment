@@ -91,7 +91,6 @@ class AppointmentsController < ApplicationController
     end
   end
 
-
   # GET /appointments/new
   def new
     @appointment = Appointment.new
@@ -134,6 +133,17 @@ class AppointmentsController < ApplicationController
 
     @horas_disponibles = @horas_disponibles - @horas_ocupadas_A - @horas_ocupadas_C
 
+    sum_start_time_and_time
+
+  end
+
+  def sum_start_time_and_time
+    # Unir start_time y time para que se muestren en orden las citas en el calendario.
+    if @appointment.start_time && @appointment.time
+      new_start_time = @appointment.start_time + @appointment.time.seconds_since_midnight.seconds
+
+      @appointment.start_time = new_start_time
+    end
   end
 
   # GET /appointments/1/edit
