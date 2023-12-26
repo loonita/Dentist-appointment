@@ -10,22 +10,29 @@
         <div class="card">
           <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-7"><h2>Citas <b>pacientes</b></h2></div>
 
+                  <% if user_is_dentist? || user_is_admin? || user_is_secretary? %>
+
+                  <div class="col-sm-7"><h2>Citas <b>pacientes</b></h2></div>
                   <div class="col-sm-5">
-                    <% if user_is_dentist? || user_is_admin? || user_is_secretary? %>
                       <%= form_tag appointments_path, method: :get, class: "form-inline" do %>
                         <div class="search-box">
                           <%= text_field_tag :search, params[:search], class: "search form-control", placeholder: "Buscar por nombre, apellido o rut del paciente" %>
                         </div>
                         <% end %>
-                      <% end %>
                   </div>
-
                   <p class="card-description">
                     Citas de pacientes de la Clínica San Antonio.
                   </p>
                 </div>
+                <% elsif user_is_patient?%>
+                    <div class="col-sm-7"><h2>Mis <b>citas</b></h2></div>
+
+                    </div>
+                    <p class="card-description">
+                      Historial de citas odontológicas en Clínica San Antonio.
+                    </p>
+                <% end %>
 
 
 
@@ -64,7 +71,9 @@
                     <% end %>
 
                     <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
+                    <% if user_is_admin? || user_is_secretary? %>
                     <td><%= link_to "Estado", edit_appointment_path(appointment), class: "btn btn-info" %></td>
+                    <% end %>
                   </tr>
                 <% end %>
                 </tbody>
