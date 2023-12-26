@@ -2,11 +2,11 @@
 
 <p style="color: green"><%= notice %></p>
 
-<div class="page-content page-container" id="page-content">
+<div class="page-content page-container d-flex justify-content-center align-items-center" id="page-content">
   <div class="padding">
     <div class="row container d-flex justify-content-center">
 
-      <div class="col-lg-8 grid-margin stretch-card">
+      <div class="col-lg-16 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Pacientes</h4>
@@ -42,7 +42,7 @@
                     <td><%= patient.phone %></td>
 
                     <% if user_is_admin? || user_is_secretary? %>
-                        <td><%= link_to "Mostrar", patient, class: "btn btn-primary" %></td>
+                        <td><%= link_to "Ver", patient, class: "btn btn-secondary" %></td>
                     <% end %>
 
                   </tr>

@@ -14,39 +14,20 @@
     <%end %>
   <% end %>
 
-  <% if user_is_patient? || user_is_admin? || user_is_secretary? %>
-    <% @appointments.each do |appointment| %>
-      <%= render appointment %>
-      <p>
-        <%= link_to "Mostrar cita", appointment, class: "btn btn-outline-primary btn-sm"  %>
-      </p>
-    <% end %>
-  <%end %>
 
-  <% if user_is_dentist? %>
-    <h2> Citas asignadas </h2>
-    <% @appointments.each do |appointment| %>
-      <%= render appointment %>
-      <p>
-        <%= link_to "Mostrar cita", appointment, class: "btn btn-outline-primary btn-sm" %>
-      </p>
-    <% end %>
-
-
-  <%end %>
 </div>
 
 
-<div class="page-content page-container" id="page-content">
+
+<div class="page-content page-container  d-flex  justify-content-center align-items-center" id="page-content">
   <div class="padding">
     <div class="row container d-flex justify-content-center">
-
-      <div class="col-lg-8 grid-margin stretch-card">
+      <div class="col-lg-16 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Citas</h4>
             <p class="card-description">
-              Citas de usuario de la Clínica San Antonio.
+              Citas de pacientes de la Clínica San Antonio.
             </p>
 
 
@@ -77,7 +58,7 @@
                     <td><%= appointment.hora %></td>
                     <td><%= Status.find_by(id: appointment.status_id).name %></td>
                     <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
-                    <td><%= link_to "Editar", edit_appointment_path(appointment), class: "btn btn-info" %></td>
+                    <td><%= link_to "Estado", edit_appointment_path(appointment), class: "btn btn-info" %></td>
                   </tr>
                 <% end %>
                 </tbody>

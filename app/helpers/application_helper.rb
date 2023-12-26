@@ -18,4 +18,8 @@ module ApplicationHelper
     user && user.role_id == 1
   end
 
+  def current_user?(user = current_user)
+    user
+  end
+
 end
