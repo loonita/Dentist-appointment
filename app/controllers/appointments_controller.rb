@@ -6,22 +6,31 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments or /appointments.json
   def index
-    if user_is_admin?
-      @appointments = Appointment.all.order(:start_time)
+
+    if user_is_admin? || user_is_secretary?
+      if user_is_admin?
+        @appointments = Appointment.all.order(:start_time)
+      end
+      if user_is_secretary?
+        @appointments = Appointment.all.order(:start_time)
+      end
+      if params[:search].present?
+        @appointments = Appointment.search_by_patient_name(params[:search]).order(:start_time)
+      else
+        @appointments = Appointment.all.order(:start_time)
+      end
     end
-    if user_is_secretary?
-      @appointments = Appointment.all.order(:start_time)
-    end
+
     if user_is_patient?
       @appointments = Appointment.where(user_id: current_user.id).order(:start_time)
     end
+
     if user_is_dentist?
-      @appointments = Appointment.where(dentist_id: current_user.id).order(:start_time)
-    end
-    if params[:search].present?
-      @appointments = Appointment.search_by_patient_name(params[:search]).order(:start_time)
-    else
-      @appointments = Appointment.all.order(:start_time)
+      if params[:search].present?
+        @appointments = Appointment.where(dentist_id: current_user.id).search_by_patient_name(params[:search]).order(:start_time)
+      else
+        @appointments = Appointment.where(dentist_id: current_user.id).order(:start_time)
+      end
     end
   end
 

@@ -8,7 +8,7 @@
     <%= link_to "Editar estado cita", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %> |
   <% end %>
   <% if user_is_patient? %>
-    <% if @appointment.status_id == 1 %>
+    <% if @appointment.status_id == 1 && @appointment.start_time < Time.now + 3.day %>
       <%= link_to "Para confirmar o cancelar tu cita haz clic aquí", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %> |
     <% end %>
   <% end %>
