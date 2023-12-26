@@ -41,6 +41,8 @@
               <div class="field form-group">
                 <b><%= f.label "Correo electrónico", class: "form-label" %></b>
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"  %>
+              </div>
+
                 <div class="field form-group">
                   <b><%= f.label "Contraseña", class: "form-label"  %></b>
                   <% if @minimum_password_length %>
@@ -50,11 +52,13 @@
                   <% end %>
                   <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
               </div>
+
                 <br />
-                <div class="mb-3 d-flex align-items-center justify-content-center">
-                  <%= f.button "Crear", :type => "submit", :class => "btn btn-lg btn-primary rounded-pill" %>
+
+                <div class="align-self-center">
+                  <%= f.button "Crear", :type => "submit", :class => "btn btn-primary btn-sm" %>
+                  <%= link_to "Cancelar", :back, class: "btn btn-outline-danger btn-sm" %>
                 </div>
-              </div>
 
             <% end %>
 

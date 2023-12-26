@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @appointments = []
     if user_is_patient?(@user)
-      @appointments = Appointment.all.filter { |a| a.user_id == @user.id }
+      @appointments = Appointment.where(user_id: @user.id).order(:start_time)
     end
     if user_is_dentist?(@user)
-      @appointments = Appointment.all.filter { |a| a.dentist_id == @user.id }
+      @appointments = Appointment.where(dentist_id: @user.id).order(:start_time)
     end
     @user_from_users = User.find(params[:id])
   end

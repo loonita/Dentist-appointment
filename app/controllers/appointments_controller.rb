@@ -7,16 +7,16 @@ class AppointmentsController < ApplicationController
   # GET /appointments or /appointments.json
   def index
     if user_is_admin?
-      @appointments = Appointment.all
+      @appointments = Appointment.all.order(:start_time)
     end
     if user_is_secretary?
-      @appointments = Appointment.all
+      @appointments = Appointment.all.order(:start_time)
     end
     if user_is_patient?
-      @appointments = Appointment.all.filter { |a| a.user_id == current_user.id }
+      @appointments = Appointment.where(user_id: current_user.id).order(:start_time)
     end
     if user_is_dentist?
-      @appointments = Appointment.all.filter { |a| a.dentist_id == current_user.id }
+      @appointments = Appointment.where(dentist_id: current_user.id).order(:start_time)
     end
     if params[:search].present?
       @appointments = @appointments.filter { |a| a.user_id.eql?(params[:search].to_i) }
@@ -88,7 +88,6 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1 or /appointments/1.json
   def show
-    @appointment = Appointment.find(params[:id])
   end
 
   def only_see_own_appointment

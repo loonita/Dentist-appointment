@@ -12,21 +12,16 @@
   <% end %>
 
   <div>
-    <%= form.label "Nombre status", style: "display: block" %>
-    <%= form.text_field :name %>
+    <b><%= form.label "Nombre status", style: "display: block" %></b>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <br>
 
   <div>
-    <%= form.submit "Aceptar", class:"btn btn-success btn-sm" %>
-      </div>
-
-      <br>
-
-      <div>
-        <%= link_to 'Volver', statuses_path, class:"btn btn-outline-primary btn-sm" %>
-      </div>
+    <%= form.submit "Crear", class: "btn btn-primary btn-sm" %>
+    <%= link_to 'Cancelar', statuses_path, class: "btn btn-outline-danger btn-sm" %>
+  </div>
 
 <% end %>
 

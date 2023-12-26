@@ -42,45 +42,95 @@
                       </table>
                     </div>
 
+         <% if current_user == @user %>
+              <br>
+              <%= link_to "Editar perfil", edit_user_registration_path, class: "btn btn-info btn-sm" %>
+              <br>
+         <% end %>
                     <br>
+
+
+            <% if user_is_admin? || user_is_secretary? %>
               <%= form_for(@user, html: { method: :put }) do |f| %>
+
+                <% if user_is_admin? %>
+                  <div class="field">
+                    <b><%= f.label "Rol" %></b><br />
+                    <%= f.collection_select :role_id, Role.all.order(name: :asc), :id, :name %>
+                  </div>
+                <% end %>
+
                 <div class="field">
-                  <%= f.label :name %><br />
+                  <b><%= f.label "Nombres" %></b><br />
                   <%= f.text_field :name, autofocus: true %>
                 </div>
-              <div class="field">
-                <%= f.label :last_name %><br />
-                <%= f.text_field :last_name, autofocus: true %>
-              </div>
 
-              <div class="field">
-                <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-              </div>
+                <div class="field">
+                  <b><%= f.label "Apellidos" %></b><br />
+                  <%= f.text_field :last_name, autofocus: true %>
+                </div>
 
+                <div class="field">
+                  <b><%= f.label "Correo electrónico" %></b><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                </div>
+
+                <div class="field">
+                  <b><%= f.label "Número telefónico" %></b><br />
+                  <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+                </div>
+
+                <br>
                 <%= f.submit "Guardar cambios", class: "btn btn-primary btn-sm" %>
-              <%end %>
+              <% end %>
+            <% end %>
 
             <br> <br>
 
             <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
-            <div class="card">
-              <table class="table">
-                <h4 class="card-title">Citas.</h4>
-                <p class="card-description">
-                  Citas asociadas del usuario.
-                </p>
+
+                    <div class="col-lg-14 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title">Citas</h4>
+                          <p class="card-description">
+                            Citas asociadas a usuario.
+                          </p>
 
 
-                  <% @appointments.each do |appointment| %>
-                    <%= render appointment %>
-                    <p>
-                      <%= link_to "Mostrar cita", appointment, class: "btn btn-primary btn-sm" %>
-                    </p>
-                  <% end %>
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                              <tr>
+                                <th>ID No.</th>
+                                <th>Rut paciente</th>
+                                <th>Nombre paciente</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                              </tr>
+                              </thead>
 
-              </table>
-            </div>
+                              <tbody>
+                              <% @appointments.each do |appointment| %>
+                                <tr>
+                                  <td><%= appointment.id %></td>
+                                  <td><%= User.find_by(id: appointment.user_id).rut_patient %></td>
+                                  <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
+                                  <td><%= appointment.fecha %></td>
+                                  <td><%= appointment.hora %></td>
+                                  <td><%= Status.find_by(id: appointment.status_id).name %></td>
+                                  <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
+                                </tr>
+                              <% end %>
+                              </tbody>
+
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
             <% end %>
 
 
