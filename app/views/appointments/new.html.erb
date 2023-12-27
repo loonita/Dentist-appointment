@@ -8,7 +8,7 @@
         <br><br><br>
         <div class="card fat">
           <div class="card-body">
-            <h4 class="card-title">Agendar cita</h4>
+            <div class="col-sm-7"><h2>Agendar <b>cita</b></h2></div><br>
 
             <%= render "form", appointment: @appointment %>
 
@@ -21,15 +21,3 @@
 
 
 
-
-
-
-
-<div>
-  <% if user_is_admin? %>
-    <%= link_to "Volver a citas", appointments_path %>
-  <% end %>
-
-
-  <%= link_to "Atrás", root_path  %>
-</div>

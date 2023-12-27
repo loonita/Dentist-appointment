@@ -1,10 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<title>Cita &middot; Clínica Dental San Antonio</title>
 
 <%= render @appointment %>
 
 <div>
 
-  <% if user_is_secretary? || user_is_admin?  %>
+<% if @appointment.status_id != 5 %>
+  <% if user_is_secretary? || user_is_admin? && @appointment.start_time > Time.now - 1.day %>
     <%= link_to "Editar estado cita", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %> |
   <% end %>
   <% if user_is_patient? %>
@@ -12,6 +13,7 @@
       <%= link_to "Para confirmar o cancelar tu cita haz clic aquí", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %> |
     <% end %>
   <% end %>
+<% end %>
 
   <%= link_to "Ir a Calendario", calendar_path, class: "btn btn-outline-primary btn-sm"%> |
   <%= link_to "Ir a todas las citas", appointments_path , class: "btn btn-outline-info btn-sm"%>

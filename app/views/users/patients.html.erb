@@ -30,15 +30,18 @@
 
             <% if user_is_admin? || user_is_secretary? %>
               <%= link_to "Añadir paciente",users_new_path, class: "btn btn-success" %>
+              <br> <br>
             <% end %>
 
             <div class="table-responsive">
-              <% paginate @patients %>
+              <div class="pagination">
+                <%= paginate @patients %>
+              </div>
               <table class="table">
                 <thead>
                 <tr>
                   <th>ID No.</th>
-                  <th width = "100px">RUT</th>
+                  <th width = "120px">RUT</th>
                   <th width="180px">Nombres</th>
                   <th width="180px">Apellidos</th>
                   <th>Correo electrónico</th>
@@ -65,7 +68,10 @@
 
 
               </table>
-              <% paginate @patients %>
+              <div class="pagination">
+                <br>
+                <%= paginate @patients %>
+              </div>
             </div>
           </div>
         </div>

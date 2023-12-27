@@ -1,4 +1,4 @@
-<title>Roles &middot; Clínica Dental San Antonio</title>
+<title>Tipos urgencias &middot; Clínica Dental San Antonio</title>
 
 <div class="page-content page-container" id="page-content">
   <div class="padding">
@@ -7,29 +7,29 @@
       <div class="col-lg-8 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Roles</h4>
+            <div class="col-sm-7"><h2>Tipos <b>urgencias</b></h2></div><br>
             <p class="card-description">
-              Roles de usuario.
+              Clasificación urgencias Clínica San Antonio.
             </p>
 
-            <%= link_to "Crear nuevo rol", new_role_path, class: "btn btn-success" %>
+            <%= link_to "Crear nueva urgencia", new_urgencium_path , class: "btn btn-success" %>
 
             <div class="table-responsive">
               <table class="table">
                 <thead>
                 <tr>
                   <th>ID No.</th>
-                  <th>Nombre rol</th>
+                  <th>Tipo urgencia</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <% @roles.each do |role| %>
+                <% @urgencia.each do |urgencia| %>
                   <tr>
-                    <td><%= role.id %></td>
-                    <td><%= role.name %></td>
-                    <td><%= link_to "Ver" , role, class: "btn btn-secondary" %></td>
-                    <td><%= link_to "Editar", edit_role_path(role), class: "btn btn-info" %></td>
+                    <td><%= urgencia.id %></td>
+                    <td><%= urgencia.name %></td>
+                    <td><%= link_to "Ver" , urgencia, class: "btn btn-secondary" %></td>
+                    <td><%= link_to "Editar", edit_urgencium_path(urgencia), class: "btn btn-info" %></td>
                   </tr>
                 <% end %>
                 </tbody>

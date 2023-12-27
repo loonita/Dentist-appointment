@@ -85,9 +85,9 @@ class UsersController < ApplicationController
     end
 
     if params[:search].present?
-      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(5)
+      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(10)
     else
-      @patients = User.where(role_id: 1).order(:last_name).page(params[:page]).per(5)
+      @patients = User.where(role_id: 1).order(:last_name).page(params[:page]).per(10)
     end
   end
 

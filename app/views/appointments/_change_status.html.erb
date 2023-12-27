@@ -11,20 +11,33 @@
     </div>
   <% end %>
 
+  <b><%= "Cita agendada para las #{@appointment.hora} hrs. del día #{@appointment.fecha}, con la #{@appointment.nombre_dentista}." %></b>
+
   <% if user_is_admin? || user_is_secretary? %>
     <div class="form-group">
-      <b><%= form.label :status %></b>
-      <%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %>
+        <div class="form-group">
+          <br>
+            <b><%= "Rut paciente: " %></b>
+            <%= @appointment.rut_paciente %>
+        </div>
+        <div class="form-group">
+          <b><%= "Nombre paciente: " %></b>
+          <%= @appointment.nombre_paciente %>
+        </div>
     </div>
   <% end %>
 
-  <% if user_is_patient? %>
     <div class="form-group">
-      <b><%= form.label :status %></b>
-      <%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %>
-
+      <label>
+        <br>
+        <%= form.radio_button :status_id, 2 %>
+        <b><span style='color: green;'>Confirmar asistencia a cita.</span></b>
+      </label>
+      <label>
+        <%= form.radio_button :status_id, 3 %>
+        <b><span style='color: red;'>Cancelar cita.</span></b>
+      </label>
     </div>
-  <% end %>
 
   </br>
 

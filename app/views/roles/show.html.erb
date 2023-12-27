@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 
 <%= render @role %>
 
@@ -6,12 +5,7 @@
 
   <% if user_is_secretary? || user_is_admin? %>
     <%= link_to "Editar este rol", edit_role_path(@role) %> |
-  <% end %>
-
-  <%= link_to "Volver a roles", roles_path %>
-
-
-  <% if user_is_admin? %>
+    <%= link_to "Volver a roles", roles_path %>
     <%= button_to "Eliminar este rol", @role, method: :delete %>
   <% end %>
 

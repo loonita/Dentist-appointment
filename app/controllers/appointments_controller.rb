@@ -7,24 +7,24 @@ class AppointmentsController < ApplicationController
   def index
 
     if user_is_admin? || user_is_secretary?
-        @appointments = Appointment.all.order(:start_time).page(params[:page]).per(5)
+        @appointments = Appointment.all.order(:start_time).page(params[:page]).per(10)
 
       if params[:search].present?
-        @appointments = Appointment.search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(5)
+        @appointments = Appointment.search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
       else
-        @appointments = Appointment.all.order(:start_time).page(params[:page]).per(5)
+        @appointments = Appointment.all.order(:start_time).page(params[:page]).per(10)
       end
     end
 
     if user_is_patient?
-      @appointments = Appointment.where(user_id: current_user.id).order(:start_time).page(params[:page]).per(5)
+      @appointments = Appointment.where(user_id: current_user.id).order(:start_time).page(params[:page]).per(10)
     end
 
     if user_is_dentist?
       if params[:search].present?
-        @appointments = Appointment.where(dentist_id: current_user.id).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(5)
+        @appointments = Appointment.where(dentist_id: current_user.id).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
       else
-        @appointments = Appointment.where(dentist_id: current_user.id).order(:start_time).page(params[:page]).per(5)
+        @appointments = Appointment.where(dentist_id: current_user.id).order(:start_time).page(params[:page]).per(10)
       end
     end
   end
@@ -86,18 +86,28 @@ class AppointmentsController < ApplicationController
   end
 
   def agendar_en_espera
+    if user_is_dentist? || user_is_patient?
+      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+
     @appointment = Appointment.new
     @all_appointments = Appointment.all
   end
 
   def agendar_espera
+    if user_is_dentist? || user_is_patient?
+      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+
     return if params[:appointment].nil?
 
     user_id = params[:appointment][:user_id].to_i
     dentist_id = params[:appointment][:dentist_id].to_i
     status_id = params[:appointment][:status].to_i
+    urgencia_id = params[:appointment][:urgencia_id].to_i
+    mensaje = params[:appointment][:mensaje]
 
-    appointment = Appointment.new(:user_id => user_id, :dentist_id => dentist_id, :status_id => status_id)
+    appointment = Appointment.new(:user_id => user_id, :dentist_id => dentist_id, :status_id => status_id, :urgencia_id => urgencia_id, :mensaje => mensaje)
 
     respond_to do |format|
       if appointment.save!
@@ -175,17 +185,25 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
-    if user_is_dentist? || user_is_patient?
-      redirect_to root_path
+    if user_is_dentist?
+      redirect_to appointments_path, alert: "Lo sentimos, no puedes ver esto."
     end
-
+    if user_is_patient? && @appointment.status_id != 1
+      redirect_to appointments_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+    if user_is_patient? && @appointment.start_time > Time.now + 3.day
+      redirect_to appointments_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+    if user_is_secretary? || user_is_admin? && @appointment.start_time < Time.now - 1.day
+      redirect_to calendar_path, alert: "Lo sentimos, el estado de esta cita ya no se puede cambiar."
+    end
   end
   def pending
     if user_is_admin? || user_is_secretary? || user_is_dentist?
     @appointments = Appointment.all.filter { |a| a.status_id == 5 }
 
     else
-      redirect_to root_path, notice: "Lo sentimos, pero sólo puedes ver tus propias citas."
+      redirect_to root_path, alert: "Lo sentimos, pero sólo puedes ver tus propias citas."
     end
   end
 

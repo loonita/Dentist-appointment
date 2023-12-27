@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_26_174812) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_27_155515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "unaccent"
@@ -24,6 +24,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_174812) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "should_sum_start_time", default: true, null: false
+    t.string "mensaje"
+    t.integer "urgencia_id"
   end
 
   create_table "morning_times", force: :cascade do |t|
@@ -39,6 +41,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_174812) do
   end
 
   create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "urgencia", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

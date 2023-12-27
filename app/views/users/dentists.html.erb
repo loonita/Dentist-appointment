@@ -29,10 +29,14 @@
 
             <% if user_is_admin? %>
               <%= link_to "Añadir dentista", users_new_path, class: "btn btn-success" %>
+              <br> <br>
             <% end %>
 
             <div class="table-responsive">
-              <% paginate @dentists %>
+              <div class="pagination">
+                <br>
+                <%= paginate @dentists %>
+              </div>
               <table class="table">
                 <thead>
                 <tr>
@@ -65,7 +69,10 @@
                 </tbody>
 
               </table>
-              <% paginate @dentists %>
+              <div class="pagination">
+                <br>
+                <%= paginate @dentists %>
+              </div>
             </div>
           </div>
         </div>

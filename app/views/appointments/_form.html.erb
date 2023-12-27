@@ -59,13 +59,14 @@
 
   <br>
 
+  <% if user_is_patient? %>
+    <div class="form-group">
+      <%= link_to "Volver a seleccionar dentista", :back, class: "btn btn-info btn-sm" %>
+    </div>
+    <br> <br>
+  <% end %>
 
   <div class="form-group">
-
-    <% if user_is_patient? %>
-      <%= link_to "Volver a seleccionar dentista", :back, class: "btn btn-info btn-sm" %>
-    <% end %>
-
     <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
     <%= link_to "Cancelar", calendar_path, class: "btn btn-outline-danger btn-sm" %>
   </div>

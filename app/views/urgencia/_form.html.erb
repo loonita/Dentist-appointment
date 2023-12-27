@@ -1,0 +1,25 @@
+<%= form_with(model: urgencium) do |form| %>
+  <% if urgencium.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(urgencium.errors.count, "error") %> prohibited this urgencium from being saved:</h2>
+
+      <ul>
+        <% urgencium.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label "Nombre urgencia", style: "display: block" %>
+    <%= form.text_field :name, class: "form-control" %>
+    <br>
+  </div>
+
+  <div>
+    <%= form.submit "Crear", class: "btn btn-primary btn-sm" %>
+    <%= link_to 'Cancelar', urgencia_path, class: "btn btn-outline-danger btn-sm" %>
+  </div>
+
+<% end %>
