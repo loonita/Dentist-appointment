@@ -34,9 +34,12 @@
                     </p>
                 <% end %>
 
-
-
             <div class="table-responsive">
+
+              <div class="pagination">
+                <%= paginate @appointments %>
+              </div>
+
               <table class="table">
                 <thead>
                 <tr>
@@ -79,6 +82,7 @@
                 </tbody>
 
               </table>
+              <%= paginate @appointments %>
             </div>
           </div>
         </div>

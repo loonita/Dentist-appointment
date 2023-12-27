@@ -33,6 +33,7 @@
             <% end %>
 
             <div class="table-responsive">
+              <% paginate @patients %>
               <table class="table">
                 <thead>
                 <tr>
@@ -64,6 +65,7 @@
 
 
               </table>
+              <% paginate @patients %>
             </div>
           </div>
         </div>
