@@ -7,28 +7,24 @@ class AppointmentsController < ApplicationController
   def index
 
     if user_is_admin? || user_is_secretary?
-      if user_is_admin?
-        @appointments = Appointment.all.order(:start_time)
-      end
-      if user_is_secretary?
-        @appointments = Appointment.all.order(:start_time)
-      end
+        @appointments = Appointment.all.order(:start_time).page(params[:page]).per(5)
+
       if params[:search].present?
-        @appointments = Appointment.search_by_patient_name(params[:search]).order(:start_time)
+        @appointments = Appointment.search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(5)
       else
-        @appointments = Appointment.all.order(:start_time)
+        @appointments = Appointment.all.order(:start_time).page(params[:page]).per(5)
       end
     end
 
     if user_is_patient?
-      @appointments = Appointment.where(user_id: current_user.id).order(:start_time)
+      @appointments = Appointment.where(user_id: current_user.id).order(:start_time).page(params[:page]).per(5)
     end
 
     if user_is_dentist?
       if params[:search].present?
-        @appointments = Appointment.where(dentist_id: current_user.id).search_by_patient_name(params[:search]).order(:start_time)
+        @appointments = Appointment.where(dentist_id: current_user.id).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(5)
       else
-        @appointments = Appointment.where(dentist_id: current_user.id).order(:start_time)
+        @appointments = Appointment.where(dentist_id: current_user.id).order(:start_time).page(params[:page]).per(5)
       end
     end
   end
@@ -119,7 +115,7 @@ class AppointmentsController < ApplicationController
   def only_see_own_appointment
     @appointment = Appointment.find(params[:id])
     if current_user != @appointment.user && !user_is_admin? && !user_is_dentist? && !user_is_secretary?
-      redirect_to root_path, notice: "Sorry, but you are only allowed to view your own appointments."
+      redirect_to root_path, notice: "Lo sentimos, solo puedes ver tus propias citas."
     end
   end
 

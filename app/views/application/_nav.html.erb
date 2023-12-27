@@ -42,8 +42,8 @@
                     <% if user_is_admin? || user_is_dentist? || user_is_secretary? %>
                       <li class="dropdown-item"><%= link_to "Todas las citas", appointments_path, class: "dropdown-item" %></li>
                       <li class="dropdown-item"><%= link_to "Citas pendientes", appointments_pending_path , class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Ver Perfil Dentistas", users_dentists_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Ver Perfil Pacientes", users_patients_path, class: "dropdown-item" %></li>
+                      <li class="dropdown-item"><%= link_to "Lista dentistas", users_dentists_path, class: "dropdown-item" %></li>
+                      <li class="dropdown-item"><%= link_to "Lista pacientes", users_patients_path, class: "dropdown-item" %></li>
                     <% end %>
 
                     <% if user_is_admin? || user_is_secretary? %>

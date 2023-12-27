@@ -68,18 +68,26 @@ class UsersController < ApplicationController
   end
 
   def dentists
+    if user_is_patient?
+      redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
+    end
+
     if params[:search].present?
-      @dentists = User.where(role_id: 2).search_by_name(params[:search]).order(:last_name)
+      @dentists = User.where(role_id: 2).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(5)
     else
-      @dentists = User.where(role_id: 2).order(:last_name)
+      @dentists = User.where(role_id: 2).order(:last_name).page(params[:page]).per(5)
     end
   end
 
   def patients
+    if user_is_patient?
+      redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
+    end
+
     if params[:search].present?
-      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name)
+      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(5)
     else
-      @patients = User.where(role_id: 1).order(:last_name)
+      @patients = User.where(role_id: 1).order(:last_name).page(params[:page]).per(5)
     end
   end
 
