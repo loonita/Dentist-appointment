@@ -1,8 +1,5 @@
 <title>Citas &middot; Clínica Dental San Antonio</title>
 
-<p style="color: green"><%= notice %></p>
-
-
 <div class="page-content page-container  d-flex  justify-content-center align-items-center" id="page-content">
   <div class="padding">
     <div class="row container d-flex justify-content-center">
@@ -44,10 +41,10 @@
                 <thead>
                 <tr>
                   <th>ID No.</th>
-                  <th width="100px">Rut paciente</th>
-                  <th width="180px">Nombre paciente</th>
+                  <th width="120px">Rut paciente</th>
+                  <th width="200px">Nombre paciente</th>
                   <th width="120px">Rut dentista</th>
-                  <th width="180px">Nombre dentista</th>
+                  <th width="200px">Nombre dentista</th>
                   <th>Fecha</th>
                   <th>Hora</th>
                   <th>Estado</th>
@@ -71,6 +68,8 @@
                       <td><span class="status text-success"><%= Status.find_by(id: appointment.status_id).name %></span></td>
                     <% elsif appointment.status_id == 3 %>
                       <td><span class="status text-danger"><%= Status.find_by(id: appointment.status_id).name %></span></td>
+                    <% elsif appointment.status_id == 4 %>
+                      <td><span class="status text-secondary"><%= Status.find_by(id: appointment.status_id).name %></span></td>
                     <% end %>
 
                     <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>

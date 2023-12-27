@@ -1,0 +1,11 @@
+
+
+<%= render @urgencium %>
+
+<div>
+  <% if user_is_admin? %>
+    <%= link_to "Editar urgencia", edit_urgencium_path(@urgencium) %> |
+    <%= link_to "Volver a lista urgencias", urgencia_path %>
+    <%= button_to "Eliminar esta urgencia", @urgencium, method: :delete %>
+  <% end %>
+</div>

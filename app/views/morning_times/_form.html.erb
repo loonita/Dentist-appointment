@@ -12,11 +12,14 @@
   <% end %>
 
   <div>
-    <%= form.label :m_time, style: "display: block" %>
+    <b><%= form.label "Hora", style: "display: block" %></b>
     <%= form.time_field :m_time %>
   </div>
 
+  <br>
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "Crear", class: "btn btn-primary btn-sm" %>
+    <%= link_to 'Cancelar', morning_times_path, class: "btn btn-outline-danger btn-sm" %>
   </div>
 <% end %>

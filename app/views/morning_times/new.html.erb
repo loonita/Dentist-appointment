@@ -1,9 +1,20 @@
-<h1>New morning time</h1>
+<title>Nueva hora &middot; Clínica Dental San Antonio</title>
 
-<%= render "form", morning_time: @morning_time %>
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <br><br><br>
+        <div class="card fat">
+          <div class="card-body">
+            <div class="col-sm-7"><h2>Nueva <b>hora</b></h2></div><br>
 
-<br>
+            <%= render "form", morning_time: @morning_time %>
 
-<div>
-  <%= link_to "Back to morning times", morning_times_path %>
-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

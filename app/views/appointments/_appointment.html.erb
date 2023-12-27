@@ -32,6 +32,16 @@
         <td><b>Estado</b></td>
         <td><%= Status.find_by(id: appointment.status_id).name %></td>
       </tr>
+      <% if appointment.status_id == 5 %>
+        <tr>
+          <td><b>Urgencia</b></td>
+          <td><%= Urgencium.find_by(id: appointment.urgencia_id).name %></td>
+        </tr>
+        <tr>
+          <td><b>Mensaje</b></td>
+          <td><%= appointment.mensaje %></td>
+        </tr>
+      <% end %>
 
       </thead>
   </table>

@@ -7,7 +7,7 @@
       <div class="card-wrapper">
         <div class="card fat">
           <div class="card-body">
-            <h4 class="card-title">Nuevo Usuario</h4>
+            <div class="col-sm-7"><h2>Nuevo <b>usuario</b></h2></div><br>
 
             <%= form_with :url => users_create_path, method: :post do |f| %>
 
@@ -34,7 +34,8 @@
               </div>
 
               <div class="form-group">
-                <b><%= f.label "Número telefónico", class: "form-label" %></b><br />
+                <b><%= f.label "Número telefónico", class: "form-label" %></b>
+                <em>(9xxxxxxxx)</em><br />
                 <%= f.text_field :phone, autofocus: true, autocomplete: "phone", class: "form-control" %>
               </div>
 
@@ -46,9 +47,7 @@
                 <div class="field form-group">
                   <b><%= f.label "Contraseña", class: "form-label"  %></b>
                   <% if @minimum_password_length %>
-                    <em>
-                      (#{@minimum_password_length} characters minimum)
-                    </em>
+                    <em>(<%= @minimum_password_length %> caracteres como mínimo)</em>
                   <% end %>
                   <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
               </div>
