@@ -200,8 +200,11 @@ class AppointmentsController < ApplicationController
   end
   def pending
     if user_is_admin? || user_is_secretary? || user_is_dentist?
-    @appointments = Appointment.all.filter { |a| a.status_id == 5 }
-
+      if params[:search].present?
+        @appointments = Appointment.where(status_id: 5).search_by_patient_name(params[:search]).page(params[:page]).per(10)
+      else
+        @appointments = Appointment.where(status_id: 5).page(params[:page]).per(10)
+      end
     else
       redirect_to root_path, alert: "Lo sentimos, pero sólo puedes ver tus propias citas."
     end
