@@ -1,0 +1,45 @@
+<title>Agendar cita pendiente &middot; Clínica Dental San Antonio</title>
+
+<% if user_is_admin? || user_is_secretary? %>
+
+  <div class="page-content page-container d-flex justify-content-center align-items-center" id="page-content">
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+
+        <div class="col-lg-10 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-sm-7"><h2>Agendar <b>en espera</b></h2></div>
+              <p class="card-description">
+                Haz clic en el día que quieres agendar la cita.
+              </p>
+
+              <%= month_calendar() do |date| %>
+                <div class="day">
+
+                  <% if date < Time.now %>
+                    <%= date.day %>
+                  <% else %>
+                    <% if date.wday == 0 %>
+                      <%= date.day %>
+                    <% else %>
+                      <%= link_to date.day, edit_p_agendar_path(:fecha_t => date, :id_ap => @id_ap) %>
+                    <% end %>
+                  <% end %>
+
+                </div>
+                </div>
+              <% end %>
+
+              <div class="form-group">
+                <%= link_to "Cancelar", appointments_pending_path, class: "btn btn-outline-danger btn-sm" %>
+              </div>
+
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<% end %>

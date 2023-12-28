@@ -30,6 +30,17 @@ class AppointmentsController < ApplicationController
   end
 
   def calendar
+
+    if params[:start_date].present?
+      if params[:start_date] == 'start_date='
+        params[:start_date] = Date.today.strftime("%Y-%m-%d")
+      else
+        params[:start_date] += '-01'
+      end
+    else
+      params[:start_date] = Date.today.strftime("%Y-%m-%d")
+    end
+
     @appointments = Appointment.where(
       start_time: Time.now.beginning_of_month.beginning_of_week..Time.now.end_of_month.end_of_week
     )
@@ -76,9 +87,9 @@ class AppointmentsController < ApplicationController
     end
 
     if params[:search].present?
-      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name)
+      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(10)
     else
-      @patients = User.where(role_id: 1).order(:last_name)
+      @patients = User.where(role_id: 1).order(:last_name).page(params[:page]).per(10)
     end
 
     @fecha_recibida = params[:fecha_t]
@@ -210,6 +221,54 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def edit_p_calendar
+    if user_is_dentist? || user_is_patient?
+      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+    @id_ap = params[:id_ap]
+  end
+
+  def edit_p_agendar
+    if user_is_dentist? || user_is_patient?
+      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+
+    @id_ap = params[:id_ap]
+    @appointment = Appointment.find(@id_ap)
+    @fecha_recibida = params[:fecha_t]
+    @dentist_recibido = @appointment.dentist_id
+
+    @horas_agendadas = Appointment.where("DATE(start_time) = ? AND dentist_id = ? AND status_id = ?", @fecha_recibida, @dentist_recibido, 1).pluck(:time)
+    @horas_confirmadas = Appointment.where("DATE(start_time) = ? AND dentist_id = ? AND status_id = ?", @fecha_recibida, @dentist_recibido, 2).pluck(:time)
+
+    @horas_ocupadas_A = []
+    @horas_ocupadas_C = []
+
+    @horas_agendadas.each do |a|
+      appo = Appointment.find_by(time: a)
+      if appo
+        @test = appo.hora.to_s
+        @horas_ocupadas_A << @test
+      end
+    end
+
+    @horas_confirmadas.each do |a|
+      appo = Appointment.find_by(time: a)
+      if appo
+        @test = appo.hora.to_s
+        @horas_ocupadas_C << @test
+      end
+    end
+
+    @horas_disponibles = []
+    @todo = MorningTime.all
+
+    @todo.each do |m|
+      @horas_disponibles << m.m_time
+    end
+
+    @horas_disponibles = @horas_disponibles - @horas_ocupadas_A - @horas_ocupadas_C
+  end
 
 # POST /appointments or /appointments.json
   def create

@@ -48,13 +48,21 @@
                       <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
                       <td><%= User.find_by(id: appointment.dentist_id).rut_dentist %></td>
                       <td><%= User.find_by(id: appointment.dentist_id).name_dentist %></td>
-                      <td><%= Urgencium.find_by(id: appointment.urgencia_id).name %></td>
+
+                      <% if appointment.urgencia_id == 1 %>
+                        <td><span class="status text-success"><%= Urgencium.find_by(id: appointment.urgencia_id).name %></span></td>
+                      <% elsif appointment.urgencia_id == 2 %>
+                        <td><span class="status text-warning"><%= Urgencium.find_by(id: appointment.urgencia_id).name %></span></td>
+                      <% elsif appointment.urgencia_id == 3 %>
+                        <td><span class="status text-danger"><%= Urgencium.find_by(id: appointment.urgencia_id).name %></span></td>
+                      <% end %>
+
                       <td><%= appointment.mensaje %></td>
 
 
                       <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
                       <% if user_is_admin? || user_is_secretary? %>
-                        <td><%= link_to "Estado", edit_appointment_path(appointment), class: "btn btn-info" %></td>
+                        <td><%= link_to "Agendar", edit_p_calendar_path(:id_ap => appointment), class: "btn btn-info" %></td>
                       <% end %>
                     </tr>
                   <% end %>

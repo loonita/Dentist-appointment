@@ -1,0 +1,82 @@
+<title>Agendar cita en espera &middot; Clínica Dental San Antonio</title>
+
+<%= form_with(model: @appointment, local: true, html: { class: "form" }) do |form| %>
+
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <br><br><br>
+        <div class="card fat">
+          <div class="card-body">
+            <div class="col-sm-7"><h2>Agendar <b>cita en espera</b></h2><br></div>
+
+            <p id="<%= dom_id @appointment %>">
+
+            <div class="card">
+              <table class="table">
+                <thead>
+
+                <tr>
+                  <td><b>Rut paciente</b></td>
+                  <td><%= User.find_by(id: @appointment.user_id).rut %></td>
+                </tr>
+                <tr>
+                  <td><b>Nombre paciente</b></td>
+                  <td><%= User.find_by(id: @appointment.user_id).name_patient %></td>
+                </tr>
+                <tr>
+                  <td><b>Rut dentista</b></td>
+                  <td><%= User.find_by(id: @appointment.dentist_id).rut %></td>
+                </tr>
+                <tr>
+                  <td><b>Nombre dentista</b></td>
+                  <td><%= User.find_by(id: @appointment.dentist_id).name_dentist %></td>
+                </tr>
+                <tr>
+                  <td><b>Fecha</b></td>
+                  <td><%= form.label :start_time, value: @fecha_recibida %></td>
+                  <%= form.hidden_field :start_time, value: @fecha_recibida %>
+                </tr>
+                <tr>
+                  <td><b>Hora</b></td>
+                  <td><%= form.collection_select :time, @horas_disponibles, :to_s, :to_s %></td>
+                </tr>
+                <tr>
+                  <td><b>Estado</b></td>
+                  <td><%= Status.find_by(id: @appointment.status_id).name %></td>
+                </tr>
+                <% if @appointment.status_id == 5 %>
+                  <tr>
+                    <td><b>Urgencia</b></td>
+                    <td><%= Urgencium.find_by(id: @appointment.urgencia_id).name %></td>
+                  </tr>
+                  <tr>
+                    <td><b>Mensaje</b></td>
+                    <td><%= @appointment.mensaje %></td>
+                  </tr>
+                <% end %>
+
+                <%= form.hidden_field :status_id, value: 1 %>
+
+
+
+                </thead>
+              </table>
+            </div>
+
+            <div class="form-group">
+              <%= form.submit "Agendar", class: "btn btn-primary btn-sm" %>
+              <%= link_to "Cancelar", appointments_pending_path, class: "btn btn-outline-danger btn-sm" %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+
+<% end %>
