@@ -19,7 +19,16 @@
       </div>
     </div>
 
-<br>
+  <div class="page-content page-container d-flex justify-content-center align-items-center">
+    <br><br><br>
+    <%= form_tag calendar_path, method: :get, class: "form-inline" do %>
+      <div class="row">
+        <div class="col-sm-8"><%= month_field_tag :start_date, params[:start_date], class: "search form-control" %></div>
+        <div class="col-sm-2"><%= submit_tag "Ir a mes", class: "btn btn-outline-dark btn-sm" %></div>
+      </div>
+    <% end %>
+  </div>
+
 
 <% if user_is_dentist? %>
     <%= month_calendar(events: @appointments) do |date, appointments| %>
@@ -94,12 +103,12 @@
           <div class="card-header">
             <div class="card-title">
 
-                <% if appointment.status_id == 1 || appointment.status_id == 2 %>
+                <% if appointment.status_id == 1 || appointment.status_id == 2 || appointment.status_id == 4 %>
                   <% if appointment.status_id == 1 %>
                     <%= link_to appointment.cita_calendar, appointment, class: "btn btn-outline-warning btn-sm"%>
                   <% elsif appointment.status_id == 2 %>
                     <%= link_to appointment.cita_calendar, appointment, class: "btn btn-outline-success btn-sm" %>
-                <% elsif appointment.status_id == 4 %>
+                  <% elsif appointment.status_id == 4 %>
                   <%= link_to appointment.cita_calendar, appointment, class: "btn btn-outline-secondary btn-sm" %>
                   <% end %>
                 <% end %>
