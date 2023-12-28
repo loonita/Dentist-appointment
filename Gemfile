@@ -35,6 +35,7 @@ gem 'dotenv-rails'
 gem 'google_maps_rails'
 gem 'chilean-rutify'
 gem "mail_form", "~> 1.10"
+gem 'whenever', require: false
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

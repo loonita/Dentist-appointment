@@ -15,4 +15,8 @@ class UserMailer < ApplicationMailer
 
     mail to: user.email , :subject => "Appointment Confirmation"
   end
+
+  def appointment_reminder(user)
+    mail to: user.email , :subject => "Appointment Reminder"
+  end
 end

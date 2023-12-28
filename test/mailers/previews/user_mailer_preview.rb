@@ -5,5 +5,9 @@ class UserMailerPreview < ActionMailer::Preview
   def appointment_confirmation
     UserMailer.appointment_confirmation
   end
+  def appointment_reminder
+    UserMailer.appointment_reminder
+  end
+
 
 end

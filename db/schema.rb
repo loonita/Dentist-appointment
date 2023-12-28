@@ -21,11 +21,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_155515) do
     t.integer "status_id", default: 1, null: false
     t.integer "user_id", null: false
     t.integer "dentist_id", null: false
+    t.integer "urgencia_id"
+    t.string "mensaje"
+    t.boolean "should_sum_start_time", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "should_sum_start_time", default: true, null: false
-    t.string "mensaje"
-    t.integer "urgencia_id"
   end
 
   create_table "morning_times", force: :cascade do |t|
