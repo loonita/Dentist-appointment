@@ -34,6 +34,14 @@ class User < ApplicationRecord
     "#{name} #{last_name}"
   end
 
+  def id_patient
+    "#{id}"
+  end
+
+  def role_u
+    "#{role_id}"
+  end
+
 
   def rut_patient
     "#{rut}"

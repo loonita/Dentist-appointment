@@ -44,7 +44,8 @@
                       <li class="dropdown-item"><%= link_to "Citas pendientes", appointments_pending_path , class: "dropdown-item" %></li>
                       <li class="dropdown-item"><%= link_to "Lista dentistas", users_dentists_path, class: "dropdown-item" %></li>
                       <li class="dropdown-item"><%= link_to "Lista pacientes", users_patients_path, class: "dropdown-item" %></li>
-                    <% end %>
+                      <li class="dropdown-item"><%= link_to "Lista secretarias", users_secretaries_path, class: "dropdown-item" %></li>
+                <% end %>
 
                     <% if user_is_admin? || user_is_secretary? %>
                       <li class="dropdown-item"><%= link_to "Nuevo usuario", users_new_path, class: "dropdown-item" %></li>

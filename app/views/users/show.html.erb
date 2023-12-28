@@ -1,7 +1,5 @@
 <title>Perfil &middot; Clínica Dental San Antonio</title>
 
-<p style="color: green"><%= notice %></p>
-
 <div class="page-content page-container" id="page-content">
   <div class="padding">
     <div class="row container d-flex justify-content-center">
@@ -88,7 +86,7 @@
             <br> <br>
 
             <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
-
+                <% if @user.role_id == 1 || @user.role_id == 2 %>
                     <div class="col-lg-14 grid-margin stretch-card">
                       <div class="card">
                         <div class="card-body">
@@ -99,12 +97,20 @@
 
 
                           <div class="table-responsive">
+                            <div class="pagination">
+                              <%= paginate @appointments %>
+                            </div>
                             <table class="table">
                               <thead>
                               <tr>
                                 <th>ID No.</th>
+                              <% if @user.role_id == 2 %>
                                 <th>Rut paciente</th>
                                 <th>Nombre paciente</th>
+                              <% else %>
+                                <th>Rut dentista</th>
+                                <th>Nombre dentista</th>
+                              <% end %>
                                 <th>Fecha</th>
                                 <th>Hora</th>
                                 <th>Estado</th>
@@ -115,8 +121,13 @@
                               <% @appointments.each do |appointment| %>
                                 <tr>
                                   <td><%= appointment.id %></td>
-                                  <td><%= User.find_by(id: appointment.user_id).rut_patient %></td>
-                                  <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
+                                  <% if @user.role_id == 2 %>
+                                    <td><%= User.find_by(id: appointment.user_id).rut_patient %></td>
+                                    <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
+                                  <% else %>
+                                    <td><%= User.find_by(id: appointment.dentist_id).rut_dentist %></td>
+                                    <td><%= User.find_by(id: appointment.dentist_id).name_dentist%></td>
+                                  <% end %>
                                   <td><%= appointment.fecha %></td>
                                   <td><%= appointment.hora %></td>
                                   <td><%= Status.find_by(id: appointment.status_id).name %></td>
@@ -126,18 +137,15 @@
                               </tbody>
 
                             </table>
+                            <div class="pagination">
+                              <%= paginate @appointments %>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-
+                <% end %>
             <% end %>
-
-
-            <br>
-                   <p> <%= link_to "Volver", :back, class: "btn btn-outline-primary btn-sm" %></p>
-            <br>
-
                 </div>
             </div>
       </div>
