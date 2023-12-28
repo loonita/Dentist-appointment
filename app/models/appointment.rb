@@ -68,7 +68,6 @@ class Appointment < ApplicationRecord
   
   def send_email
     UserMailer.appointment_confirmation(user).deliver
-    UserMailer.appointment_reminder(user).deliver
   end
 
   private

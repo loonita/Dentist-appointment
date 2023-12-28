@@ -5,20 +5,10 @@
 
 # Example:
 #
-set :output, "/path/to/my/cron_log.log"
+#set :output, "/path/to/my/cron_log.log"
 #
-every 2.minutes do
-  require './app/mailers/user_mailer.rb'
-
-  Appointment.all.each do |a|
-    if a.start_time == Date.tomorrow
-      UserMailer.appointment_reminder(a)
-    end
-  end
+every 12.hours do
+  rake "appointment_reminders:send_reminders"
 end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
 
-# Learn more: http://github.com/javan/whenever
+
