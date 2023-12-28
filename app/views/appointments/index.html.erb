@@ -16,8 +16,12 @@
                         <div class="search-box">
                           <%= text_field_tag :search, params[:search], class: "search form-control", placeholder: "Buscar por nombre, apellido o rut del paciente" %>
                         </div>
+                      <%= hidden_field_tag :status_id, params[:status_id] %>
                       <% end %>
                   </div>
+
+
+
                   <p class="card-description">
                     Citas de pacientes de la Clínica San Antonio.
                   </p>
@@ -46,6 +50,7 @@
                       <label class="btn btn-danger">
                         <input type="radio" name="status_id" value="3"> Canceladas
                       </label>
+                        <%= hidden_field_tag :search, params[:search] %>
                       <button type="submit" class="btn btn-primary">Filtrar</button>
                     </div>
                   </div>
