@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get '/users/dentists', :to => 'users#dentists'
   get '/users/patients', :to => 'users#patients'
+  get '/users/secretaries', :to => 'users#secretaries'
   get '/users/new', :to => 'users#new'
   post '/users/create', :to => 'users#create'
   get '/users/:id', :to => 'users#show', :as => :user

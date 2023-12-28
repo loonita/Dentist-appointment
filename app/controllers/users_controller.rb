@@ -15,10 +15,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @appointments = []
     if user_is_patient?(@user)
-      @appointments = Appointment.where(user_id: @user.id).order(:start_time)
+      @appointments = Appointment.where(user_id: @user.id, status_id: [1,2]).order(:start_time).page(params[:page]).per(5)
     end
     if user_is_dentist?(@user)
-      @appointments = Appointment.where(dentist_id: @user.id).order(:start_time)
+      @appointments = Appointment.where(dentist_id: @user.id, status_id: [1,2]).order(:start_time).page(params[:page]).per(5)
     end
     @user_from_users = User.find(params[:id])
   end
@@ -73,9 +73,9 @@ class UsersController < ApplicationController
     end
 
     if params[:search].present?
-      @dentists = User.where(role_id: 2).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(5)
+      @dentists = User.where(role_id: 2).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(10)
     else
-      @dentists = User.where(role_id: 2).order(:last_name).page(params[:page]).per(5)
+      @dentists = User.where(role_id: 2).order(:last_name).page(params[:page]).per(10)
     end
   end
 
@@ -89,6 +89,14 @@ class UsersController < ApplicationController
     else
       @patients = User.where(role_id: 1).order(:last_name).page(params[:page]).per(10)
     end
+  end
+
+  def secretaries
+    if user_is_patient? || user_is_secretary? || user_is_dentist?
+      redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
+    end
+
+    @secretaries = User.where(role_id: 3).order(:last_name).page(params[:page]).per(10)
   end
 
   def new
