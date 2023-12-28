@@ -7,24 +7,37 @@ class AppointmentsController < ApplicationController
   def index
 
     if user_is_admin? || user_is_secretary?
-
-      if params[:status_id].present?
-        @appointments = Appointment.where.not(status_id: 5).where(status_id: params[:status_id]).order(:start_time).page(params[:page]).per(10)
-      elsif params[:search].present?
-        @appointments = Appointment.where.not(status_id: 5).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+      if params[:status_id].present? || params[:search].present?
+        if params[:status_id].present? && params[:search].present?
+        @appointments = Appointment.where.not(status_id: 5).where(status_id: params[:status_id]).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+        elsif params[:status_id].present?
+          @appointments = Appointment.where.not(status_id: 5).where(status_id: params[:status_id]).order(:start_time).page(params[:page]).per(10)
+        elsif params[:search].present?
+          @appointments = Appointment.where.not(status_id: 5).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+        end
       else
         @appointments = Appointment.where.not(status_id: 5).order(:start_time).page(params[:page]).per(10)
       end
-
     end
 
     if user_is_patient?
-      @appointments = Appointment.where.not(status_id: 5).where(user_id: current_user.id).order(:start_time).page(params[:page]).per(10)
+      if params[:status_id].present?
+        @appointments = Appointment.where.not(status_id: 5).where(status_id: params[:status_id]).where(user_id: current_user.id).order(:start_time).page(params[:page]).per(10)
+      else
+        @appointments = Appointment.where.not(status_id: 5).where(user_id: current_user.id).order(:start_time).page(params[:page]).per(10)
+      end
     end
 
     if user_is_dentist?
-      if params[:search].present?
-        @appointments = Appointment.where.not(status_id: 5).where(dentist_id: current_user.id).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+
+      if params[:search].present? || params[:status_id].present?
+        if params[:status_id].present? && params[:search].present?
+          @appointments = Appointment.where.not(status_id: 5).where(status_id: params[:status_id]).where(dentist_id: current_user.id).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+        elsif params[:status_id].present?
+          @appointments = Appointment.where.not(status_id: 5).where(status_id: params[:status_id]).where(dentist_id: current_user.id).order(:start_time).page(params[:page]).per(10)
+        elsif params[:search].present?
+          @appointments = Appointment.where.not(status_id: 5).where(dentist_id: current_user.id).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+        end
       else
         @appointments = Appointment.where.not(status_id: 5).where(dentist_id: current_user.id).order(:start_time).page(params[:page]).per(10)
       end
