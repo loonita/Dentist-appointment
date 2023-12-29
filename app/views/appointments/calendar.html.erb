@@ -31,6 +31,7 @@
 
 
 <% if user_is_dentist? %>
+    <br> <h4><%= current_user.name_dentist %></h4> <br>
     <%= month_calendar(events: @appointments) do |date, appointments| %>
       <div class="day">
         <%= date.day %>
@@ -55,6 +56,7 @@
 
 
   <% if user_is_patient? %>
+    <br>
     <%= month_calendar(events: @appointments) do |date, appointments| %>
       <div class="day">
 

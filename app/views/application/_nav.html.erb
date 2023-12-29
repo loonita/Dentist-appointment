@@ -1,15 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
 <body>
 <section class="ftco-section">
-  <div class="container">
+
     <div class="row justify-content-center">
       <div class="col-md-6 text-center mb-5">
       </div>
     </div>
-  </div>
   <div class="container">
     <nav class="d-md-flex navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a href="/"><img src="/assets/logo.png" width="100" height="100" href=root_path></a>
+        <a href="/"><img src="/assets/logo.png" width="120" height="120" href=root_path></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -21,8 +24,8 @@
             <li class="nav-item"></li>
             <li class="nav-item"></li>
             <li class="nav-item"></li>
-            <li class="nav-item"></li>
             <li class="nav-item"><a href="/servicios" class="nav-link">Servicios</a></li>
+            <li class="nav-item"><a href="/ubicacion" class="nav-link">Ubicación</a></li>
             <li class="nav-item"><a href="/contacts/new" class="nav-link">Contacto</a></li>
 
 
@@ -111,6 +114,7 @@
 
                   <% if user_signed_in? %>
                     <li class="dropdown-item"><%= link_to "Mi Perfil", user_path(current_user), class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Editar Perfil", edit_user_registration_path, class: "dropdown-item" %></li>
                     <li class="dropdown-item"><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
                   <% end %>
 
@@ -124,11 +128,5 @@
     <p style="color: green"><%= notice %></p>
     <p style="color: red"><%= alert %></p>
 
-  </div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6 text-center mb-5">
-      </div>
-    </div>
   </div>
 </section>
