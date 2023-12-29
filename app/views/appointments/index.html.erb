@@ -38,7 +38,7 @@
                   <form action="/appointments" method="get">
                     <div class="d-flex justify-content-end">
                       <div class="btn-group" data-toggle="buttons">
-                          <label class="btn btn-info active">
+                          <label class="btn btn-light active">
                         <input type="radio" name="status_id" value="" checked="checked"> Todas
                       </label >
                       <label class="btn btn-success">
@@ -46,9 +46,6 @@
                       </label>
                       <label class="btn btn-warning">
                         <input type="radio" name="status_id" value="1"> Agendadas
-                      </label>
-                      <label class="btn btn-danger">
-                        <input type="radio" name="status_id" value="3"> Canceladas
                       </label>
                         <%= hidden_field_tag :search, params[:search] %>
                       <button type="submit" class="btn btn-primary">Filtrar</button>

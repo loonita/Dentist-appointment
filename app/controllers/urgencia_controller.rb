@@ -1,5 +1,6 @@
 class UrgenciaController < ApplicationController
   before_action :set_urgencium, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin
 
   # GET /urgencia or /urgencia.json
   def index
