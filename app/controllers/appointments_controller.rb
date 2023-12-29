@@ -224,15 +224,22 @@ class AppointmentsController < ApplicationController
       redirect_to calendar_path, alert: "Lo sentimos, el estado de esta cita ya no se puede cambiar."
     end
   end
+
   def pending
-    if user_is_admin? || user_is_secretary? || user_is_dentist?
-      if params[:search].present?
-        @appointments = Appointment.where(status_id: 5).search_by_patient_name(params[:search]).page(params[:page]).per(10)
+    if user_is_admin? || user_is_secretary?
+      if params[:urgencia_id].present? || params[:search].present?
+        if params[:urgencia_id].present? && params[:search].present?
+          @appointments = Appointment.where(status_id: 5).where(urgencia_id: params[:urgencia_id]).search_by_patient_name(params[:search]).order(:created_at).page(params[:page]).per(10)
+        elsif params[:urgencia_id].present?
+          @appointments = Appointment.where(status_id: 5).where(urgencia_id: params[:urgencia_id]).order(:created_at).page(params[:page]).per(10)
+        elsif params[:search].present?
+          @appointments = Appointment.where(status_id: 5).search_by_patient_name(params[:search]).order(:created_at).page(params[:page]).per(10)
+        end
       else
-        @appointments = Appointment.where(status_id: 5).page(params[:page]).per(10)
+        @appointments = Appointment.where(status_id: 5).order(urgencia_id: :desc).order(:created_at).page(params[:page]).per(10)
       end
     else
-      redirect_to root_path, alert: "Lo sentimos, pero sólo puedes ver tus propias citas."
+      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
     end
   end
 
@@ -249,6 +256,18 @@ class AppointmentsController < ApplicationController
       else
         @appointments = Appointment.where.not(status_id: [1, 2, 5]).order(:start_time).page(params[:page]).per(10)
       end
+    end
+  end
+
+  def edit_p_dum
+    if user_is_dentist? || user_is_patient?
+      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+    @id_ap = params[:id_ap]
+    if Appointment.find(@id_ap).status_id == 5
+      @appointment = Appointment.find(@id_ap)
+    else
+      redirect_to root_path, alert: "Lo sentimos, esta cita no se puede editar."
     end
   end
 
@@ -348,7 +367,7 @@ class AppointmentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def appointment_params
-    params.require(:appointment).permit(:start_time, :time, :status_id, :user_id, :dentist_id)
+    params.require(:appointment).permit(:start_time, :time, :status_id, :user_id, :dentist_id, :urgencia_id, :mensaje)
   end
 end
 

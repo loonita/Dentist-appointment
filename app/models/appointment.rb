@@ -38,6 +38,10 @@ class Appointment < ApplicationRecord
     time.strftime("%H:%M")
   end
 
+  def fecha_espera
+    created_at.strftime("%d/%m/%Y")
+  end
+
   def nombre_dentista
     "Dra. #{User.find(dentist_id).name} #{User.find(dentist_id).last_name}"
   end
