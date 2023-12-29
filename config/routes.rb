@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'agendar', to: 'appointments#agendar'
   get 'agendar_d', to: 'appointments#agendar_d'
   get 'agendar_p', to: 'appointments#agendar_p'
+  get 'edit_p_dum', to: 'appointments#edit_p_dum'
   get 'espera', to: 'appointments#agendar_en_espera'
   get 'edit_p_calendar', to: 'appointments#edit_p_calendar'
   get 'edit_p_agendar', to: 'appointments#edit_p_agendar'

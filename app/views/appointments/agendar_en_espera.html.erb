@@ -17,12 +17,12 @@
 
               <div class="form-group">
                 <b><%= form.label "Dentista" %></b><br>
-                <%= form.collection_select :dentist_id, User.where(role_id: 2), :id, :name_patient, class: "form-control small-input" %>
+                <%= form.collection_select :dentist_id, User.where(role_id: 2), :id, :name_dentist, class: "form-control small-input" %>
               </div>
 
               <div class="field">
                 <b><%= form.label "Tipo urgencia" %></b><br>
-                <%= form.collection_select :urgencia_id, Urgencium.all.order(name: :asc), :id, :name %>
+                <%= form.collection_select :urgencia_id, Urgencium.all.order(id: :asc), :id, :name %>
               </div>
 
               <div class="field">
