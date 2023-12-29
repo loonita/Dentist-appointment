@@ -1,0 +1,94 @@
+<title>Citas inactivas &middot; Clínica Dental San Antonio</title>
+
+<div class="page-content page-container  d-flex  justify-content-center align-items-center" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+      <div class="col-lg-16 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+
+                <div class="col-sm-7"><h2>Citas <b>inactivas</b></h2></div>
+                <div class="col-sm-5">
+                  <%= form_tag appointments_path, method: :get, class: "form-inline" do %>
+                    <div class="search-box">
+                      <%= text_field_tag :search, params[:search], class: "search form-control", placeholder: "Buscar por nombre, apellido o rut del paciente" %>
+                    </div>
+                    <%= hidden_field_tag :status_id, params[:status_id] %>
+                  <% end %>
+                </div>
+                <p class="card-description">
+                  Historial de citas vencidas y canceladas de la Clínica San Antonio.
+                </p>
+                </div>
+
+              <form action="/inactive" method="get">
+                <div class="d-flex justify-content-end">
+                  <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-light active">
+                      <input type="radio" name="status_id" value="" checked="checked"> Todas
+                    </label >
+                    <label class="btn btn-secondary">
+                      <input type="radio" name="status_id" value="4"> Pasadas
+                    </label>
+                    <label class="btn btn-danger">
+                      <input type="radio" name="status_id" value="3"> Canceladas
+                    </label>
+                    <%= hidden_field_tag :search, params[:search] %>
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="table-responsive">
+
+                <div class="pagination">
+                  <%= paginate @appointments %>
+                </div>
+
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>ID No.</th>
+                    <th width="120px">Rut paciente</th>
+                    <th width="200px">Nombre paciente</th>
+                    <th width="120px">Rut dentista</th>
+                    <th width="200px">Nombre dentista</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Estado</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @appointments.each do |appointment| %>
+                    <tr>
+                      <td><%= appointment.id %></td>
+                      <td><%= User.find_by(id: appointment.user_id).rut_patient %></td>
+                      <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
+                      <td><%= User.find_by(id: appointment.dentist_id).rut_dentist %></td>
+                      <td><%= User.find_by(id: appointment.dentist_id).name_dentist %></td>
+                      <td><%= appointment.fecha %></td>
+                      <td><%= appointment.hora %></td>
+
+                      <% if appointment.status_id == 3 %>
+                        <td><span class="status text-danger"><%= Status.find_by(id: appointment.status_id).name %></span></td>
+                      <% elsif appointment.status_id == 4 %>
+                        <td><span class="status text-info"><%= Status.find_by(id: appointment.status_id).name %></span></td>
+                      <% end %>
+
+                      <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+
+                </table>
+                <%= paginate @appointments %>
+              </div>
+              </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

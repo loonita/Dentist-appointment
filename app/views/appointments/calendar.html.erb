@@ -14,21 +14,20 @@
               <td><span class="status text-success"> &#9632; Horas confirmadas</span></td> |
               <td><span class="status text-secondary"> &#9632; Horas pasadas</span></td>
 
+            <div class="page-content page-container d-flex justify-content-center align-items-center">
+              <br><br><br>
+              <%= form_tag calendar_path, method: :get, class: "form-inline" do %>
+                <div class="row">
+                  <div class="col-sm-8"><%= month_field_tag :start_date, params[:start_date], class: "search form-control" %></div>
+                  <div class="col-sm-2"><%= submit_tag "Ir a mes", class: "btn btn-outline-dark btn-sm" %></div>
+                </div>
+              <% end %>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
-
-
-  <div class="page-content page-container d-flex justify-content-center align-items-center">
-    <br><br><br>
-    <%= form_tag calendar_path, method: :get, class: "form-inline" do %>
-      <div class="row">
-        <div class="col-sm-8"><%= month_field_tag :start_date, params[:start_date], class: "search form-control" %></div>
-        <div class="col-sm-2"><%= submit_tag "Ir a mes", class: "btn btn-outline-dark btn-sm" %></div>
-      </div>
-    <% end %>
-  </div>
 
 
 <% if user_is_dentist? %>

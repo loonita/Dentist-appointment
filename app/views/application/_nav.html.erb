@@ -10,11 +10,14 @@
     <nav class="d-md-flex navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
       <div class="container">
         <a href="/"><img src="/assets/logo.png" width="100" height="100" href=root_path></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="fa fa-bars"></span> Menu
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse " id="ftco-nav">
-          <ul class="navbar-nav ml-auto mr-md-3">
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
             <li class="nav-item"></li>
             <li class="nav-item"></li>
             <li class="nav-item"></li>
@@ -23,9 +26,82 @@
             <li class="nav-item"><a href="/contacts/new" class="nav-link">Contacto</a></li>
 
 
+            <% if user_signed_in? %>
+
+              <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/assets/person_circle_icon.png" width="35" height="35"></a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/assets/edit_user_icon.png" width="35" height="35"> Usuarios</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <% if user_is_admin? || user_is_secretary? %>
+                       <li class="dropdown-item"><%= link_to "Nuevo usuario", users_new_path, class: "dropdown-item" %></li>
+                    <% end %>
+                    <li class="dropdown-item"><%= link_to "Lista pacientes", users_patients_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Lista dentistas", users_dentists_path, class: "dropdown-item" %></li>
+                    <% if user_is_admin? %>
+                    <li class="dropdown-item"><%= link_to "Lista secretarias", users_secretaries_path, class: "dropdown-item" %></li>
+                    <% end %>
+
+                </ul>
+              </li>
+            </ul>
+            <% end %>
+
+              <% if user_is_admin? || user_is_secretary? || user_is_patient? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/assets/calendar.jpg" width="50" height="50">Agendar</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <% if user_is_patient? %>
+                    <li class="dropdown-item"><%= link_to "Agendar Cita", agendar_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Mis citas", appointments_path, class: "dropdown-item" %></li>
+                  <% end %>
+                  <li class="dropdown-item"><%= link_to "Calendario", calendar_path, class: "dropdown-item" %></li>
+                  <% if user_is_admin? || user_is_secretary? %>
+                    <li class="dropdown-item"><%= link_to "Crear cita espera", espera_path, class: "dropdown-item"%></li>
+                  <% end %>
+                </ul>
+              </li>
+            </ul>
+                <% end %>
+
+              <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/assets/appointments_logo.jpg" width="30" height="30"> Citas</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <% if user_is_dentist? %>
+                    <li class="dropdown-item"><%= link_to "Mis citas", appointments_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Calendario", calendar_path, class: "dropdown-item" %></li>
+                  <% else %>
+                    <li class="dropdown-item"><%= link_to "Activas", appointments_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Espera", appointments_pending_path , class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Inactivas", inactive_path, class: "dropdown-item" %></li>
+                  <% end %>
+                </ul>
+              </li>
+            </ul>
+              <% end %>
+
+              <% if user_is_admin? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/assets/pen.png" width="20" height="20"> Administrar</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class="dropdown-item"><%= link_to "Roles", roles_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Estados", statuses_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Urgencias", urgencia_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Horas", morning_times_path, class: "dropdown-item" %></li>
+                </ul>
+              </li>
+            </ul>
+              <% end %>
+
+            <% end %>
+
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><% if current_user?%><b>Hola <%= current_user.name %> </b><% end %><img src="/assets/person_circle_icon.png" width="35" height="35"></a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                   <% if !user_signed_in? %>
@@ -34,40 +110,8 @@
                   <% end %>
 
                   <% if user_signed_in? %>
-
                     <li class="dropdown-item"><%= link_to "Mi Perfil", user_path(current_user), class: "dropdown-item" %></li>
-                    <li class="dropdown-item"><%= link_to "Calendario", calendar_path, class: "dropdown-item" %></li>
-
-
-                    <% if user_is_admin? || user_is_dentist? || user_is_secretary? %>
-                      <li class="dropdown-item"><%= link_to "Todas las citas", appointments_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Citas pendientes", appointments_pending_path , class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Lista dentistas", users_dentists_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Lista pacientes", users_patients_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Lista secretarias", users_secretaries_path, class: "dropdown-item" %></li>
-                <% end %>
-
-                    <% if user_is_admin? || user_is_secretary? %>
-                      <li class="dropdown-item"><%= link_to "Nuevo usuario", users_new_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Crear cita espera", espera_path, class: "dropdown-item"%></li>
-                    <% end %>
-
-                    <% if user_is_patient? %>
-                      <li class="dropdown-item"><%= link_to "Agendar Cita", agendar_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Mis citas", appointments_path, class: "dropdown-item" %></li>
-                    <% end %>
-
-
-                    <% if user_is_admin? %>
-                      <li class="dropdown-item"><%= link_to "Administrar roles", roles_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Administrar status", statuses_path, class: "dropdown-item" %></li>
-                      <li class="dropdown-item"><%= link_to "Administrar urgencias", urgencia_path, class: "dropdown-item" %></li>
-
-                    <% end %>
-
-
                     <li class="dropdown-item"><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-
                   <% end %>
 
                 </ul>

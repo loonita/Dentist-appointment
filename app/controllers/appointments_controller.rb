@@ -9,14 +9,14 @@ class AppointmentsController < ApplicationController
     if user_is_admin? || user_is_secretary?
       if params[:status_id].present? || params[:search].present?
         if params[:status_id].present? && params[:search].present?
-        @appointments = Appointment.where.not(status_id: 5).where(status_id: params[:status_id]).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+        @appointments = Appointment.where.not(status_id: [3, 4, 5]).where(status_id: params[:status_id]).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
         elsif params[:status_id].present?
-          @appointments = Appointment.where.not(status_id: 5).where(status_id: params[:status_id]).order(:start_time).page(params[:page]).per(10)
+          @appointments = Appointment.where.not(status_id: [3, 4, 5]).where(status_id: params[:status_id]).order(:start_time).page(params[:page]).per(10)
         elsif params[:search].present?
-          @appointments = Appointment.where.not(status_id: 5).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+          @appointments = Appointment.where.not(status_id: [3, 4, 5]).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
         end
       else
-        @appointments = Appointment.where.not(status_id: 5).order(:start_time).page(params[:page]).per(10)
+        @appointments = Appointment.where.not(status_id: [3, 4, 5]).order(:start_time).page(params[:page]).per(10)
       end
     end
 
@@ -233,6 +233,22 @@ class AppointmentsController < ApplicationController
       end
     else
       redirect_to root_path, alert: "Lo sentimos, pero sólo puedes ver tus propias citas."
+    end
+  end
+
+  def inactive
+    if user_is_admin? || user_is_secretary?
+      if params[:status_id].present? || params[:search].present?
+        if params[:status_id].present? && params[:search].present?
+          @appointments = Appointment.where.not(status_id: [1, 2, 5]).where(status_id: params[:status_id]).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+        elsif params[:status_id].present?
+          @appointments = Appointment.where.not(status_id: [1, 2, 5]).where(status_id: params[:status_id]).order(:start_time).page(params[:page]).per(10)
+        elsif params[:search].present?
+          @appointments = Appointment.where.not(status_id: [1, 2, 5]).search_by_patient_name(params[:search]).order(:start_time).page(params[:page]).per(10)
+        end
+      else
+        @appointments = Appointment.where.not(status_id: [1, 2, 5]).order(:start_time).page(params[:page]).per(10)
+      end
     end
   end
 

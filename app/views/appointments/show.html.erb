@@ -6,17 +6,22 @@
 
 <% if @appointment.status_id != 5 %>
   <% if user_is_secretary? || user_is_admin? && @appointment.start_time > Time.now - 1.day %>
-    <%= link_to "Editar estado cita", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %> |
+    <%= link_to "Editar estado cita", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %>
   <% end %>
   <% if user_is_patient? %>
     <% if @appointment.status_id == 1 && @appointment.start_time < Time.now + 3.day %>
-      <%= link_to "Para confirmar o cancelar tu cita haz clic aquí", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %> |
+      <%= link_to "Para confirmar o cancelar tu cita haz clic aquí", edit_appointment_path(@appointment), class: "btn btn-primary btn-sm" %>
     <% end %>
   <% end %>
 <% end %>
-
+  <br><br>
   <%= link_to "Ir a Calendario", calendar_path, class: "btn btn-outline-primary btn-sm"%> |
-  <%= link_to "Ir a todas las citas", appointments_path , class: "btn btn-outline-info btn-sm"%>
+  <%= link_to "Ir a Citas", appointments_path , class: "btn btn-outline-success btn-sm"%>
+
+  <% if user_is_admin? || user_is_secretary? %>
+    | <%= link_to "Ir a Citas espera", appointments_pending_path, class: "btn btn-outline-info btn-sm"%>
+    | <%= link_to "Ir a Citas inactivas", inactive_path, class: "btn btn-outline-secondary btn-sm" %>
+  <% end %>
 
   <br><br>
   <% if user_is_admin? %>
