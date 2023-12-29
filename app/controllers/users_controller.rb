@@ -94,9 +94,9 @@ class UsersController < ApplicationController
   def secretaries
     if user_is_patient? || user_is_secretary? || user_is_dentist?
       redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
+    else
+      @secretaries = User.where(role_id: 3).order(:last_name).page(params[:page]).per(10)
     end
-
-    @secretaries = User.where(role_id: 3).order(:last_name).page(params[:page]).per(10)
   end
 
   def new

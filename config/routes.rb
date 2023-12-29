@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   root "application#index"
 
   get 'servicios', to: 'application#servicios'
-  get 'contacto', to: 'application#contacto'
+  get 'ubicacion', to: 'application#ubicacion'
   get 'calendar', to: 'appointments#calendar'
   get 'agendar', to: 'appointments#agendar'
   get 'agendar_d', to: 'appointments#agendar_d'

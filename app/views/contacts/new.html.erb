@@ -1,11 +1,7 @@
-
-
-
-
 <title>Contáctanos &middot; Clínica Dental San Antonio</title>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,85 +18,53 @@
           <div class="row no-gutters mb-5">
             <div class="col-md-7">
               <div class="contact-wrap w-100 p-md-5 p-4">
-                <h3 class="mb-4">Contáctanos</h3>
+                <h2>Contáctanos</h2>
+
                 <%= form_for @contact do |f| %>
-                  <% if flash[:error].present? %>
-                    <p> flash[:error]</p>
-                  <% end %>
-                  <%= f.label :nombre %> <br>
-                  <%= f.text_field :nombre, required: true %>
-                  <br>
-                  <%= f.label :email %> <br>
-                  <%= f.email_field :email, required: true %>
-                  <br>
-                  <%= f.label :telefono %> <br>
-                  <%= f.text_field :telefono, required: true %>
-                  <br>
-                  <%= f.label :mensaje %> <br>
-                  <%= f.text_area :mensaje, as: :text %>
+                    <% if flash[:error].present? %>
+                         <p> flash[:error]</p>
+                    <% end %>
 
-                  <br>
-
-                  <%= f.submit 'Enviar mensaje', class: "button" %>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="label" for="name">Nombre</label>
+                        <%= f.text_field :nombre, required: true, class: "form-control" %>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="label" for="subject">Teléfono</label>
+                        <%= f.text_field :telefono, required: true, class: "form-control" %>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="label" for="email">Correo electrónico</label>
+                        <%= f.email_field :email, required: true, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="label" for="#">Mensaje</label>
+                        <%= f.text_area :mensaje, as: :text, class: "form-control" %>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group"><br>
+                        <%= f.submit 'Enviar mensaje', class: "btn btn-primary" %>
+                      </div>
+                    </div>
+                  </div>
                 <% end %>
-
-
-
-
               </div>
             </div>
             <div class="col-md-5 d-flex align-items-stretch">
-              <div id="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d812.7579336810944!2d-71.64732368245666!3d-35.429243876291416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9665c6b90f8706a5%3A0x62cc9940381fd3cb!2sAv.%20Dos%20Sur%201947%2C%20Talca%2C%20Maule!5e0!3m2!1ses!2scl!4v1703516340969!5m2!1ses!2scl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div class="row">
+                <img src="<%= asset_path('mediosdecontacto.png') %>" width="400" height="400">
               </div>
             </div>
           </div>
-
-          <div class="row">
-            <div class="col-md-3">
-              <div class="dbox w-100 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                  <span class="fa fa-map-marker"></span>
-                </div>
-                <div class="text">
-                  <p> 12 Oriente 2 Sur 1947, Talca &middot;  Galería Patricia Ramírez - Local 19. </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="dbox w-100 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                  <span class="fa fa-phone"></span>
-                </div>
-                <div class="text">
-                  <p>(71) 2714300</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="dbox w-100 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                  <span class="fa fa-whatsapp"></span>
-                </div>
-                <div class="text">
-                  <p>+56994937365</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="dbox w-100 text-center">
-                <div class="icon d-flex align-items-center justify-content-center">
-                  <span class="fa fa-paper-plane"></span>
-                </div>
-                <div class="text">
-                  <p>SanAntonio@gmail.com EDITARS</p>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
