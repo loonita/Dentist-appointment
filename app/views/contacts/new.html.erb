@@ -1,25 +1,4 @@
-<%= form_for @contact do |f| %>
-  <% if flash[:error].present? %>
-    <p> flash[:error]</p>
-  <% end %>
-  <%= f.label :name %> <br>
-  <%= f.text_field :name, required: true %>
 
-  <br>
-  <%= f.label :email %> <br>
-  <%= f.text_field :email, required: true %>
-
-  <br>
-  <%= f.label :message %> <br>
-  <%= f.text_area :message, as: :text %>
-
-
-  <%= f.label :nickname %> <br>
-  <%= f.text_field :nickname, hint: 'leave this field blank' %>
-
-
-  <%= f.submit 'Send Message', class: "button" %>
-<% end %>
 
 
 
@@ -44,50 +23,30 @@
             <div class="col-md-7">
               <div class="contact-wrap w-100 p-md-5 p-4">
                 <h3 class="mb-4">Contáctanos</h3>
-
                 <%= form_for @contact do |f| %>
                   <% if flash[:error].present? %>
                     <p> flash[:error]</p>
                   <% end %>
+                  <%= f.label :nombre %> <br>
+                  <%= f.text_field :nombre, required: true %>
+                  <br>
+                  <%= f.label :email %> <br>
+                  <%= f.email_field :email, required: true %>
+                  <br>
+                  <%= f.label :telefono %> <br>
+                  <%= f.text_field :telefono, required: true %>
+                  <br>
+                  <%= f.label :mensaje %> <br>
+                  <%= f.text_area :mensaje, as: :text %>
 
+                  <br>
 
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="label" for="name">Nombre</label>
-                        <%= f.text_field :name, required: true, class: "form-control" %>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="label" for="email">Correo electrónico</label>
-                        <%= f.text_field :email, required: true, class: "form-control" %>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="label" for="subject">Asunto</label>
-                        <%= f.text_field :nickname, hint: 'leave this field blank', class: "form-control"  %>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="label" for="#">Mensaje</label>
-                        <%= f.text_area :message, as: :text, class: "form-control" %>
-                      </div>
-                    </div>
-  <br>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <%= f.submit 'Enviar mensaje', class: "btn btn-primary" %>
-                      </div>
-                    </div>
-
-                  </div>
+                  <%= f.submit 'Enviar mensaje', class: "button" %>
                 <% end %>
+
+
+
+
               </div>
             </div>
             <div class="col-md-5 d-flex align-items-stretch">
