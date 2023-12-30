@@ -3,11 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
   NOMBRE_REGEX = /[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]/
 
   has_many :appointments
   include PatientSearchable
+  include Chilean::Rutifiable
+
   belongs_to :role
 
   validates :name, :last_name, :phone, :role_id, presence: true
@@ -15,8 +16,7 @@ class User < ApplicationRecord
   validates_format_of :name, :last_name, :with => NOMBRE_REGEX
   validates :phone , length: { minimum: 9, maximum: 9 }, numericality: { only_integer: true }
 
-
-
+  self.rut_format = :classic #(optional) options: [:classic, :normalized, :nil] (nil = no override, default: :classic)
 
   def name_dentist
     "Dra. #{name} #{last_name}"
@@ -42,10 +42,7 @@ class User < ApplicationRecord
     "#{role_id}"
   end
 
-
   def rut_patient
     "#{rut}"
   end
-
-
 end
