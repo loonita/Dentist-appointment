@@ -61,7 +61,7 @@
                   <% end %>
                   <li class="dropdown-item"><%= link_to "Calendario", calendar_path, class: "dropdown-item" %></li>
                   <% if user_is_admin? || user_is_secretary? %>
-                    <li class="dropdown-item"><%= link_to "Crear cita espera", espera_path, class: "dropdown-item"%></li>
+                    <li class="dropdown-item"><%= link_to "Crear cita espera", espera_paciente_path, class: "dropdown-item"%></li>
                   <% end %>
                 </ul>
               </li>

@@ -15,12 +15,12 @@
 
     <div class="form-group">
       <b><%= form.label "Rut paciente" %></b>
-      <%= form.label :dentist_id, value: @patient_rut %>
+      <%= User.find_by(id: @patient_recibido).rut %>
     </div>
 
     <div class="form-group">
       <b><%= form.label "Paciente" %></b>
-      <%= form.label :dentist_id, value: @patient_name %>
+      <%= User.find_by(id: @patient_recibido).name_patient %>
       <%= form.hidden_field :user_id, value: @patient_recibido %>
     </div>
 
@@ -29,11 +29,14 @@
   <% end %>
 
   <div class="form-group">
+    <b><%= form.label "Rut dentista" %></b>
+    <%= User.find_by(id: @dentist_recibido).rut %>
+  </div>
+
+  <div class="form-group">
     <b><%= form.label "Dentista" %></b>
-
-      <%= form.label :dentist_id, value: @dentist_name %>
+    <%= User.find_by(id: @dentist_recibido).name_dentist %>
       <%= form.hidden_field :dentist_id, value: @dentist_recibido %>
-
   </div>
 
   <div class="form-group">
