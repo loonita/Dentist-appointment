@@ -111,6 +111,18 @@ class AppointmentsController < ApplicationController
     @dentist_recibido = params[:dentist_t]
   end
 
+  def espera_paciente
+    if user_is_dentist? || user_is_patient?
+      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+
+    if params[:search].present?
+      @patients = User.where(role_id: 1).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(10)
+    else
+      @patients = User.where(role_id: 1).order(:last_name).page(params[:page]).per(10)
+    end
+  end
+
   def agendar_en_espera
     if user_is_dentist? || user_is_patient?
       redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
@@ -118,6 +130,7 @@ class AppointmentsController < ApplicationController
 
     @appointment = Appointment.new
     @all_appointments = Appointment.all
+    @patient_recibido = params[:patient_t]
   end
 
   def agendar_espera
@@ -169,12 +182,9 @@ class AppointmentsController < ApplicationController
 
     if user_is_admin? || user_is_secretary?
       @patient_recibido = params[:patient_t]
-      @patient_name = User.find_by(id: @patient_recibido).name + " " + User.find_by(id: @patient_recibido).last_name
-      @patient_rut = User.find_by(id: @patient_recibido).rut
     end
 
     @dentist_recibido = params[:dentist_t]
-    @dentist_name = "Dra. " + User.find_by(id: @dentist_recibido).name + " " + User.find_by(id: @dentist_recibido).last_name
 
     @horas_agendadas = Appointment.where("DATE(start_time) = ? AND dentist_id = ? AND status_id = ?", @fecha_recibida, @dentist_recibido, 1).pluck(:time)
     @horas_confirmadas = Appointment.where("DATE(start_time) = ? AND dentist_id = ? AND status_id = ?", @fecha_recibida, @dentist_recibido, 2).pluck(:time)
