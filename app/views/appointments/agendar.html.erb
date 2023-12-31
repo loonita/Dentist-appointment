@@ -14,9 +14,14 @@
               Haz clic en el día que quieres agendar tu cita.
             </p>
 
+            <% @no_appointments = false %>
               <%= month_calendar() do |date| %>
-                <div class="day">
+                <% if date > Time.now + 1.year + 1.week %>
+                  <% @no_appointments = true %>
+                  <% break %>
+                <% end %>
 
+                <div class="day">
                   <% if date < Time.now %>
                     <%= date.day %>
                   <% else %>
@@ -26,12 +31,20 @@
                       <%= link_to date.day, agendar_d_path(:fecha_t => date) %>
                     <% end %>
                   <% end %>
-
                 </div>
                 </div>
               <% end %>
 
+            <% if @no_appointments %>
+              <div class="alert alert-danger" role="alert">
+                No hay citas disponibles más allá de 12 meses.
+              </div>
+            <% end %>
+
             <div class="form-group">
+              <% if @no_appointments %>
+                <%= link_to "Volver", agendar_path, class: "btn btn-outline-primary btn-sm" %>
+              <% end %>
               <%= link_to "Cancelar", calendar_path, class: "btn btn-outline-danger btn-sm" %>
             </div>
 
