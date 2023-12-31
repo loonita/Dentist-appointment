@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_155515) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_31_152716) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "unaccent"
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_155515) do
     t.boolean "should_sum_start_time", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "dentist_id", "start_time", "time"], name: "idx_on_user_id_dentist_id_start_time_time_090a602c92", unique: true, where: "(status_id = ANY (ARRAY[1, 2]))"
   end
 
   create_table "morning_times", force: :cascade do |t|

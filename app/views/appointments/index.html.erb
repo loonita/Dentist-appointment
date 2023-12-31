@@ -51,11 +51,15 @@
                     <div class="d-flex justify-content-end">
                       <div class="btn-group" data-toggle="buttons">
 
+                  <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
                       <label class="btn btn-light active">
-                        <input type="radio" name="status_id" value="" > Todas
+                        <input type="radio" name="status_id" value="" checked="checked"> Todas
                       </label >
-
+                  <% end %>
                      <% if user_is_patient? %>
+                        <label class="btn btn-light active">
+                          <input type="radio" name="status_id" value="" > Todas
+                        </label >
                         <label class="btn btn-info active">
                           <input type="radio" name="status_id" value="8" checked="checked"> Activas
                         </label >
