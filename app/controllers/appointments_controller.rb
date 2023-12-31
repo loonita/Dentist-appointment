@@ -13,8 +13,14 @@ class AppointmentsController < ApplicationController
           appointments = appointments.where(status_id: params[:status_id]) if params[:status_id].present?
           appointments = appointments.search_by_patient_name(params[:search]) if params[:search].present?
         elsif user_is_patient?
+          appointments = Appointment.where.not(status_id: 5)
           appointments = appointments.where(user_id: current_user.id)
+          if params[:status_id] == '8'
+            appointments = appointments.where(status_id: [1, 2].map(&:to_i))
+          else
           appointments = appointments.where(status_id: params[:status_id]) if params[:status_id].present?
+          end
+
         elsif user_is_dentist?
           appointments = appointments.where(dentist_id: current_user.id)
           appointments = appointments.where(status_id: params[:status_id]) if params[:status_id].present?
@@ -38,7 +44,7 @@ class AppointmentsController < ApplicationController
         if user_is_admin? || user_is_secretary?
         @appointments = appointments.where.not(status_id: [3, 4, 5]).order(:start_time).page(params[:page]).per(10)
         elsif user_is_patient?
-          @appointments = appointments.where.not(status_id: [3, 4, 5]).where(user_id: current_user.id).order(:start_time).page(params[:page]).per(10)
+          @appointments = Appointment.where.not(status_id: 5).where(user_id: current_user.id).order(:start_time).page(params[:page]).per(10)
         elsif user_is_dentist?
           @appointments = appointments.where.not(status_id: [3, 4, 5]).where(dentist_id: current_user.id).order(:start_time).page(params[:page]).per(10)
         end
