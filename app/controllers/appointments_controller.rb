@@ -379,16 +379,25 @@ class AppointmentsController < ApplicationController
 
 # POST /appointments or /appointments.json
   def create
-    @appointment = Appointment.new(appointment_params)
+    begin
+      @appointment = Appointment.new(appointment_params)
 
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to appointment_url(@appointment), notice: "La cita fue creada exitoamente." }
-        format.json { render :show, status: :created, location: @appointment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @appointment.save
+          format.html { redirect_to appointment_url(@appointment), notice: "La cita fue creada exitoamente." }
+          format.json { render :show, status: :created, location: @appointment }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        end
       end
+
+    rescue ActiveRecord::RecordNotUnique => e
+      flash[:notice] = "La cita ya existe."
+      redirect_to calendar_path
+    rescue => e
+      flash[:alert] = "Ocurrió un error al crear la cita."
+      redirect_to calendar_path
     end
   end
 

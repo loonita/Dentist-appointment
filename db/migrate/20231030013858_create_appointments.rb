@@ -12,6 +12,7 @@ class CreateAppointments < ActiveRecord::Migration[7.1]
       t.boolean :should_sum_start_time, null: false, default: true
 
       t.timestamps
+
     end
   end
 end
