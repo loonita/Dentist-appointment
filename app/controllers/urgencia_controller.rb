@@ -26,7 +26,7 @@ class UrgenciaController < ApplicationController
 
     respond_to do |format|
       if @urgencium.save
-        format.html { redirect_to urgencium_url(@urgencium), notice: "Urgencium was successfully created." }
+        format.html { redirect_to urgencium_url(@urgencium), notice: "Urgencia creada exitosamente." }
         format.json { render :show, status: :created, location: @urgencium }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class UrgenciaController < ApplicationController
   def update
     respond_to do |format|
       if @urgencium.update(urgencium_params)
-        format.html { redirect_to urgencium_url(@urgencium), notice: "Urgencium was successfully updated." }
+        format.html { redirect_to urgencium_url(@urgencium), notice: "Urgencia editada exitosamente." }
         format.json { render :show, status: :ok, location: @urgencium }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class UrgenciaController < ApplicationController
     @urgencium.destroy!
 
     respond_to do |format|
-      format.html { redirect_to urgencia_url, notice: "Urgencium was successfully destroyed." }
+      format.html { redirect_to urgencia_url, notice: "Urgencia ha sido eliminada." }
       format.json { head :no_content }
     end
   end

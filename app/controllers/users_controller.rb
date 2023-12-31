@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     end
     @user = User.find(params[:id])
     if current_user != @user && !user_is_admin? && !user_is_secretary?
-      redirect_to root_path, notice: "Lo sentimos, pero sólo puedes ver tu propia página de perfil."
+      redirect_to root_path, notice: "Lo sentimos, solo puedes ver tu propio perfil."
     end
   end
 
