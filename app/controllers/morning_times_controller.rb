@@ -26,7 +26,7 @@ class MorningTimesController < ApplicationController
 
     respond_to do |format|
       if @morning_time.save
-        format.html { redirect_to morning_time_url(@morning_time), notice: "Morning time was successfully created." }
+        format.html { redirect_to morning_time_url(@morning_time), notice: "La hora fue creada correctamente." }
         format.json { render :show, status: :created, location: @morning_time }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class MorningTimesController < ApplicationController
   def update
     respond_to do |format|
       if @morning_time.update(morning_time_params)
-        format.html { redirect_to morning_time_url(@morning_time), notice: "Morning time was successfully updated." }
+        format.html { redirect_to morning_time_url(@morning_time), notice: "La hora fue actualizada correctamente." }
         format.json { render :show, status: :ok, location: @morning_time }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class MorningTimesController < ApplicationController
     @morning_time.destroy!
 
     respond_to do |format|
-      format.html { redirect_to morning_times_url, notice: "Morning time was successfully destroyed." }
+      format.html { redirect_to morning_times_url, notice: "La hora fue eliminada." }
       format.json { head :no_content }
     end
   end
