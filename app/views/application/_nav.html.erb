@@ -43,7 +43,8 @@
                     <li class="dropdown-item"><%= link_to "Lista dentistas", users_dentists_path, class: "dropdown-item" %></li>
                     <% if user_is_admin? %>
                     <li class="dropdown-item"><%= link_to "Lista secretarias", users_secretaries_path, class: "dropdown-item" %></li>
-                    <% end %>
+                    <li class="dropdown-item"><%= link_to "Lista inactivos", users_inactivos_path, class: "dropdown-item" %></li>
+                  <% end %>
 
                 </ul>
               </li>
