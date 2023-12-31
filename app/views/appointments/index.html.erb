@@ -36,9 +36,22 @@
                 <% end %>
 
                   <form action="/appointments" method="get">
+
+                  <div class="d-flex justify-content-end">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-secondary">
+                        Inicio <input type="date" name="start_date" value="">
+                      </label >
+                      <label class="btn btn-secondary">
+                        Fin <input type="date" name="end_date" value="">
+                      </label >
+                    </div>
+                  </div>
+
                     <div class="d-flex justify-content-end">
                       <div class="btn-group" data-toggle="buttons">
-                          <label class="btn btn-light active">
+
+                      <label class="btn btn-light active">
                         <input type="radio" name="status_id" value="" checked="checked"> Todas
                       </label >
                       <label class="btn btn-success">

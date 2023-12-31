@@ -1,0 +1,73 @@
+<title>Inactivo &middot; Clínica Dental San Antonio</title>
+
+<div class="page-content page-container d-flex justify-content-center align-items-center" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-16 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-7"><h2>Lista <b>inactivos</b></h2></div>
+
+              <div class="col-sm-5">
+                  <%= form_tag users_dentists_path, method: :get, class: "form-inline" do %>
+                    <div class="search-box">
+                      <%= text_field_tag :search, params[:search], class: "search form-control", placeholder: "Buscar por nombre, apellido o rut del usuario" %>
+                    </div>
+                  <% end %>
+              </div>
+
+              <p class="card-description">
+                Lista de usuarios inactivos de la Clínica San Antonio.
+              </p>
+            </div>
+
+            <div class="table-responsive">
+              <div class="pagination">
+                <br>
+                <%= paginate @inactivos %>
+              </div>
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>ID No.</th>
+                  <th width = "120px">RUT</th>
+                  <th width="180px">Nombres</th>
+                  <th width="180px">Apellidos</th>
+                  <th>Correo electrónico</th>
+                  <th>Número telefónico</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <% @inactivos.each do |inactivo| %>
+                  <tr>
+                    <td><%= inactivo.id %></td>
+                    <td><%= inactivo.rut %></td>
+                    <td><%= inactivo.name %></td>
+                    <td><%= inactivo.last_name %></td>
+                    <td><%= inactivo.email %></td>
+                    <td><%= inactivo.phone %></td>
+
+                    <td><%= link_to "Ver", inactivo, class: "btn btn-secondary" %></td>
+
+                <% end %>
+
+                </tbody>
+
+              </table>
+              <div class="pagination">
+                <br>
+                <%= paginate @inactivos %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br> <br> <br> <br>

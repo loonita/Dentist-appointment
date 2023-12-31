@@ -14,7 +14,7 @@
               <% if user_is_admin? %>
                 <div class="field">
                   <b><%= f.label :role %></b><br />
-                  <%= f.collection_select :role_id, Role.all.order(name: :asc), :id, :name %>
+                  <%= f.collection_select :role_id, Role.all.order(id: :asc), :id, :name %>
                 </div>
               <% end %> <br />
 

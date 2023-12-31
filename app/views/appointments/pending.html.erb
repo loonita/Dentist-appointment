@@ -22,19 +22,31 @@
                 </div>
 
             <form action="/appointments/pending" method="get">
+
+              <div class="d-flex justify-content-end">
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-secondary">
+                    Inicio <input type="date" name="start_date" value="">
+                  </label >
+                  <label class="btn btn-secondary">
+                    Fin <input type="date" name="end_date" value="">
+                  </label >
+                </div>
+              </div>
+
               <div class="d-flex justify-content-end">
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-light active">
                     <input type="radio" name="urgencia_id" value="" checked="checked"> Todas
                   </label >
                   <label class="btn btn-danger">
-                    <input type="radio" name="urgencia_id" value="3"> Alta
+                    <input type="radio" name="urgencia_id" value="3">  Alta
                   </label>
                   <label class="btn btn-warning">
                     <input type="radio" name="urgencia_id" value="2"> Media
                   </label>
                   <label class="btn btn-success">
-                    <input type="radio" name="urgencia_id" value="1"> baja
+                    <input type="radio" name="urgencia_id" value="1">  Baja
                   </label>
                   <%= hidden_field_tag :search, params[:search] %>
                   <button type="submit" class="btn btn-primary">Filtrar</button>
