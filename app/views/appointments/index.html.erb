@@ -52,15 +52,31 @@
                       <div class="btn-group" data-toggle="buttons">
 
                       <label class="btn btn-light active">
-                        <input type="radio" name="status_id" value="" checked="checked"> Todas
+                        <input type="radio" name="status_id" value="" > Todas
                       </label >
+
+                     <% if user_is_patient? %>
+                        <label class="btn btn-info active">
+                          <input type="radio" name="status_id" value="8" checked="checked"> Activas
+                        </label >
+                    <% end %>
+
                       <label class="btn btn-success">
                         <input type="radio" name="status_id" value="2"> Confirmadas
                       </label>
                       <label class="btn btn-warning">
                         <input type="radio" name="status_id" value="1"> Agendadas
                       </label>
-                        <%= hidden_field_tag :search, params[:search] %>
+
+                    <% if user_is_patient? %>
+                      <label class="btn btn-danger">
+                        <input type="radio" name="status_id" value="3"> Canceladas
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="status_id" value="4"> Pasadas
+                      </label>
+                    <% end %>
+
                       <button type="submit" class="btn btn-primary">Filtrar</button>
                     </div>
                   </div>

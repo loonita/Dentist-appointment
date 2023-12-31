@@ -58,7 +58,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <% if user_is_patient? %>
                     <li class="dropdown-item"><%= link_to "Agendar Cita", agendar_path, class: "dropdown-item" %></li>
-                    <li class="dropdown-item"><%= link_to "Mis citas", appointments_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Mis citas", appointments_path(:status_id => '8'), class: "dropdown-item" %></li>
                   <% end %>
                   <li class="dropdown-item"><%= link_to "Calendario", calendar_path, class: "dropdown-item" %></li>
                   <% if user_is_admin? || user_is_secretary? %>
