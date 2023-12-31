@@ -149,27 +149,35 @@ class AppointmentsController < ApplicationController
   end
 
   def agendar_espera
-    if user_is_admin? || user_is_secretary?
-      return if params[:appointment].nil?
+    begin
+      if user_is_admin? || user_is_secretary?
+        return if params[:appointment].nil?
 
-      user_id = params[:appointment][:user_id].to_i
-      dentist_id = params[:appointment][:dentist_id].to_i
-      status_id = params[:appointment][:status].to_i
-      urgencia_id = params[:appointment][:urgencia_id].to_i
-      mensaje = params[:appointment][:mensaje]
+        user_id = params[:appointment][:user_id].to_i
+        dentist_id = params[:appointment][:dentist_id].to_i
+        status_id = params[:appointment][:status].to_i
+        urgencia_id = params[:appointment][:urgencia_id].to_i
+        mensaje = params[:appointment][:mensaje]
 
-      appointment = Appointment.new(:user_id => user_id, :dentist_id => dentist_id, :status_id => status_id, :urgencia_id => urgencia_id, :mensaje => mensaje)
+        appointment = Appointment.new(:user_id => user_id, :dentist_id => dentist_id, :status_id => status_id, :urgencia_id => urgencia_id, :mensaje => mensaje)
 
-      respond_to do |format|
-        if appointment.save!
-          format.html { redirect_to appointment_path(appointment), :notice => 'Cita en lista de espera creada exitosamente!' }
-        else
-          format.html { redirect_to espera_path, :status => :unprocessable_entity }
+        respond_to do |format|
+          if appointment.save!
+            format.html { redirect_to appointment_path(appointment), :notice => 'Cita en lista de espera creada exitosamente!' }
+          else
+            format.html { redirect_to espera_path, :status => :unprocessable_entity }
+          end
         end
+      else
+        redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
       end
-    else
-      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
-    end
+  rescue ActiveRecord::RecordNotUnique => e
+    flash[:alert] = "El paciente ya se encuentra en lista de espera."
+    redirect_to appointments_pending_path
+  rescue => e
+    flash[:alert] = "Ocurrió un error al crear la cita."
+    redirect_to appointments_pending_path
+  end
   end
 
   # GET /appointments/1 or /appointments/1.json

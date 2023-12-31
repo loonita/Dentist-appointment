@@ -21,6 +21,15 @@
                 </p>
                 </div>
 
+            <div class="row">
+              <div class="col-sm-3">
+            <% if user_is_admin? || user_is_secretary? %>
+              <%= link_to "Crear cita en espera",espera_paciente_path, class: "btn btn-success" %>
+              <br> <br>
+            <% end %>
+              </div>
+
+              <div class="col-sm-9">
             <form action="/appointments/pending" method="get">
 
               <div class="d-flex justify-content-end">
@@ -53,8 +62,10 @@
                 </div>
               </div>
             </form>
+              </div>
 
               <div class="table-responsive">
+
 
                 <div class="pagination">
                   <%= paginate @appointments %>
@@ -114,5 +125,7 @@
   </div>
 </div>
 </div>
+</div>
 
+  <br><br><br><br>
 
