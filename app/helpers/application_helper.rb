@@ -18,6 +18,10 @@ module ApplicationHelper
     user && user.role_id == 1
   end
 
+  def user_is_inactive?(user = current_user)
+    user && user.role_id == 5
+  end
+
   def current_user?(user = current_user)
     user
   end

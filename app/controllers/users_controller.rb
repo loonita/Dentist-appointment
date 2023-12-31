@@ -63,12 +63,10 @@ class UsersController < ApplicationController
     else
       @patients = User.where(role_id: 1).order(:last_name)
     end
-
-
   end
 
   def dentists
-    if user_is_patient?
+    if user_is_patient? || user_is_inactive?
       redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
     end
 
@@ -80,7 +78,7 @@ class UsersController < ApplicationController
   end
 
   def patients
-    if user_is_patient?
+    if user_is_patient? || user_is_inactive?
       redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
     end
 
@@ -92,22 +90,36 @@ class UsersController < ApplicationController
   end
 
   def secretaries
-    if user_is_patient? || user_is_secretary? || user_is_dentist?
-      redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
-    else
+    if user_is_admin?
       @secretaries = User.where(role_id: 3).order(:last_name).page(params[:page]).per(10)
+    else
+      redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
+    end
+  end
+
+  def inactivos
+    if user_is_admin?
+      if params[:search].present?
+        @inactivos = User.where(role_id: 5).search_by_name(params[:search]).order(:last_name).page(params[:page]).per(10)
+      else
+        @inactivos = User.where(role_id: 5).order(:last_name).page(params[:page]).per(10)
+      end
+    else
+      redirect_to root_path, notice: "Lo sentimos, no puedes ver esta página."
     end
   end
 
   def new
-    @user = User.new
+    if user_is_admin? || user_is_secretary?
+      @user = User.new
+    else
+      redirect_to root_path, alert: "Lo sentimos, no puedes realizar esta acción."
+    end
   end
   def create
     user = User.new(:name => params[:name], :last_name => params[:last_name], :email => params[:email], :rut => params[:rut], :phone => params[:phone],  :password => params[:password])
     user.save ? (redirect_to root_path, :notice => 'Usuario creado con éxito.') : (redirect_to root_path, :status => :unprocessable_entity)
   end
-
-
 
 end
 
