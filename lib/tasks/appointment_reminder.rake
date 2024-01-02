@@ -10,7 +10,7 @@ namespace :appointment_reminders do
     end
   end
   desc "Envia recordatorios a los pacientes 6 meses después de su última cita agendada."
-  task send_followup_reminder: :environment do
+  task send_followup_reminders: :environment do
     User.all.each do |u|
       next if u.role_id != 1  # si no es paciente, pasamos al siguiente usuario
       next if u.appointments.none? # si no ha tenido citas, pasamos al siguiente usuario
