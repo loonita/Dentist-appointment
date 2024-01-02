@@ -19,7 +19,7 @@ namespace :appointment_reminders do
       next if last_appointment.nil?
       next if last_appointment.start_time.to_date != Date.today - 6.months
 
-      UserMailer.followup_reminder(u).deliver_now
+      UserMailer.appointment_followup_reminder(u).deliver_now
     end
   end
 end
