@@ -14,14 +14,12 @@ namespace :appointment_reminders do
     User.all.each do |u|
       next if u.role_id != 1  # si no es paciente, pasamos al siguiente usuario
       next if u.appointments.none? # si no ha tenido citas, pasamos al siguiente usuario
+      last_appointment = u.appointments.max_by { |a| a[:start_time] }
 
-      sorted_appointments = u.appointments.max_by { |s| s[:start_time] }  # ordenamos por fecha de cita
-      next if sorted_appointments.nil? || sorted_appointments.empty?
+      next if last_appointment.nil?
+      next if last_appointment.start_time.to_date != Date.today - 6.months
 
-      last_appointment = sorted_appointments.first  # tomamos la última cita del paciente
-      next if last_appointment.start_time != Date.today - 6.months # pasamos al siguiente paciente si la cita no fue exactamente 6 meses atrás
-
-      UserMailer.appointment_reminder(u).deliver_now
+      UserMailer.followup_reminder(u).deliver_now
     end
   end
 end
