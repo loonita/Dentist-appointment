@@ -14,4 +14,6 @@ end
 every 1.day, :at => '12:00 am' do
   rake "appointments:actualizar_estado"
 end
-
+every 1.day, :at => '12:00 am' do
+  rake "appointment_reminders:send_followup_reminders"
+end
