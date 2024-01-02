@@ -21,6 +21,6 @@ class UserMailer < ApplicationMailer
   end
 
   def followup_reminder(user)
-    mail to: user.mail, subject: "Recordatorio periodico de 6 meses"
+    mail to: user.email, subject: "Recordatorio periodico de 6 meses"
   end
 end
