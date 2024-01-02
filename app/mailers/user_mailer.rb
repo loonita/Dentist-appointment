@@ -19,4 +19,8 @@ class UserMailer < ApplicationMailer
   def appointment_reminder(user)
     mail to: user.email , :subject => "Appointment Reminder"
   end
+
+  def followup_reminder(user)
+    mail to: user.mail, subject: "Recordatorio periodico de 6 meses"
+  end
 end
