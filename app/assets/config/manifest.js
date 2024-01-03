@@ -1,3 +1,2 @@
 //= link_tree ../images
-//= link_tree ../
-
+//= link_tree ../builds

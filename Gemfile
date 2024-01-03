@@ -83,3 +83,5 @@ gem "cssbundling-rails", "~> 1.3"
 gem "simple_calendar", "~> 2.4"
 
 gem 'kaminari'
+
+gem "sassc-rails", "~> 2.1"
