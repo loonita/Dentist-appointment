@@ -71,7 +71,7 @@ class Appointment < ApplicationRecord
 
   
   def send_email
-    UserMailer.appointment_confirmation(user).deliver
+    UserMailer.appointment_confirmation(user, self).deliver
   end
 
   private

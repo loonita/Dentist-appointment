@@ -1,1 +1,3 @@
 <h1> Recordatorio</h1>
+<%= @name %> te recordamos que tienes una cita el <%= @appointment.start_time %> , con la dentista <%= @dentist.name %>
+<%= link_to "Click aquí para confirmar cita", edit_appointment_url(@appointment), :class => "btn btn-primary" %>

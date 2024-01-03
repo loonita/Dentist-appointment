@@ -5,7 +5,7 @@ namespace :appointment_reminders do
       next if a.start_time.nil?
 
       if a.start_time.to_date == Date.tomorrow
-        UserMailer.appointment_reminder(a.user).deliver_now
+        UserMailer.appointment_reminder(a.user, a).deliver_now
       end
     end
   end
