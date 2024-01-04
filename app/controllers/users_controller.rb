@@ -123,7 +123,7 @@ class UsersController < ApplicationController
       if @user.save
         redirect_to root_path, :notice => 'Usuario creado con éxito.'
       else
-        redirect_to users_new_path, :alert => 'No se pudo crear el usuario.'
+        render 'new', :alert => 'No se pudo crear el usuario.'
       end
     else
       redirect_to root_path, alert: "Lo sentimos, no puedes realizar esta acción."
