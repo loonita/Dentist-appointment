@@ -1,12 +1,27 @@
+<% if user_is_admin? %>
 
-<%= render @role %>
+<title>Rol &middot; Clínica Dental San Antonio</title>
 
-<div>
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <br><br><br>
+        <div class="card fat">
+          <div class="card-body">
+            <div class="col-sm-7"><h2>Detalles <b>Rol</b></h2></div><br>
 
-  <% if user_is_secretary? || user_is_admin? %>
-    <%= link_to "Editar este rol", edit_role_path(@role) %> |
-    <%= link_to "Volver a roles", roles_path %>
-    <%= button_to "Eliminar este rol", @role, method: :delete %>
-  <% end %>
 
-</div>
+              <%= render @role %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>
+
+
+

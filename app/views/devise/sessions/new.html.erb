@@ -17,19 +17,19 @@
         <br><br><br>
         <div class="card fat">
           <div class="card-body">
-            <h4 class="card-title">Iniciar sesión</h4>
-
+            <div class="col-sm-8"><h2>Iniciar <b>Sesión</b></h2></div>
+              <br><br>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
               <div class="d-flex flex-column justify-content-center align-items-center">
 
                 <div class="form-group">
-                  <%= f.label "Correo electrónico", class: "form-label" %>
+                  <b><%= f.label "Correo electrónico", class: "form-label" %></b>
                   <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"  %>
                     </div>
 
                     <div class="form-group">
-                      <%= f.label "Contraseña", class: "form-label" %>
+                      <b><%= f.label "Contraseña", class: "form-label" %></b>
                       <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
                         </div>
 

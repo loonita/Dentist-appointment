@@ -108,8 +108,8 @@
 
                       <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
                       <% if user_is_admin? || user_is_secretary? %>
-                        <td><%= link_to "Editar", edit_p_dum_path(:id_ap => appointment), class: "btn btn-primary" %></td>
-                        <td><%= link_to "Agendar", edit_p_calendar_path(:id_ap => appointment), class: "btn btn-info" %></td>
+                        <td><%= link_to "Editar", edit_p_dum_path(:id_ap => appointment), class: "btn btn-info" %></td>
+                        <td><%= link_to "Agendar", edit_p_calendar_path(:id_ap => appointment), class: "btn btn-primary" %></td>
                       <% end %>
                     </tr>
                   <% end %>

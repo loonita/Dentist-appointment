@@ -12,13 +12,13 @@
   <% end %>
 
   <div>
-    <%= form.label "Nombre urgencia", style: "display: block" %>
+    <b><%= form.label "Nombre urgencia", style: "display: block" %></b>
     <%= form.text_field :name, class: "form-control" %>
     <br>
   </div>
 
   <div>
-    <%= form.submit "Crear", class: "btn btn-primary btn-sm" %>
+    <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
     <%= link_to 'Cancelar', urgencia_path, class: "btn btn-outline-danger btn-sm" %>
   </div>
 

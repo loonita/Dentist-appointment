@@ -12,14 +12,14 @@
   <% end %>
 
   <div>
-    <b><%= form.label "Nombre status", style: "display: block" %></b>
+    <b><%= form.label "Nombre estado", style: "display: block" %></b>
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <br>
 
   <div>
-    <%= form.submit "Crear", class: "btn btn-primary btn-sm" %>
+    <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
     <%= link_to 'Cancelar', statuses_path, class: "btn btn-outline-danger btn-sm" %>
   </div>
 
