@@ -1,6 +1,41 @@
-<h1>Cita Agendada</h1>
+<h2>Hola <%= @patient.name %> !</h2>
 
 <p>
-  <%= @name %>, cita creada con exito, su cita es el dia <%= @appointment.start_time %> , con la dentista <%= @dentist.name %>
+  Tu cita dental ha sido agendada con éxito en Clínica Dental San Antonio.
+</p>
 
+<h4>Detalles de la cita</h4>
+
+<p>
+  <strong>Rut paciente: </strong> <%= @patient.rut %>
+</p>
+<p>
+  <strong>Paciente: </strong> <%= @patient.name %> <%= @patient.last_name %>
+</p>
+<p>
+  <strong>Rut dentista: </strong> <%= @dentist.rut %>
+</p>
+<p>
+  <strong>Dentista: </strong> Dra. <%=  @dentist.name %> <%= @dentist.last_name %>
+</p>
+<p>
+  <strong>Fecha: </strong> <%= @appointment.fecha %>
+</p>
+<p>
+  <strong>Hora: </strong> <%= @appointment.hora %>
+</p>
+<p>
+  <strong>Dirección: </strong> 12 Oriente 2 Sur 1947, Talca · Galería Patricia Ramírez - Local 19.
+</p>
+
+<p>
+
+</p>
+
+
+<p>
+  <strong>¡Nos vemos!</strong>
+</p>
+<p>
+  <strong>Clínica Dental San Antonio.</strong>
 </p>

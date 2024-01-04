@@ -8,10 +8,11 @@
 
 .pagination a {
     color: black;
-    float: left;
     padding: 8px 16px;
     text-decoration: none;
 }
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
 
 
 .navbar {

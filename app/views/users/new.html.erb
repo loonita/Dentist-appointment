@@ -9,7 +9,19 @@
           <div class="card-body">
             <div class="col-sm-7"><h2>Nuevo <b>usuario</b></h2></div><br>
 
-            <%= form_with :url => users_create_path, method: :post do |f| %>
+            <%= form_with(model: @user, url: users_create_path, method: :post) do |f| %>
+              <% if @user.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@user.errors.count, "error") %> errores impiden crear este usuario:</h2>
+
+                  <ul>
+                    <% @user.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
 
               <% if user_is_admin? %>
                 <div class="field">
@@ -68,3 +80,6 @@
     </div>
   </div>
 </section>
+
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
