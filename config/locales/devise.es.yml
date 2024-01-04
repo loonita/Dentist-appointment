@@ -51,13 +51,13 @@ es:
         send_instructions: "Recibirás un correo electrónico con instrucciones sobre cómo desbloquear tu cuenta en unos minutos."
         send_paranoid_instructions: "Si tu cuenta existe, recibirás un correo electrónico con instrucciones sobre cómo desbloquearla en unos minutos."
         unlocked: "Tu cuenta ha sido desbloqueada con éxito. Por favor, inicia sesión para continuar."
-    errors:
-      messages:
-        already_confirmed: "ya ha sido confirmado, por favor, intenta iniciar sesión"
-        confirmation_period_expired: "debe ser confirmado dentro de %{period}, por favor, solicita uno nuevo"
-        expired: "ha expirado, por favor, solicita uno nuevo"
-        not_found: "no encontrado"
-        not_locked: "no está bloqueado"
-        not_saved:
-          one: "No se pudo guardar %{resource} debido a 1 error"
-          other: "No se pudo guardar %{resource} debido a %{count} errores"
+  errors:
+    messages:
+      already_confirmed: "ya ha sido confirmado, por favor, intenta iniciar sesión"
+      confirmation_period_expired: "debe ser confirmado dentro de %{period}, por favor, solicita uno nuevo"
+      expired: "ha expirado, por favor, solicita uno nuevo"
+      not_found: "no encontrado"
+      not_locked: "no está bloqueado"
+      not_saved:
+        one: "No se pudo guardar %{resource} debido a 1 error"
+        other: "No se pudo guardar %{resource} debido a %{count} errores"

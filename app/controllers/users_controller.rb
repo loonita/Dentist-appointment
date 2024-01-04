@@ -117,8 +117,23 @@ class UsersController < ApplicationController
     end
   end
   def create
-    user = User.new(:name => params[:name], :last_name => params[:last_name], :email => params[:email], :rut => params[:rut], :phone => params[:phone],  :password => params[:password])
-    user.save ? (redirect_to root_path, :notice => 'Usuario creado con éxito.') : (redirect_to root_path, :status => :unprocessable_entity)
+    if user_is_admin? || user_is_secretary?
+      @user = User.new(user_params)
+
+      if @user.save
+        redirect_to root_path, :notice => 'Usuario creado con éxito.'
+      else
+        render 'new', :alert => 'No se pudo crear el usuario.'
+      end
+    else
+      redirect_to root_path, alert: "Lo sentimos, no puedes realizar esta acción."
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :last_name, :email, :rut, :phone, :password)
   end
 
 end

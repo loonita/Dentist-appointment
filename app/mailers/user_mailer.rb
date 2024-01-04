@@ -8,25 +8,26 @@ class UserMailer < ApplicationMailer
 
 
   def post_email(user)
-    mail(:to => "#{user.name} <#{user.email}>", :subject => "Registered")
+    mail(:to => "#{user.name} <#{user.email}>", :subject => "Te has registrado con éxito")
   end
 
   def appointment_confirmation(user, appointment)
-    @name = user.name
+    @patient = user
     @appointment = appointment
     @dentist = User.find(appointment.dentist_id)
-    mail to: user.email , :subject => "Appointment Confirmation"
+    mail to: user.email , :subject => "Cita agendada en Clínica Dental San Antonio"
   end
 
   def appointment_reminder(user, appointment)
-    @name = user.name
+    @patient = user
     @appointment = appointment
     @dentist = User.find(appointment.dentist_id)
-    mail to: user.email , :subject => "Appointment Reminder"
+    mail to: user.email , :subject => "Confirma tu cita en Clínica Dental San Antonio"
   end
 
   def appointment_followup_reminder(user)
-    mail to: user.email, subject: "Recordatorio periodico de 6 meses"
+    @patient = user
+    mail to: user.email, subject: "Recuerda realizar un chequeo dental"
   end
 
 end
