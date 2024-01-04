@@ -39,13 +39,13 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="/assets/edit_user_icon.png" width="35" height="35"> Usuarios</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <% if user_is_admin? || user_is_secretary? %>
-                       <li class="dropdown-item"><%= link_to "Nuevo usuario", users_new_path, class: "dropdown-item" %></li>
+                       <li class="dropdown-item"><%= link_to "Nuevo Usuario", users_new_path, class: "dropdown-item" %></li>
                     <% end %>
-                    <li class="dropdown-item"><%= link_to "Lista pacientes", users_patients_path, class: "dropdown-item" %></li>
-                    <li class="dropdown-item"><%= link_to "Lista dentistas", users_dentists_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Lista Pacientes", users_patients_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Lista Dentistas", users_dentists_path, class: "dropdown-item" %></li>
                     <% if user_is_admin? %>
-                    <li class="dropdown-item"><%= link_to "Lista secretarias", users_secretaries_path, class: "dropdown-item" %></li>
-                    <li class="dropdown-item"><%= link_to "Lista inactivos", users_inactivos_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Lista Secretarias", users_secretaries_path, class: "dropdown-item" %></li>
+                    <li class="dropdown-item"><%= link_to "Lista Inactivos", users_inactivos_path, class: "dropdown-item" %></li>
                   <% end %>
 
                 </ul>

@@ -7,7 +7,7 @@
       <div class="card-wrapper">
         <div class="card fat">
           <div class="card-body">
-            <div class="col-sm-7"><h2>Nuevo <b>usuario</b></h2></div><br>
+            <div class="col-sm-8"><h2>Nuevo <b>Usuario</b></h2></div><br>
 
             <%= form_with(model: @user, url: users_create_path, method: :post) do |f| %>
               <% if @user.errors.any? %>

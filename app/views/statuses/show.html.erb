@@ -1,13 +1,24 @@
+<% if user_is_admin? %>
 
+  <title>Estado &middot; Clínica Dental San Antonio</title>
 
-<%= render @status %>
+  <body class="my-login-page">
+  <section class="h-100">
+    <div class="container h-100">
+      <div class="row justify-content-md-center h-100">
+        <div class="card-wrapper">
+          <br><br><br>
+          <div class="card fat">
+            <div class="card-body">
+              <div class="col-sm-8"><h2>Detalles <b>Estado</b></h2></div><br>
 
-<div>
+                <%= render @status %>
 
-  <% if user_is_admin? %>
-    <%= link_to "Editar este status", edit_status_path(@status) %> |
-    <%= link_to "Volver a statuses", statuses_path %>
-    <%= button_to "Eliminar este status", @status, method: :delete %>
-  <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div>
+<% end %>

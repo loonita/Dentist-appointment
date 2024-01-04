@@ -1,11 +1,24 @@
+<% if user_is_admin? %>
 
+  <title>Editar urgencia &middot; Clínica Dental San Antonio</title>
 
-<%= render @urgencium %>
+  <body class="my-login-page">
+  <section class="h-100">
+    <div class="container h-100">
+      <div class="row justify-content-md-center h-100">
+        <div class="card-wrapper">
+          <br><br><br>
+          <div class="card fat">
+            <div class="card-body">
+              <div class="col-sm-9"><h2>Detalles <b>Urgencia</b></h2></div><br>
 
-<div>
-  <% if user_is_admin? %>
-    <%= link_to "Editar urgencia", edit_urgencium_path(@urgencium) %> |
-    <%= link_to "Volver a lista urgencias", urgencia_path %>
-    <%= button_to "Eliminar esta urgencia", @urgencium, method: :delete %>
-  <% end %>
-</div>
+              <%= render @urgencium %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<% end %>

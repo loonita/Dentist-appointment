@@ -1,16 +1,26 @@
+<% if user_is_admin? %>
+
+<title>Hora &middot; Clínica Dental San Antonio</title>
+
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <br><br><br>
+        <div class="card fat">
+          <div class="card-body">
+            <div class="col-sm-7"><h2>Detalles <b>Hora</b></h2></div><br>
+
+              <%= render @morning_time %>
 
 
-<%= render @morning_time %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>
 
-<div>
 
-  <% if user_is_secretary? || user_is_admin? %>
-    <%= link_to "Editar esta hora", edit_morning_time_path(@morning_time) %> |
-    <%= link_to "Volver a Horas disponibles", morning_times_path %>
-  <% end %>
-
-  <% if user_is_admin? %>
-    <%= button_to "Eliminar esta hora", @morning_time, method: :delete %>
-  <% end %>
-
-</div>
