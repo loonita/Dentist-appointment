@@ -336,6 +336,18 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def edit_c_me
+    if user_is_patient? || user_is_inactive?
+      redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."
+    end
+    @id_ap = params[:id_ap]
+    if Appointment.find(@id_ap).start_time > Time.now - 2.day
+      @appointment = Appointment.find(@id_ap)
+    else
+      redirect_to root_path, alert: "Lo sentimos, esta cita no se puede editar."
+    end
+  end
+
   def edit_p_calendar
     if user_is_dentist? || user_is_patient? || user_is_inactive?
       redirect_to root_path, alert: "Lo sentimos, no puedes ver esto."

@@ -1,4 +1,4 @@
-<title>Editar cita en espera &middot; Clínica Dental San Antonio</title>
+<title>Editar cita &middot; Clínica Dental San Antonio</title>
 
 <%= form_with(model: @appointment, local: true, html: { class: "form" }) do |form| %>
 
@@ -10,7 +10,7 @@
           <br><br><br>
           <div class="card fat">
             <div class="card-body">
-              <div class="col-sm-10"><h2>Editar<b> Cita en espera</b></h2><br></div>
+              <div class="col-sm-10"><h2>Editar<b> Cita</b></h2><br></div>
 
               <p id="<%= dom_id @appointment %>">
 
@@ -27,19 +27,25 @@
                     <td><%= User.find_by(id: @appointment.user_id).name_patient %></td>
                   </tr>
                   <tr>
-                    <td><b>Dentista</b></td>
-                    <td><%= form.collection_select :dentist_id, User.where(role_id: 2), :id, :name_dentist, class: "form-control small-input" %></td>
+                    <td><b>Rut dentista</b></td>
+                    <td><%= User.find_by(id: @appointment.dentist_id).rut %></td>
                   </tr>
-                  <% if @appointment.status_id == 5 %>
-                    <tr>
-                      <td><b>Urgencia</b></td>
-                      <td><%= form.collection_select :urgencia_id, Urgencium.all.order(id: :asc), :id, :name %></td>
-                    </tr>
-                    <tr>
-                      <td><b>Mensaje</b></td>
-                      <td><%= form.text_area :mensaje, class: "form-control" %></td>
-                    </tr>
-                  <% end %>
+                  <tr>
+                    <td><b>Nombre dentista</b></td>
+                    <td><%= User.find_by(id: @appointment.dentist_id).name_patient %></td>
+                  </tr>
+                  <tr>
+                    <td><b>Fecha</b></td>
+                    <td><%= @appointment.fecha %></td>
+                  </tr>
+                  <tr>
+                    <td><b>Hora</b></td>
+                    <td><%= @appointment.hora %></td>
+                  </tr>
+                  <tr>
+                    <td><b>Mensaje</b></td>
+                    <td><%= form.text_area :mensaje, class: "form-control" %></td>
+                  </tr>
 
                   </thead>
                 </table>
@@ -47,7 +53,7 @@
 
               <div class="form-group">
                 <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
-                <%= link_to "Cancelar", appointments_pending_path, class: "btn btn-outline-danger btn-sm" %>
+                <%= link_to "Cancelar", appointments_path, class: "btn btn-outline-danger btn-sm" %>
               </div>
 
             </div>
