@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'espera', to: 'appointments#agendar_en_espera'
   get 'edit_p_calendar', to: 'appointments#edit_p_calendar'
   get 'edit_p_agendar', to: 'appointments#edit_p_agendar'
+  get 'edit_c_me', to: 'appointments#edit_c_me'
   get 'inactive', :to => 'appointments#inactive'
 
   put 'appointments', :to => 'appointments#agendar_espera'
