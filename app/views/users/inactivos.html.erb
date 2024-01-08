@@ -31,7 +31,6 @@
               <table class="table">
                 <thead>
                 <tr>
-                  <th>ID No.</th>
                   <th width = "120px">RUT</th>
                   <th width="180px">Nombres</th>
                   <th width="180px">Apellidos</th>
@@ -44,14 +43,13 @@
 
                 <% @inactivos.each do |inactivo| %>
                   <tr>
-                    <td><%= inactivo.id %></td>
                     <td><%= inactivo.rut %></td>
                     <td><%= inactivo.name %></td>
                     <td><%= inactivo.last_name %></td>
                     <td><%= inactivo.email %></td>
                     <td><%= inactivo.phone %></td>
 
-                    <td><%= link_to "Ver", inactivo, class: "btn btn-secondary" %></td>
+                    <td><%= link_to "Editar", inactivo, class: "btn btn-info" %></td>
 
                 <% end %>
 

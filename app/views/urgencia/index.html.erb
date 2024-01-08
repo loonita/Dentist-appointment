@@ -18,7 +18,6 @@
               <table class="table">
                 <thead>
                 <tr>
-                  <th width="100px">ID No.</th>
                   <th width="250px">Tipo urgencia</th>
                 </tr>
                 </thead>
@@ -26,7 +25,6 @@
                 <tbody>
                 <% @urgencia.each do |urgencia| %>
                   <tr>
-                    <td><%= urgencia.id %></td>
                     <td><%= urgencia.name %></td>
                     <td><%= link_to "Ver" , urgencia, class: "btn btn-secondary" %></td>
                     <td><%= link_to "Editar", edit_urgencium_path(urgencia), class: "btn btn-info" %></td>

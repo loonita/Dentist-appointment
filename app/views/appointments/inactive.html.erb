@@ -61,7 +61,6 @@
                 <table class="table">
                   <thead>
                   <tr>
-                    <th>ID No.</th>
                     <th width="120px">Rut paciente</th>
                     <th width="200px">Nombre paciente</th>
                     <th width="120px">Rut dentista</th>
@@ -78,7 +77,6 @@
                   <tbody>
                   <% @appointments.each do |appointment| %>
                     <tr>
-                      <td><%= appointment.id %></td>
                       <td><%= User.find_by(id: appointment.user_id).rut_patient %></td>
                       <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
                       <td><%= User.find_by(id: appointment.dentist_id).rut_dentist %></td>
