@@ -69,6 +69,9 @@
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Estado</th>
+                    <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
+                      <th width="100px">Mensaje</th>
+                    <% end %>
                   </tr>
                   </thead>
 
@@ -87,6 +90,9 @@
                         <td><span class="status text-danger"><%= Status.find_by(id: appointment.status_id).name %></span></td>
                       <% elsif appointment.status_id == 4 %>
                         <td><span class="status text-secondary"><%= Status.find_by(id: appointment.status_id).name %></span></td>
+                      <% end %>
+                      <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
+                        <td><%= appointment.mensaje %></td>
                       <% end %>
 
                       <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>

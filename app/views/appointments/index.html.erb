@@ -103,6 +103,9 @@
                   <th>Fecha</th>
                   <th>Hora</th>
                   <th>Estado</th>
+                  <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
+                  <th width="150px">Mensaje</th>
+                  <% end %>
                 </tr>
                 </thead>
 
@@ -128,10 +131,16 @@
                     <% elsif appointment.status_id == 5 %>
                       <td><span class="status text-info"><%= Status.find_by(id: appointment.status_id).name %></span></td>
                     <% end %>
+                    <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
+                      <td><%= appointment.mensaje %></td>
+                    <% end %>
 
                     <td><%= link_to "Ver" , appointment, class: "btn btn-secondary" %></td>
+                    <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
+                      <td><%= link_to "Editar", edit_c_me_path(:id_ap => appointment), class: "btn btn-info" %></td>
+                    <% end %>
                     <% if user_is_admin? || user_is_secretary? %>
-                    <td><%= link_to "Estado", edit_appointment_path(appointment), class: "btn btn-info" %></td>
+                    <td><%= link_to "Estado", edit_appointment_path(appointment), class: "btn btn-primary" %></td>
                     <% end %>
                   </tr>
                 <% end %>
