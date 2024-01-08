@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "teresa.vidal2001@alumnos.ubiobio.cl"
+  default from: "clinicasanantonio@tvidal.ubiobio.dev"
   layout "mailer"
 end

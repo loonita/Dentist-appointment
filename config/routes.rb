@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'contact/new'
   resources :contacts, only: [:new, :create]
 
-  default_url_options :host => 'localhost'
+  default_url_options :host => ENV['DEFAULT_HOST_URL']
 
   root "application#index"
 

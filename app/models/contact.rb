@@ -8,8 +8,8 @@ class Contact < MailForm::Base
   def headers
     {
       :subject => "Formulario Contacto",
-      :to => "teresa.vidal2001@alumnos.ubiobio.cl",
-      :from => "teresa.vidal2001@alumnos.ubiobio.cl"
+      :to => "clinicasanantoniotalca@gmail.com",
+      :from => "clinicasanantonio@tvidal.ubiobio.dev"
     }
   end
 end
