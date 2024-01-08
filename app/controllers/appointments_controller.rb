@@ -404,7 +404,7 @@ class AppointmentsController < ApplicationController
 
       respond_to do |format|
         if @appointment.save
-          format.html { redirect_to appointment_url(@appointment), notice: "La cita fue creada exitoamente." }
+          format.html { redirect_to appointment_url(@appointment), notice: "La cita se ha creado exitosamente." }
           format.json { render :show, status: :created, location: @appointment }
         else
           format.html { render :new, status: :unprocessable_entity }

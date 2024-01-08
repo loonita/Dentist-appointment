@@ -38,7 +38,6 @@
               <table class="table">
                 <thead>
                 <tr>
-                  <th>ID No.</th>
                   <th width = "120px">RUT</th>
                   <th width="180px">Nombres</th>
                   <th width="180px">Apellidos</th>
@@ -51,7 +50,6 @@
 
                 <% @dentists.each do |dentist| %>
                 <tr>
-                  <td><%= dentist.id %></td>
                   <td><%= dentist.rut %></td>
                   <td><%= dentist.name %></td>
                   <td><%= dentist.last_name %></td>
@@ -59,7 +57,7 @@
                   <td><%= dentist.phone %></td>
 
                   <% if user_is_admin? || user_is_secretary? %>
-                    <td><%= link_to "Ver", dentist, class: "btn btn-secondary" %></td>
+                    <td><%= link_to "Editar", dentist, class: "btn btn-info" %></td>
                   <% end %>
 
                 <% end %>

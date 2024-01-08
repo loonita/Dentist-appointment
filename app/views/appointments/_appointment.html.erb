@@ -4,42 +4,42 @@
   <table class="table">
       <thead>
       <tr>
-        <td><b>Rut paciente</b></td>
-        <td><%= User.find_by(id: appointment.user_id).rut %></td>
+        <td width="185px"><b>Rut paciente</b></td>
+        <td width="300px"><%= User.find_by(id: appointment.user_id).rut %></td>
       </tr>
       <tr>
-        <td><b>Nombre paciente</b></td>
+        <td width="185px"><b>Nombre paciente</b></td>
         <td><%= User.find_by(id: appointment.user_id).name_patient %></td>
       </tr>
       <tr>
-        <td><b>Rut dentista</b></td>
+        <td width="185px"><b>Rut dentista</b></td>
         <td><%= User.find_by(id: appointment.dentist_id).rut %></td>
       </tr>
       <tr>
-        <td><b>Nombre dentista</b></td>
+        <td width="185px"><b>Nombre dentista</b></td>
         <td><%= User.find_by(id: appointment.dentist_id).name_dentist %></td>
       </tr>
       <tr>
-        <td><b>Fecha</b></td>
+        <td width="185px"><b>Fecha</b></td>
         <td><%= appointment.fecha %></td>
       </tr>
       <tr>
-        <td><b>Hora</b></td>
+        <td width="185px"><b>Hora</b></td>
         <td><%= appointment.hora %></td>
       </tr>
       <tr>
-        <td><b>Estado</b></td>
+        <td width="185px"><b>Estado</b></td>
         <td><%= Status.find_by(id: appointment.status_id).name %></td>
       </tr>
       <% if appointment.status_id == 5 %>
         <tr>
-          <td><b>Urgencia</b></td>
+          <td width="185px"><b>Urgencia</b></td>
           <td><%= Urgencium.find_by(id: appointment.urgencia_id).name %></td>
         </tr>
       <% end %>
       <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
         <tr>
-          <td><b>Mensaje</b></td>
+          <td width="185px"><b>Mensaje</b></td>
           <td><%= appointment.mensaje %></td>
         </tr>
       <% end %>

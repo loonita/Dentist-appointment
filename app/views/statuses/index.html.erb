@@ -18,7 +18,6 @@
               <table class="table">
                 <thead>
                 <tr>
-                  <th width="100px">ID No.</th>
                   <th width="250px">Nombre estado</th>
                 </tr>
                 </thead>
@@ -27,7 +26,6 @@
                 <tbody>
                 <% @statuses.each do |status| %>
                   <tr>
-                    <td><%= status.id %></td>
                     <td><%= status.name %></td>
                     <td><%= link_to "Ver", status, class: "btn btn-secondary" %></td>
                     <td><%= link_to "Editar", edit_status_path(status), class: "btn btn-info" %></td>
