@@ -1,43 +1,48 @@
 <title>Crear cita espera &middot; Clínica Dental San Antonio</title>
 
-<body class="my-login-page">
-<section class="h-100">
-  <div class="container h-100">
-    <div class="row justify-content-md-center h-100">
-      <div class="card-wrapper">
-        <br><br><br>
-        <div class="card fat">
+<div class="page-content page-container d-flex justify-content-center align-items-center" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card" style="width: 500px;">
           <div class="card-body">
-            <div class="col-sm-10"><h2>Crear <b>Cita en espera</b></h2><br></div>
+            <div class="col-sm-12"><h2>Crear <b>Cita en espera</b></h2><br></div>
             <%= form_for(@appointment, html: { method: :put }) do |form| %>
 
-              <div class="form-group">
-                <b><%= form.label "Rut paciente" %></b><br>
-                <%= User.find_by(id: @patient_recibido).rut %>
-              </div>
 
-              <div class="form-group">
-                <b><%= form.label "Nombre paciente" %></b><br>
-                <%= User.find_by(id: @patient_recibido).name_patient %>
-                <%= form.hidden_field :user_id, value: @patient_recibido %>
-              </div>
+              <div class="card">
+                <table class="table">
+                  <thead>
 
-              <div class="form-group">
-                <b><%= form.label "Dentista" %></b><br>
-                <%= form.collection_select :dentist_id, User.where(role_id: 2), :id, :name_dentist, class: "form-control small-input" %>
-              </div>
 
-              <div class="field">
-                <b><%= form.label "Tipo urgencia" %></b><br>
-                <%= form.collection_select :urgencia_id, Urgencium.all.order(id: :asc), :id, :name %>
-              </div>
+                  <tr>
+                    <td><b>Rut paciente</b></td>
+                    <td><%= User.find_by(id: @patient_recibido).rut %></td>
+                  </tr>
+                  <tr>
+                    <td><b>Nombre paciente</b></td>
+                    <td><%= User.find_by(id: @patient_recibido).name_patient %></td>
+                    <%= form.hidden_field :user_id, value: @patient_recibido %>
+                  </tr>
+                  <tr>
+                    <td><b>Nombre dentista</b></td>
+                    <td><%= form.collection_select :dentist_id, User.where(role_id: 2), :id, :name_dentist, class: "form-control small-input" %></td>
+                  </tr>
+                  <tr>
+                    <td><b>Tipo urgencia</b></td>
+                    <td><%= form.collection_select :urgencia_id, Urgencium.all.order(id: :asc), :id, :name %></td>
+                  </tr>
+                  <tr>
+                    <td><b>Mensaje</b></td>
+                    <td><%= form.text_area :mensaje, class: "form-control" %></td>
+                  </tr>
 
-              <div class="field">
-                <b><%= form.label "Mensaje" %></b><br>
-                <%= form.text_area :mensaje, class: "form-control" %>
-              </div>
+                  <%= form.hidden_field :status, value: 5 %>
 
-              <%= form.hidden_field :status, value: 5 %>
+                  </thead>
+                </table>
+              </div>
 
               <div class="form-group">
                 <br>
@@ -49,5 +54,9 @@
         </div>
       </div>
     </div>
+
   </div>
-</section>
+</div>
+</div>
+
+<br> <br>
