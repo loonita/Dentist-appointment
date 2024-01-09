@@ -2,15 +2,14 @@
 
 <%= form_with(model: @appointment, local: true, html: { class: "form" }) do |form| %>
 
-<body class="my-login-page">
-<section class="h-100">
-  <div class="container h-100">
-    <div class="row justify-content-md-center h-100">
-      <div class="card-wrapper">
-        <br><br><br>
-        <div class="card fat">
-          <div class="card-body">
-            <div class="col-sm-7"><h2>Agendar <b>Cita en espera</b></h2><br></div>
+  <div class="page-content page-container d-flex justify-content-center align-items-center" id="page-content">
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card" style="width: 500px;">
+            <div class="card-body">
+            <div class="col-sm-12"><h2>Agendar <b>Cita en espera</b></h2><br></div>
 
             <p id="<%= dom_id @appointment %>">
 
@@ -71,12 +70,15 @@
               <%= link_to "Cancelar", appointments_pending_path, class: "btn btn-outline-danger btn-sm" %>
             </div>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</body>
-
 <% end %>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<br> <br>

@@ -11,58 +11,61 @@
     </div>
   <% end %>
 
+  <div class="card">
+    <table class="table">
+      <thead>
+
   <% if user_is_admin? || user_is_secretary? || user_is_dentist? %>
 
-    <div class="form-group">
-      <b><%= form.label "Rut paciente" %></b>
-      <%= User.find_by(id: @patient_recibido).rut %>
-    </div>
-
-    <div class="form-group">
-      <b><%= form.label "Paciente" %></b>
-      <%= User.find_by(id: @patient_recibido).name_patient %>
-      <%= form.hidden_field :user_id, value: @patient_recibido %>
-    </div>
+        <tr>
+          <td><b>Rut paciente</b></td>
+          <td><%= User.find_by(id: @patient_recibido).rut %></td>
+        </tr>
+        <tr>
+          <td><b>Nombre paciente</b></td>
+          <td><%= User.find_by(id: @patient_recibido).name_patient %></td>
+          <%= form.hidden_field :user_id, value: @patient_recibido %>
+        </tr>
 
   <% else %>
     <%= form.hidden_field :user_id, value: current_user.id %>
   <% end %>
 
-  <div class="form-group">
-    <b><%= form.label "Rut dentista" %></b>
-    <%= User.find_by(id: @dentist_recibido).rut %>
-  </div>
-
-  <div class="form-group">
-    <b><%= form.label "Dentista" %></b>
-    <%= User.find_by(id: @dentist_recibido).name_dentist %>
-      <%= form.hidden_field :dentist_id, value: @dentist_recibido %>
-  </div>
-
-  <div class="form-group">
-
-    <b><%= form.label "Fecha" %></b>
-    <%= form.label :start_time, value: @fecha_recibida %>
-    <%= form.hidden_field :start_time, value: @fecha_recibida %>
-
-  </div>
-
-  <div class="form-group">
-    <b><%= form.label "Hora" %></b>
-    <%= form.collection_select :time, @horas_disponibles, :to_s, :to_s %>
-  </div>
+        <tr>
+          <td><b>Rut dentista</b></td>
+          <td><%= User.find_by(id: @dentist_recibido).rut %></td>
+        </tr>
+        <tr>
+          <td><b>Nombre dentista</b></td>
+          <td><%= User.find_by(id: @dentist_recibido).name_dentist %></td>
+          <%= form.hidden_field :dentist_id, value: @dentist_recibido %>
+        </tr>
+        <tr>
+          <td><b>Fecha</b></td>
+          <td><%= form.label :start_time, value: @fecha_recibida %></td>
+          <%= form.hidden_field :start_time, value: @fecha_recibida %>
+        </tr>
+        <tr>
+          <td><b>Hora</b></td>
+          <td><%= form.collection_select :time, @horas_disponibles, :to_s, :to_s %></td>
+        </tr>
 
   <% if user_is_admin? || user_is_secretary? %>
-    <div class="field">
-      <b><%= form.label "Mensaje" %></b><br>
-      <%= form.text_area :mensaje, class: "form-control" %>
-    </div>
 
-    <div class="form-group">
-      <b><%= form.label :status %></b>
-      <%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %>
-    </div>
+        <tr>
+          <td><b>Mensaje</b></td>
+          <td><%= form.text_area :mensaje, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><b>Estado</b></td>
+          <td><%= form.select :status_id, options_from_collection_for_select(Status.all, 'id', 'name') %></td>
+        </tr>
+
   <% end %>
+
+      </thead>
+    </table>
+  </div>
 
   <br>
 
