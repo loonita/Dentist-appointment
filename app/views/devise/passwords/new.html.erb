@@ -1,16 +1,49 @@
-<h2>Forgot your password?</h2>
+<title>¿Olvidaste tu contraeña?  &middot; Clínica Dental San Antonio</title>
+
+
+<div class="page-content page-container d-flex justify-content-center align-items-center" id="page-content">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center">
+
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card" style="width: 440px;">
+          <div class="card-body">
+            <div class="col-sm-12"><h2>¿Olvidaste <b>tu contraseña?</b></h2></div>
+            <p class="card-description">
+              Ingresa el correo con el que te registraste para que te enviemos las instrucciones para recuperar tu contraseña.
+            </p>
+            <br>
+
+            <div class="d-flex flex-column justify-content-center align-items-center">
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form-group">
+    <b><%= f.label "Correo electrónico", class: "form-label" %></b>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width: 300px;" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
+<br>
+                <div class="mb-3 d-flex align-items-center justify-content-center">
+                    <div class="actions">
+                      <%= f.submit "Enviar", class: "btn btn-lg btn-primary rounded-pill" %>
+                    </div>
+                </div>
 <% end %>
 
+              <br>
+
 <%= render "devise/shared/links" %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<br> <br> <br> <br> <br> <br>
