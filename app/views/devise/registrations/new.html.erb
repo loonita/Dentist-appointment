@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="author" content="Kodinger">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <title>Regístrate  &middot; Clínica Dental San Antonio</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="css/my-login.css">
-</head>
 
-<body class="my-login-page">
-<section class="h-100">
-  <div class="container h-100">
-    <div class="row justify-content-md-center h-100">
-      <div class="card-wrapper">
-        <div class="card fat">
-          <div class="card-body">
-            <h4 class="card-title">Regístrate</h4>
 
+  <div class="page-content page-container d-flex justify-content-center align-items-center" id="page-content">
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card" style="width: 450px;">
+            <div class="card-body">
+            <h3 class="card-title">Regístrate</h3>
+<br>
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -59,7 +52,7 @@
                <b><%= f.label "Repetir contraseña", class: "form-label" %></b><br />
                 <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
               </div>
-
+<br>
               <div class="mb-3 d-flex align-items-center justify-content-center">
                 <%= f.submit "Regístrate", class: "btn btn-lg btn-primary rounded-pill" %>
                   </div>
@@ -68,12 +61,17 @@
             <div class="mt-4 text-center">
               ¿Ya tienes una cuenta?
             <%= render "devise/shared/links" %>
+
+            </div>
+
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
-</section>
+  </div>
 
-    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+  <br> <br> <br> <br> <br> <br>
