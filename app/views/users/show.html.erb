@@ -43,7 +43,7 @@
                           </div>
                           <%= link_to "Editar perfil", edit_user_registration_path, class: "btn btn-info btn-sm" %>
 
-                          <% elsif user_is_admin? || user_is_secretary? %>
+                          <% elsif current_user != @user && ( user_is_admin? || user_is_secretary? ) %>
 
                           <%= form_for(@user, html: { method: :put }) do |f| %>
 
