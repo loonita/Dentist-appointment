@@ -15,7 +15,7 @@
 
                 <div class="col-sm-5">
                   <% if user_is_dentist? || user_is_admin? || user_is_secretary? %>
-                    <%= form_tag agendar_p_path, method: :get, class: "form-inline" do %>
+                    <%= form_tag espera_paciente_path, method: :get, class: "form-inline" do %>
                       <%= hidden_field_tag :dentist_t, params[:dentist_t] %>
                       <%= hidden_field_tag :fecha_t, params[:fecha_t] %>
                       <div class="search-box">
