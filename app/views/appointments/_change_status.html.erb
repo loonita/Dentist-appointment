@@ -33,6 +33,7 @@
         <%= form.radio_button :status_id, 2 %>
         <b><span style='color: green;'>Confirmar asistencia a cita.</span></b>
       </label>
+      <br>
       <label>
         <%= form.radio_button :status_id, 3 %>
         <b><span style='color: red;'>Cancelar cita.</span></b>
@@ -43,7 +44,7 @@
 
   <div class="form-group">
     <%= form.submit "Guardar", class: "btn btn-primary btn-sm" %>
-    <%= link_to "Cancelar", :back, class: "btn btn-outline-danger btn-sm" %>
+    <%= link_to "Volver", :back, class: "btn btn-outline-danger btn-sm" %>
   </div>
 
 <% end %>
